@@ -8,9 +8,7 @@ echo $target_file . "<br/>";
 echo is_dir($target_dir) . "<br/>";
 echo $_FILES["fileToUpload"]["name"] . "<br/>";
 echo $_FILES["fileToUpload"]["tmp_name"] . "<br/>";
-echo is_writeable($target_dir)  . "<br/>";
-
-
+echo is_writeable($target_dir) . "<br/>";
 
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -43,7 +41,7 @@ if ($_FILES["fileToUpload"]["size"] > 500000) {
 
 // Allow certain file formats
 if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-    echo "only JPG, JPEG, PNG & GIF files are allowed."  . "<br/>";
+    echo "only JPG, JPEG, PNG & GIF files are allowed." . "<br/>";
     $uploadOk = 0;
 }
 
@@ -58,4 +56,9 @@ if ($uploadOk == 0) {
         echo "There was an error uploading your file." . "<br/>";
     }
 }
+
+
+$files = scandir($target_dir);
+
+print_r($files);
 ?>
