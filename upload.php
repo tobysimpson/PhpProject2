@@ -1,5 +1,9 @@
 <?php
 
+
+//pwd = /var/www/sure/uploads/
+//$res_name = filter_input(INPUT_POST, "res_name", FILTER_SANITIZE_STRING);
+
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 
@@ -45,20 +49,19 @@ if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpe
     $uploadOk = 0;
 }
 
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0) {
-    echo "File not uploaded." . "<br/>";
-// if everything is ok, try to upload file
-} else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "File " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " uploaded.";
-    } else {
-        echo "There was an error uploading your file." . "<br/>";
-    }
-}
+//// Check if $uploadOk is set to 0 by an error
+//if ($uploadOk == 0) {
+//    echo "File not uploaded." . "<br/>";
+//// if everything is ok, try to upload file
+//} else {
+//    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+//        echo "File " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " uploaded.";
+//    } else {
+//        echo "There was an error uploading your file." . "<br/>";
+//    }
+//}
 
 
 $files = scandir($target_dir);
-
 print_r($files);
 ?>
