@@ -6,13 +6,13 @@ class cls_db {
     private static $instance = null;
     // db connection config vars
     private $hostname = "localhost";
-    private $username = "sure";
-    private $password = "@K38U8munsGbHRqg";
-    private $dbname   = "sure";
+    private $username = "root";
+    private $password = "Flowerdb1";
+    private $dbname   = "db1";
     //objects
     public $conn    = null;
-
-
+    
+               
     public function __construct() {
         $this->conn = new mysqli($this->hostname, $this->username, $this->password, $this->dbname);
     }
