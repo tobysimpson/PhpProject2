@@ -3,12 +3,14 @@
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output method="html" encoding="utf-8"/>
     
+    <xsl:include href="../nav.xsl"/>
+    
+    <xsl:template match="/">
+        <xsl:call-template name="page"/> 
+    </xsl:template>
+    
     <xsl:template match="root">
         <html>
-            <head>
-                <title></title>
-                <link rel="stylesheet" href="https://sure.euler.usi.ch/styles.css"/>
-            </head>
             <body>
                 <table>
                     <tr>
