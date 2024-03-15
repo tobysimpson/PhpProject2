@@ -14,8 +14,8 @@
             <body>
                 <table>
                     <tr>
-                        <th>id</th>
-                        <th>name</th>
+                        <th>item_id</th>
+                        <th>item_name</th>
                     </tr>
                     <xsl:for-each select="tbl[1]/row">
                         <tr>
