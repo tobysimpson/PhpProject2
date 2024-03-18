@@ -8,6 +8,7 @@
             <head>
                 <title></title>
                 <link rel="stylesheet" href="https://sure.euler.usi.ch/styles.css"/>
+                <script src="xmlhttp.js"></script>
             </head>
             <body>
                 <!--layout--> 

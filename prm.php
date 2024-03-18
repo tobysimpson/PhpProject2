@@ -13,6 +13,9 @@ switch ($mth) {
     case "hst":
         prm_hst();
         break;
+    case "fwd":
+        prm_fwd();
+        break;
     default:
         prm_rec();
 }
@@ -41,6 +44,23 @@ function prm_hst() {
     $xml = cls_xml::mul2dom($db->conn);
     if ($xsl == 1) {
         $xsl = cls_xml::file2dom("prm/prm_hst.xsl");
+        header('Content-Type: image/svg+xml');
+        echo cls_xml::xsltrans($xml, $xsl);
+    } else {
+        header('Content-Type: text/xml');
+        echo $xml->saveXML();
+    }
+}
+
+function prm_fwd() {
+    $db = new cls_db();
+    $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_prm_fwd({$res_id},{$prm_id});");
+    $xml = cls_xml::mul2dom($db->conn);
+    if ($xsl == 1) {
+        $xsl = cls_xml::file2dom("prm/prm_fwd.xsl");
         header('Content-Type: image/svg+xml');
         echo cls_xml::xsltrans($xml, $xsl);
     } else {
