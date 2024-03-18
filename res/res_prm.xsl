@@ -56,8 +56,12 @@
                                 <a href="prm.php?mth=fwd&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">
                                     <xsl:value-of select="$prm/@prm_path_code"/>
                                 </a>
+                                <xsl:text> </xsl:text>
+<!--                                <a href="#0" onclick="fn_get('prm.php?mth=edt&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1',div1)">edit</a>-->
+                                <!--<a href="prm.php?mth=edt&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=0">edit</a>-->
+
                                                              
-                                <!--                                <a href="#0" onclick="fn_get('prm.php?mth=fwd&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1',div1)">
+                                <!--   <a href="#0" onclick="fn_get('prm.php?mth=fwd&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1',div1)">
                                     <xsl:value-of select="$prm/@prm_path_code"/>
                                 </a>-->
                             
@@ -68,9 +72,9 @@
    
                             
                                 <!--<a href="prm.php?mth=fwd&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">-->
-                                <a href="#0" onclick="fn_get('prm.php?mth=fwd&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1',div1)">
+<!--                                <a href="#0" onclick="fn_get('prm.php?mth=fwd&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1',div1)">
                                     <img src="prm.php?mth=fwd&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1" width="160px"/>
-                                </a>
+                                </a>-->
                             </xsl:if>
                         </td>
                     </xsl:for-each>
@@ -79,8 +83,7 @@
         </table>
         <hr/>
         <div id="div1"></div>
-   
-        
-       
+
+
     </xsl:template>
 </xsl:stylesheet>

@@ -3,7 +3,13 @@
     <xsl:output method="xml" omit-xml-declaration="yes" indent="yes"/>
 
     <xsl:include href="../plot.xsl"/>
+    <xsl:include href="../nav.xsl"/>
     
+    
+    <xsl:template match="/">
+        <xsl:call-template name="page"/> 
+    </xsl:template>
+   
     <xsl:variable name="ph">500</xsl:variable>
     <xsl:variable name="pw">1000</xsl:variable>
         
@@ -71,10 +77,10 @@
     <xsl:variable name="tdash" select="$pw * $ttick div $trng * 0.125"/>
     <xsl:variable name="vdash" select="$ph * $vtick div $vrng * 0.125"/>
     
-    
    
     <xsl:template match="root">
-        <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg">
+        <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!--<script xlink:href="xmlhttp.js"></script>-->
             <style>* { font-size: 10pt; font-family: sans-serif; font-weight: 300; }</style> 
             
 
@@ -162,7 +168,6 @@
                             <xsl:for-each select="tbl[3]/row">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
-                                <!--<xsl:variable name="y" select="@*[$j + 3]"/>-->
                                 <xsl:variable name="y" select="format-number($ph * (1 - (@tj - $vinf) div $vrng),'0.00')"/>
                                 <xsl:choose>
                                     <xsl:when test="position()=1">
@@ -188,7 +193,6 @@
                             <xsl:for-each select="tbl[3]/row">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
-                                <!--<xsl:variable name="y" select="@*[$j + 3]"/>-->
                                 <xsl:variable name="y" select="format-number($ph * (1 - (@v - $vinf) div $vrng),'0.00')"/>
                                 <xsl:choose>
                                     <xsl:when test="position()=1">
@@ -215,7 +219,6 @@
                             <xsl:for-each select="tbl[4]/row">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
-                                <!--<xsl:variable name="y" select="@*[$j + 3]"/>-->
                                 <xsl:variable name="y" select="format-number($ph * (1 - (@v - $vinf) div $vrng),'0.00')"/>
                                 <xsl:choose>
                                     <xsl:when test="position()=1">
@@ -256,18 +259,35 @@
                             <xsl:variable name="i" select="position()"/>
                             <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
                             <xsl:variable name="y" select="format-number($ph * (1 - (@v - $vinf) div $vrng),'0.00')"/>
-                            <circle cx="{$x}" cy="{$y}" r="3" stroke="#006600" fill="#FFFFFF"/>
+                            <!-- javascript:fn_get('prm.php?mth=fwd&amp;res_id=//root/tbl1[1]/row/@res_id&amp;prm_id={$prm/@prm_id}&amp;xsl=1',div2);-->
+                            <!--<a href="#0" onclick="document.getElementById('txt3').value={@yr};document.getElementById('txt4').value={format-number(@v,'0')};">-->
+                            <circle cx="{$x}" cy="{$y}" r="4" stroke="#006600" fill="#FFFFFF"/> 
+                            <!--                                        onmouseover="evt.target.setAttribute('fill', 'blue');" 
+                            onmouseout="evt.target.setAttribute('fill','white');" 
+                            onclick="evt.target.setAttribute('fill','red');" 
+                            ondblclick="evt.target.setAttribute('fill','yellow');"/>-->
+                            <!--</a>-->
                         </xsl:for-each>
                     </g>
                     
                 </g>
             </g>
                 
-                
-
-                
   
+            <!--            <foreignObject x="100" y="100" width="100" height="150">
+                <div id="div2" xmlns="http://www.w3.org/1999/xhtml">
+                    <input id="txt1" type="hidden" value="{tbl[1]/row/@res_id}"/>
+                    <input id="txt2" type="hidden" value="{tbl[2]/row/@prm_id}"/>
+                    <input id="txt3" type="text"/>
+                    <input id="txt4" type="text"/>
+                </div>
+            </foreignObject>-->
+            
         </svg>
+        
+
+        
+        
     </xsl:template>
     
 
