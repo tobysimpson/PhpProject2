@@ -8,7 +8,7 @@
     <xsl:variable name="w">1000</xsl:variable>
     
     <xsl:variable name="ph" select="0.8 * $h"/>
-    <xsl:variable name="pw" select="0.8 * $w"/>
+    <xsl:variable name="pw" select="0.9 * $w"/>
     
     <xsl:variable name="ho" select="0.1 * $h"/>
     <xsl:variable name="wo" select="0.05 * $w"/>

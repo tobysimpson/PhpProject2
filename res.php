@@ -7,23 +7,24 @@ require_once "cls_xml.php";
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
-    case "rec":
-        prm_rec();
+    case "lst":
+        res_lst();
         break;
-    case "hst":
-        prm_hst();
+    case "prm":
+        res_prm();
         break;
     default:
-        prm_rec();
+        res_lst();
 }
 
-function prm_rec() {
+function res_lst() {
     $db = new cls_db();
     $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("SELECT * FROM prm_rec;");
+    $db->conn->multi_query("SELECT * FROM res_info;");
     $xml = cls_xml::mul2dom($db->conn);
+
     if ($xsl == 1) {
-        $xsl = cls_xml::file2dom("prm/prm_rec.xsl");
+        $xsl = cls_xml::file2dom("res/res_lst.xsl");
         header('Content-Type: text/html');
         echo cls_xml::xsltrans($xml, $xsl);
     } else {
@@ -32,16 +33,16 @@ function prm_rec() {
     }
 }
 
-
-function prm_hst() {
+function res_prm() {
     $db = new cls_db();
-    $xsl    = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
-    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_prm_hst({$prm_id});");
+    $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_res_prm({$res_id})");
     $xml = cls_xml::mul2dom($db->conn);
+
     if ($xsl == 1) {
-        $xsl = cls_xml::file2dom("prm/prm_hst.xsl");
-        header('Content-Type: image/svg+xml');
+        $xsl = cls_xml::file2dom("res/res_prm.xsl");
+        header('Content-Type: text/html');
         echo cls_xml::xsltrans($xml, $xsl);
     } else {
         header('Content-Type: text/xml');

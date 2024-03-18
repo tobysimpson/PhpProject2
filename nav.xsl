@@ -41,6 +41,14 @@
     <xsl:template name="menu">
         <table width="100%">
             <tr>
+                <th style="text-align:left">res</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="res.php?mth=lst&amp;xsl=1">res_lst</a>
+                </td>
+            </tr>
+            <tr>
                 <th style="text-align:left">prm</th>
             </tr>
             <tr>
