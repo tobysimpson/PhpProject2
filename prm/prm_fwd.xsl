@@ -261,7 +261,7 @@
                             <xsl:variable name="y" select="format-number($ph * (1 - (@v - $vinf) div $vrng),'0.00')"/>
                             <!-- javascript:fn_get('prm.php?mth=fwd&amp;res_id=//root/tbl1[1]/row/@res_id&amp;prm_id={$prm/@prm_id}&amp;xsl=1',div2);-->
                             <!--<a href="#0" onclick="document.getElementById('txt3').value={@yr};document.getElementById('txt4').value={format-number(@v,'0')};">-->
-                            <circle cx="{$x}" cy="{$y}" r="4" stroke="#006600" fill="#FFFFFF"/> 
+                            <circle cx="{$x}" cy="{$y}" r="2" stroke="#006600" fill="#FFFFFF"/> 
                             <!--                                        onmouseover="evt.target.setAttribute('fill', 'blue');" 
                             onmouseout="evt.target.setAttribute('fill','white');" 
                             onclick="evt.target.setAttribute('fill','red');" 

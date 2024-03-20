@@ -11,6 +11,7 @@
     
     <xsl:template match="root">
         <xsl:variable name="res_id" select="tbl[1]/row/@res_id"/>
+        
         <table>
             <tr>
                 <th>res_id</th>
@@ -25,12 +26,80 @@
                 </td>
             </tr>
         </table>
+        
         <hr/>
+        
+        
         <table>
             <tr>
-                <th>prm_id</th>
-                <th>prm_name</th>
+                <td colspan="2">conversion</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
                 <xsl:for-each select="//tbl[2]/row">
+                    <xsl:sort select="@prd_ord" data-type="number"/>
+                    <th>
+                        <xsl:value-of select="@prd_code"/>
+                        <xsl:value-of select="@prd_id"/>
+                    </th>
+                </xsl:for-each>
+            </tr>
+            <xsl:for-each select="//tbl[3]/row[@par_id=149]">
+                <xsl:variable name="p1" select="@prm_id"/>
+                <tr>
+                    <!--                    <td style="text-align:center">
+                        <xsl:value-of select="@prm_id"/>
+                    </td>-->
+                    <td colspan="2" style="white-space:nowrap;font-weight:600;">
+                        <xsl:value-of select="@prm_name"/>
+                    </td>
+                </tr>
+                <xsl:for-each select="//tbl[3]/row[@par_id=$p1]">
+                    <xsl:variable name="prc" select="."/>
+                    <tr>
+                        <td style="text-align:center">
+                            <xsl:value-of select="@prm_id"/>
+                        </td>
+                        <td>
+                            <xsl:value-of select="@prm_name"/>
+                        </td>
+                    
+                    
+                    
+                        <xsl:for-each select="//tbl[2]/row">
+                            <xsl:sort select="@prd_ord" data-type="number"/>
+                            <xsl:variable name="prd" select="."/>
+                            <xsl:variable name="prm" select="//tbl[3]/row[@par_id = $prc/@prm_id][@prd_id = $prd/@prd_id]"/>
+
+                            <td>
+                                <xsl:if test="$prm">
+                                    <xsl:value-of select="$prm/@prm_id"/>
+                                    <xsl:text> - </xsl:text>
+                                    <a href="prm.php?mth=fwd&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">
+                                        <xsl:value-of select="$prm/@prm_path_code"/>
+                                    </a>
+                                </xsl:if>
+                            </td>
+                        </xsl:for-each>
+                    </tr>
+                </xsl:for-each>
+            </xsl:for-each>
+ 
+               
+            <tr>
+                <td colspan="16">
+                    <hr/>
+                </td>
+            </tr>
+
+        
+            <tr>
+                <td colspan="2">consumption</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <xsl:for-each select="//tbl[2]/row">
+                    <xsl:sort select="@prd_ord" data-type="number"/>
                     <th>
                         <xsl:value-of select="@prd_code"/>
                         <xsl:value-of select="@prd_id"/>
@@ -48,42 +117,22 @@
                     </td>
                     <!-- prd -->
                     <xsl:for-each select="//tbl[2]/row">
+                        <xsl:sort select="@prd_ord" data-type="number"/>
                         <xsl:variable name="prd_id" select="@prd_id"/>
                         <xsl:variable name="prm" select="//tbl[3]/row[@par_id = $par_id][@prd_id = $prd_id]"/>
                         <td>
-                            <!--<xsl:value-of select="$par_id"/>,<xsl:value-of select="$prd_id"/>,<xsl:value-of select="$prm/@prm_id"/>,<xsl:value-of select="$prm/@prm_desc"/>-->
                             <xsl:if test="$prm">
+                                <xsl:value-of select="$prm/@prm_id"/>
+                                <xsl:text> - </xsl:text>
                                 <a href="prm.php?mth=fwd&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">
                                     <xsl:value-of select="$prm/@prm_path_code"/>
                                 </a>
-                                <xsl:text> </xsl:text>
-<!--                                <a href="#0" onclick="fn_get('prm.php?mth=edt&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1',div1)">edit</a>-->
-                                <!--<a href="prm.php?mth=edt&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=0">edit</a>-->
-
-                                                             
-                                <!--   <a href="#0" onclick="fn_get('prm.php?mth=fwd&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1',div1)">
-                                    <xsl:value-of select="$prm/@prm_path_code"/>
-                                </a>-->
-                            
-                                <br/>
-                                <!--<a href="prm.php?mth=hst&amp;prm_id={$prm/@prm_id}&amp;xsl=1">
-                                    <img src="prm.php?mth=hst&amp;prm_id={$prm/@prm_id}&amp;xsl=1" width="180px"/>
-                                </a>-->
-   
-                            
-                                <!--<a href="prm.php?mth=fwd&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">-->
-<!--                                <a href="#0" onclick="fn_get('prm.php?mth=fwd&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1',div1)">
-                                    <img src="prm.php?mth=fwd&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1" width="160px"/>
-                                </a>-->
                             </xsl:if>
                         </td>
                     </xsl:for-each>
                 </tr>
             </xsl:for-each>
         </table>
-        <hr/>
-        <div id="div1"></div>
-
 
     </xsl:template>
 </xsl:stylesheet>

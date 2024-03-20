@@ -76,6 +76,8 @@
 
             <g id="title" transform="translate(40,20)">
                 <text x="0" y="0" alignment-baseline="middle">
+                    <xsl:value-of select="tbl[1]/row/@prm_id"/>
+                    <xsl:text> - </xsl:text>
                     <xsl:value-of select="tbl[1]/row/@prm_desc"/>
                 </text>
             </g>
