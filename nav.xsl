@@ -54,7 +54,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="prm.php?mth=rec&amp;xsl=1">prm_rec</a>
+                    <a href="prm.php?mth=dsp&amp;xsl=1">prm_dsp</a>
                 </td>
             </tr>
             <tr>

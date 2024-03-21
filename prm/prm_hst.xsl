@@ -183,7 +183,7 @@
                     
                     <g id="line">
                         <xsl:variable name="line2">
-                            <xsl:for-each select="tbl[2]/row">
+                            <xsl:for-each select="tbl[2]/row[@yr &gt;= 2010]">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
                                 <!--<xsl:variable name="y" select="@*[$j + 3]"/>-->
@@ -215,7 +215,16 @@
                             <xsl:variable name="i" select="position()"/>
                             <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
                             <xsl:variable name="y" select="format-number($ph * (1 - (@tj - $vinf) div $vrng),'0.00')"/>
-                            <circle cx="{$x}" cy="{$y}" r="1" stroke="#6666FF" fill="#6666FF"/>
+                            <circle cx="{$x}" cy="{$y}" r="2" stroke="#6666FF" fill="#6666FF"/>
+                        </xsl:for-each>
+                    </g>
+                    
+                    <g id="reg">
+                        <xsl:for-each select="tbl[2]/row[@yr &gt;= 2010]">
+                            <xsl:variable name="i" select="position()"/>
+                            <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
+                            <xsl:variable name="y" select="format-number($ph * (1 - (@v - $vinf) div $vrng),'0.00')"/>
+                            <circle cx="{$x}" cy="{$y}" r="2" stroke="#FF6666" fill="#FFFFFF"/>
                         </xsl:for-each>
                     </g>
                 </g>

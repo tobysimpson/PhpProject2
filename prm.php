@@ -6,8 +6,8 @@ require_once "cls_xml.php";
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
-    case "rec":
-        prm_rec();
+    case "dsp":
+        prm_dsp();
         break;
     case "hst":
         prm_hst();
@@ -22,13 +22,13 @@ switch ($mth) {
         prm_rec();
 }
 
-function prm_rec() {
+function prm_dsp() {
     $db = new cls_db();
     $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("SELECT * FROM prm_rec;");
+    $db->conn->multi_query("SELECT * FROM prm_dsp;");
     $xml = cls_xml::mul2dom($db->conn);
     if ($xsl == 1) {
-        $xsl = cls_xml::file2dom("prm/prm_rec.xsl");
+        $xsl = cls_xml::file2dom("prm/prm_dsp.xsl");
         header('Content-Type: text/html');
         echo cls_xml::xsltrans($xml, $xsl);
     } else {

@@ -162,7 +162,7 @@
                 </g>
                 
                 
-                <g id="lines">
+                <g id="hist">
                     <g id="line1">
                         <xsl:variable name="line1">
                             <xsl:for-each select="tbl[3]/row">
@@ -188,9 +188,9 @@
                         <path fill="none"  d="{$line1}" stroke-width="1" stroke="#6666FF" />
                     </g>
                     
-                    <g id="line2">
+                    <g id="reg">
                         <xsl:variable name="line2">
-                            <xsl:for-each select="tbl[3]/row">
+                            <xsl:for-each select="tbl[3]/row[@yr &gt; 2009]">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
                                 <xsl:variable name="y" select="format-number($ph * (1 - (@v - $vinf) div $vrng),'0.00')"/>
@@ -250,9 +250,19 @@
                             <xsl:variable name="i" select="position()"/>
                             <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
                             <xsl:variable name="y" select="format-number($ph * (1 - (@tj - $vinf) div $vrng),'0.00')"/>
-                            <circle cx="{$x}" cy="{$y}" r="1" stroke="#6666FF" fill="#6666FF"/>
+                            <circle cx="{$x}" cy="{$y}" r="2" stroke="#6666FF" fill="#6666FF"/>
                         </xsl:for-each>
                     </g>
+                    
+                    <g id="reg">
+                        <xsl:for-each select="tbl[3]/row[@yr &gt; 2009]">
+                            <xsl:variable name="i" select="position()"/>
+                            <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
+                            <xsl:variable name="y" select="format-number($ph * (1 - (@v - $vinf) div $vrng),'0.00')"/>
+                            <circle cx="{$x}" cy="{$y}" r="2" stroke="#FF6666" fill="#FFFFFF"/>
+                        </xsl:for-each>
+                    </g>
+                    
                     
                     <g id="forward">
                         <xsl:for-each select="tbl[4]/row">
