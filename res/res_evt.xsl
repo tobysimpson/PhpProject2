@@ -15,25 +15,32 @@
                 <table>
                     <tr>
                         <th>res_id</th>
-                        <th>res_name</th>
+                        <th>prm_id</th>
+                        <th>tj</th>
+                        <th>yr</th>
                     </tr>
                     <xsl:for-each select="tbl[1]/row">
                         <tr>
                             <td>
                                 <xsl:value-of select="@res_id"/>
                             </td>
-                            <td style="text-align:left;">
-                                <xsl:value-of select="@res_name"/>
+                            <td>
+                                <xsl:value-of select="@prm_id"/>
+                            </td>
+                            <td style="text-align:right;">
+                                <xsl:value-of select="@yr"/>
+                            </td>
+                            <td style="text-align:right;">
+                                <xsl:value-of select="@tj"/>
+                            </td>
+                            <td> 
+                                <a href="prm.php?mth=edt&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;xsl=1">edit</a>
                             </td>
                             <td>
-                                <a href="res.php?mth=prm&amp;res_id={@res_id}&amp;xsl=1">res_prm</a>
-                            </td>
-                            <td>
-                                <a href="res.php?mth=evt&amp;res_id={@res_id}&amp;xsl=1">res_evt</a>
+                                <a href="prm.php?mth=clr&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;yr={@yr}">clear</a>
                             </td>
                         </tr>
                     </xsl:for-each> 
-                    
                 </table>
             </body>
         </html>

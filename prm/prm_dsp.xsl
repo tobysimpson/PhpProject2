@@ -18,6 +18,7 @@
                         <th>grp_id</th>
                         <th>prc_id</th>
                         <th>prd_id</th>
+                        <th>prm_typ</th>
                         <th>prm_code</th>
                         <th>grp_name</th>
                         <th>prc_name</th>
@@ -39,10 +40,13 @@
                             <td style="text-align:center">
                                 <xsl:value-of select="@prd_id"/>
                             </td>
+                            <td style="text-align:center">
+                                <xsl:value-of select="@prm_typ"/>
+                            </td>
+                            
                             <td style="text-align:left">
                                 <xsl:value-of select="@prm_code"/>
                             </td>
-                            
                             <td style="text-align:left">
                                 <xsl:value-of select="@grp_name"/>
                             </td>

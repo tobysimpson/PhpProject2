@@ -18,6 +18,12 @@ switch ($mth) {
     case "edt":
         prm_edt();
         break;
+    case "ups":
+        prm_ups();
+        break;
+    case "clr":
+        prm_clr();
+        break;
     default:
         prm_rec();
 }
@@ -90,20 +96,23 @@ function prm_edt() {
 
 
 function prm_ups() {
-    $db = new cls_db();
-    $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
+    $db     = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_prm_edt({$res_id},{$prm_id});");
-    $xml = cls_xml::mul2dom($db->conn);
-    if ($xsl == 1) {
-        $xsl = cls_xml::file2dom("prm/prm_edt.xsl");
-        header('Content-Type: text/html');
-        echo cls_xml::xsltrans($xml, $xsl);
-    } else {
-        header('Content-Type: text/xml');
-        echo $xml->saveXML();
-    }
+    $yr     = filter_input(INPUT_GET, "yr",     FILTER_VALIDATE_INT);
+    $tj     = filter_input(INPUT_GET, "tj",     FILTER_VALIDATE_FLOAT);
+    $db->conn->multi_query("CALL sp_prm_ups({$res_id},{$prm_id},{$yr},{$tj});");
+    header("Location: prm.php?mth=edt&res_id=".$res_id."&prm_id=".$prm_id."&xsl=1");
+}
+
+
+function prm_clr() {
+    $db     = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $yr     = filter_input(INPUT_GET, "yr",     FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_prm_clr({$res_id},{$prm_id},{$yr});");
+    header("Location: prm.php?mth=edt&res_id=".$res_id."&prm_id=".$prm_id."&xsl=1");
 }
 
 
