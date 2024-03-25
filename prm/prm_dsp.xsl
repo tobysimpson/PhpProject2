@@ -18,13 +18,14 @@
                         <th>grp_id</th>
                         <th>prc_id</th>
                         <th>prd_id</th>
-                        <th>prm_typ</th>
+                        <th>prm_grw</th>
                         <th>prm_code</th>
                         <th>grp_name</th>
                         <th>prc_name</th>
                         <th>prd_name</th>
                         <th>reg_a</th>
                         <th>reg_b</th>
+                        <th>prm_eff</th>
                     </tr>
                     <xsl:for-each select="tbl[1]/row">
                         <tr>
@@ -41,7 +42,7 @@
                                 <xsl:value-of select="@prd_id"/>
                             </td>
                             <td style="text-align:center">
-                                <xsl:value-of select="@prm_typ"/>
+                                <xsl:value-of select="@prm_grw"/>
                             </td>
                             
                             <td style="text-align:left">
@@ -63,9 +64,22 @@
                             <td style="text-align:right">
                                 <xsl:value-of select="@reg_b"/>
                             </td>
+                            
+                            <td style="text-align:right">
+                                <xsl:if test="number(@prm_eff) = @prm_eff">
+                                    <xsl:value-of select="format-number(@prm_eff,'0.0000')"/>
+                                </xsl:if>
+                            </td>
+                            
+                            
                             <td>
                                 <xsl:if test="@reg_a!=''">
                                     <a href="prm.php?mth=hst&amp;prm_id={@prm_id}&amp;xsl=1">prm_hst</a>
+                                </xsl:if>
+                            </td>
+                            <td>
+                                <xsl:if test="number(@prm_eff) &gt; 0">
+                                    <a href="prm.php?mth=eff&amp;prm_id={@prm_id}&amp;xsl=1">prm_eff</a>
                                 </xsl:if>
                             </td>
                         </tr>

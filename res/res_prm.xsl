@@ -49,10 +49,10 @@
                 <xsl:sort select="@grp_ord" data-type="number"/>
                 <xsl:variable name="grp" select="."/>
                 <tr>
-                    <td style="text-align:center">
+                    <td style="text-align:center;">
                         <xsl:value-of select="@grp_id"/>
                     </td>
-                    <td colspan="15">
+                    <td colspan="15" style="font-weight:600;">
                         <xsl:value-of select="@grp_name"/>
                     </td>
 <!--                    <td>
@@ -79,9 +79,14 @@
                                     <!-- <xsl:value-of select="$prm/@prm_id"/>-->
                                     <xsl:value-of select="$prm/@prm_code"/>
                                     <br/>
+                                    <a href="prm.php?mth=edt&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">
+                                        <img src="prm.php?mth=prv&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1"/>
+                                    </a>
+                                    <br/>
                                     <a href="prm.php?mth=hst&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">hst</a>,
                                     <a href="prm.php?mth=fwd&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">fwd</a>,
-                                    <a href="prm.php?mth=edt&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">edit</a>
+                                    <a href="prm.php?mth=edt&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">edt</a>,
+                                    <a href="prm.php?mth=prv&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">prv</a>
                                 </xsl:if>
                             </td>
                         </xsl:for-each>

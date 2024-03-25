@@ -15,6 +15,9 @@ switch ($mth) {
     case "fwd":
         prm_fwd();
         break;
+    case "prv":
+        prm_prv();
+        break;
     case "edt":
         prm_edt();
         break;
@@ -23,6 +26,9 @@ switch ($mth) {
         break;
     case "clr":
         prm_clr();
+        break;
+    case "eff":
+        prm_eff();
         break;
     default:
         prm_rec();
@@ -61,7 +67,7 @@ function prm_hst() {
 
 function prm_fwd() {
     $db = new cls_db();
-    $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
+    $xsl    = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
     $db->conn->multi_query("CALL sp_prm_fwd({$res_id},{$prm_id});");
@@ -75,6 +81,24 @@ function prm_fwd() {
         echo $xml->saveXML();
     }
 }
+
+function prm_prv() {
+    $db = new cls_db();
+    $xsl    = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_prm_fwd({$res_id},{$prm_id});");
+    $xml = cls_xml::mul2dom($db->conn);
+    if ($xsl == 1) {
+        $xsl = cls_xml::file2dom("prm/prm_prv.xsl");
+        header('Content-Type: image/svg+xml');
+        echo cls_xml::xsltrans($xml, $xsl);
+    } else {
+        header('Content-Type: text/xml');
+        echo $xml->saveXML();
+    }
+}
+
 
 
 function prm_edt() {
@@ -117,13 +141,18 @@ function prm_clr() {
 
 
 
-//function prm_ups() {
-//    $db = new cls_db();
-//    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-//    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-//    $p = filter_input(INPUT_GET, "p", FILTER_VALIDATE_INT);
-//    $u = filter_input(INPUT_GET, "u", FILTER_VALIDATE_FLOAT);
-//    $qry = $db->conn->prepare("INSERT INTO prm_usr (res_id, prm_id, p, u) VALUES ({$res_id},{$prm_id},{$p},{$u}) ON DUPLICATE KEY UPDATE u = {$u};");
-//    $qry->execute();
-//    header("Location: prm.php?mth=plt1&res_id=".$res_id."&prm_id=".$prm_id);
-//}
+function prm_eff() {
+    $db = new cls_db();
+    $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
+    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_prm_eff({$prm_id});");
+    $xml = cls_xml::mul2dom($db->conn);
+    if ($xsl == 1) {
+        $xsl = cls_xml::file2dom("prm/prm_eff.xsl");
+        header('Content-Type: image/svg+xml');
+        echo cls_xml::xsltrans($xml, $xsl);
+    } else {
+        header('Content-Type: text/xml');
+        echo $xml->saveXML();
+    }
+}
