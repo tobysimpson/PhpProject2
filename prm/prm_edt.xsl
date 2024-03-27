@@ -357,7 +357,7 @@
     <xsl:template name="hgrid">
         <xsl:param name="vpos"/>
         <xsl:variable name="y" select="format-number($ph * (1 - ($vpos - $vinf) div $vrng),'0.00')"/>
-        <text xmlns="http://www.w3.org/2000/svg" x="{$pw + 50}" y="{$y}" alignment-baseline="middle" text-anchor="end">
+        <text xmlns="http://www.w3.org/2000/svg" x="{$pw + 70}" y="{$y}" alignment-baseline="middle" text-anchor="end">
             <xsl:value-of select="format-number($vpos,'#,##0')"/>
         </text>
         <line xmlns="http://www.w3.org/2000/svg" x1="0" y1="{$y}" x2="{$pw}" y2="{$y}" stroke="lightgrey" stroke-dasharray="{$tdash},{$tdash}" stroke-dashoffset="{$tdash * 0.5}" />

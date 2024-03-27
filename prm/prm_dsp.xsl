@@ -18,13 +18,16 @@
                         <th>grp_id</th>
                         <th>prc_id</th>
                         <th>prd_id</th>
-                        <th>prm_grw</th>
+                        
                         <th>prm_code</th>
                         <th>grp_name</th>
                         <th>prc_name</th>
                         <th>prd_name</th>
+                        
                         <th>reg_a</th>
                         <th>reg_b</th>
+                        <th>prm_grw</th>
+                        <th>prm_cal</th>
                         <th>prm_eff</th>
                     </tr>
                     <xsl:for-each select="tbl[1]/row">
@@ -41,9 +44,7 @@
                             <td style="text-align:center">
                                 <xsl:value-of select="@prd_id"/>
                             </td>
-                            <td style="text-align:center">
-                                <xsl:value-of select="@prm_grw"/>
-                            </td>
+
                             
                             <td style="text-align:left">
                                 <xsl:value-of select="@prm_code"/>
@@ -54,10 +55,12 @@
                             <td style="text-align:left">
                                 <xsl:value-of select="@prc_name"/>
                             </td>
-              
                             <td style="text-align:left">
                                 <xsl:value-of select="@prd_name"/>
                             </td>
+                            
+                            
+                            
                             <td style="text-align:right">
                                 <xsl:value-of select="@reg_a"/>
                             </td>
@@ -65,6 +68,12 @@
                                 <xsl:value-of select="@reg_b"/>
                             </td>
                             
+                            <td style="text-align:center">
+                                <xsl:value-of select="@prm_grw"/>
+                            </td>
+                            <td style="text-align:center">
+                                <xsl:value-of select="@prm_cal"/>
+                            </td>
                             <td style="text-align:right">
                                 <xsl:if test="number(@prm_eff) = @prm_eff">
                                     <xsl:value-of select="format-number(@prm_eff,'0.0000')"/>

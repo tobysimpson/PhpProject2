@@ -16,8 +16,8 @@
                     <tr>
                         <th>res_id</th>
                         <th>prm_id</th>
-                        <th>tj</th>
                         <th>yr</th>
+                        <th>tj</th>
                     </tr>
                     <xsl:for-each select="tbl[1]/row">
                         <tr>
