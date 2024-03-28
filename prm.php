@@ -37,7 +37,7 @@ switch ($mth) {
 function prm_dsp() {
     $db = new cls_db();
     $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("SELECT * FROM prm_dsp;");
+    $db->conn->multi_query("CALL sp_prm_dsp();");
     $xml = cls_xml::mul2dom($db->conn);
     if ($xsl == 1) {
         $xsl = cls_xml::file2dom("prm/prm_dsp.xsl");
