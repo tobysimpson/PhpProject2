@@ -34,7 +34,7 @@
                         </tr>
                     </xsl:for-each> 
                 </table>
-                
+                <hr/>
                 <form action="res.php?mth=ins" method="post">
                     <input type="submit" value="new"/>
                 </form>
