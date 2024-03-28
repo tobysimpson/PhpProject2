@@ -16,6 +16,9 @@ switch ($mth) {
     case "evt":
         res_evt();
         break;
+    case "ins":
+        res_ins();
+        break;
     default:
         res_lst();
 }
@@ -68,4 +71,14 @@ function res_evt() {
         header('Content-Type: text/xml');
         echo $xml->saveXML();
     }
+}
+
+
+
+function res_ins() {
+    $db = new cls_db();
+    $qry = $db->conn->prepare("INSERT INTO res_info (res_name) VALUES ('new');");
+    $qry->execute();
+    $res_id = $qry->insert_id;
+    header("Location: res.php?mth=prm&xsl=1&res_id=".$res_id);
 }

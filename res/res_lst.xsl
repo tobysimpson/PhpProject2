@@ -33,8 +33,12 @@
                             </td>
                         </tr>
                     </xsl:for-each> 
-                    
                 </table>
+                
+                <form action="res.php?mth=ins" method="post">
+                    <input type="submit" value="new"/>
+                </form>
+                
             </body>
         </html>
     </xsl:template>

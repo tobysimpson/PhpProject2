@@ -79,16 +79,9 @@
                                     <xsl:value-of select="format-number(@prm_eff,'0.0000')"/>
                                 </xsl:if>
                             </td>
-                            
-                            
                             <td>
                                 <xsl:if test="@reg_a!=''">
                                     <a href="prm.php?mth=hst&amp;prm_id={@prm_id}&amp;xsl=1">prm_hst</a>
-                                </xsl:if>
-                            </td>
-                            <td>
-                                <xsl:if test="number(@prm_eff) &gt; 0">
-                                    <a href="prm.php?mth=eff&amp;prm_id={@prm_id}&amp;xsl=1">prm_eff</a>
                                 </xsl:if>
                             </td>
                         </tr>

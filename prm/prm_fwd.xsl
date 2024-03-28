@@ -24,7 +24,7 @@
     <xsl:variable name="tt" select="root/tbl[*]/row/@yr" />
     <xsl:variable name="tt2" select="root/tbl[4]/row/@yr" />
     <!--<xsl:variable name="vv" select="root/tbl[2]/row/@tj" />-->
-    <xsl:variable name="vv" select="root/tbl[*]/row/@*[name()='tj' or name()='v']" />
+    <xsl:variable name="vv" select="root/tbl[*]/row/@*[name()='tj' or name()='reg' or name()='fwd']" />
     
     <!--<xsl:variable name="tt" select="$tt1 | $tt2" />-->
 
@@ -193,7 +193,7 @@
                             <xsl:for-each select="tbl[3]/row[@yr &gt; 2009]">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
-                                <xsl:variable name="y" select="format-number($ph * (1 - (@v - $vinf) div $vrng),'0.00')"/>
+                                <xsl:variable name="y" select="format-number($ph * (1 - (@reg - $vinf) div $vrng),'0.00')"/>
                                 <xsl:choose>
                                     <xsl:when test="position()=1">
                                         <xsl:text>M </xsl:text>
@@ -219,7 +219,7 @@
                             <xsl:for-each select="tbl[4]/row">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
-                                <xsl:variable name="y" select="format-number($ph * (1 - (@v - $vinf) div $vrng),'0.00')"/>
+                                <xsl:variable name="y" select="format-number($ph * (1 - (@fwd - $vinf) div $vrng),'0.00')"/>
                                 <xsl:choose>
                                     <xsl:when test="position()=1">
                                         <xsl:text>M </xsl:text>
@@ -258,7 +258,7 @@
                         <xsl:for-each select="tbl[3]/row[@yr &gt; 2009]">
                             <xsl:variable name="i" select="position()"/>
                             <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
-                            <xsl:variable name="y" select="format-number($ph * (1 - (@v - $vinf) div $vrng),'0.00')"/>
+                            <xsl:variable name="y" select="format-number($ph * (1 - (@reg - $vinf) div $vrng),'0.00')"/>
                             <circle cx="{$x}" cy="{$y}" r="2" stroke="#FF6666" fill="#FFFFFF"/>
                         </xsl:for-each>
                     </g>
@@ -268,7 +268,7 @@
                         <xsl:for-each select="tbl[4]/row">
                             <xsl:variable name="i" select="position()"/>
                             <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
-                            <xsl:variable name="y" select="format-number($ph * (1 - (@v - $vinf) div $vrng),'0.00')"/>
+                            <xsl:variable name="y" select="format-number($ph * (1 - (@fwd - $vinf) div $vrng),'0.00')"/>
                             <!-- javascript:fn_get('prm.php?mth=fwd&amp;res_id=//root/tbl1[1]/row/@res_id&amp;prm_id={$prm/@prm_id}&amp;xsl=1',div2);-->
                             <!--<a href="#0" onclick="document.getElementById('txt3').value={@yr};document.getElementById('txt4').value={format-number(@v,'0')};">-->
                             <circle cx="{$x}" cy="{$y}" r="2" stroke="#006600" fill="#FFFFFF"/> 

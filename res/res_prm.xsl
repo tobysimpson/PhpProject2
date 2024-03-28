@@ -75,11 +75,17 @@
 
                             <td>
                                 <xsl:if test="$prm">
+
                                     <xsl:value-of select="$prm/@prm_code"/>
                                     <br/>
                                     <xsl:value-of select="$prm/@prm_id"/>
-                                    <xsl:text>, </xsl:text>
+                                    <xsl:text> </xsl:text>
+                                    <!-- <xsl:text> [</xsl:text>
                                     <xsl:value-of select="$prm/@prm_cal"/>
+                                    <xsl:text>,</xsl:text>
+                                    <xsl:value-of select="$prm/@prm_grw"/>
+                                    <xsl:text>] </xsl:text>-->
+                                    <xsl:value-of select="$prm/@reg_b"/>
                                     <br/>
                                     <xsl:choose>
                                         <xsl:when test="$prm/@prm_cal=0">
