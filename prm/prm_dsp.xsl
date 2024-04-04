@@ -30,6 +30,7 @@
                 
                 <th>reg_a</th>
                 <th>reg_b</th>
+                <th>prm_def</th>
                 <th>prm_eff</th>
                 
                 
@@ -121,7 +122,9 @@
                             <td style="text-align:right">
                                 <xsl:value-of select="$prm/@reg_b"/>  
                             </td>
-
+                            <td style="text-align:right">
+                                <xsl:value-of select="$prm/@prm_def"/>  
+                            </td>
                             <td style="text-align:right">
                                 <xsl:value-of select="$prm/@prm_eff"/>  
                             </td>

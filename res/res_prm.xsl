@@ -10,7 +10,7 @@
     </xsl:template>
     
     <xsl:template match="root">
-        <xsl:variable name="res_id" select="tbl[1]/row/@res_id"/>
+        <xsl:variable name="res" select="tbl[1]/row[1]"/>
         
         <table>
             <tr>
@@ -19,10 +19,10 @@
             </tr>
             <tr>
                 <td style="text-align:center">
-                    <xsl:value-of select="tbl[1]/row/@res_id"/>
+                    <xsl:value-of select="$res/@res_id"/>
                 </td>
                 <td>
-                    <xsl:value-of select="tbl[1]/row/@res_name"/>
+                    <xsl:value-of select="$res/@res_name"/>
                 </td>
             </tr>
         </table>
@@ -37,8 +37,10 @@
                 <xsl:for-each select="//tbl[4]/row">
                     <xsl:sort select="@prd_ord" data-type="number"/>
                     <th style="width:50px;">
-                        <xsl:value-of select="@prd_code"/>
                         <xsl:value-of select="@prd_id"/>
+                        <br/>
+                        <!--<xsl:text> - </xsl:text>-->
+                        <xsl:value-of select="@prd_name"/>
                     </th>
                 </xsl:for-each>
             </tr>
@@ -75,47 +77,50 @@
 
                             <td>
                                 <xsl:if test="$prm">
-
+                                    <xsl:value-of select="$prm/@prm_id"/>
+                                    <xsl:text> - </xsl:text>
                                     <xsl:value-of select="$prm/@prm_code"/>
                                     <br/>
-                                    <xsl:value-of select="$prm/@prm_id"/>
-                                    <xsl:text> </xsl:text>
-                                    <!-- <xsl:text> [</xsl:text>
-                                    <xsl:value-of select="$prm/@prm_cal"/>
-                                    <xsl:text>,</xsl:text>
-                                    <xsl:value-of select="$prm/@prm_grw"/>
-                                    <xsl:text>] </xsl:text>-->
                                     <xsl:value-of select="$prm/@reg_b"/>
                                     <br/>
                                     <xsl:choose>
                                         <xsl:when test="$prm/@prm_cal=0">
-                                            <a href="prm.php?mth=edt&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">
-                                                <img src="prm.php?mth=prv&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1"/>
+                                            <a href="prm.php?mth=edt&amp;res_id={$res/@res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">
+                                                <img src="prm.php?mth=prv&amp;res_id={$res/@res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1"/>
                                             </a>
-                                            <br/>
-                                            <a href="prm.php?mth=hst&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">hst</a>,
-                                            <a href="prm.php?mth=fwd&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">fwd</a>,
-                                            <a href="prm.php?mth=edt&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">edt</a>,
-                                            <a href="prm.php?mth=prv&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">prv</a>
                                         </xsl:when>
                                         <xsl:otherwise>
-                                            <a href="prm.php?mth=fwd&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">
-                                                <img src="prm.php?mth=prv&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1"/>
+                                            <a href="prm.php?mth=fwd&amp;res_id={$res/@res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">
+                                                <img src="prm.php?mth=prv&amp;res_id={$res/@res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1"/>
                                             </a>
-                                            <br/>
-                                            <a href="prm.php?mth=hst&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">hst</a>,
-                                            <a href="prm.php?mth=fwd&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">fwd</a>,
-                                            <a href="prm.php?mth=prv&amp;res_id={$res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">prv</a>
                                         </xsl:otherwise>
                                     </xsl:choose>
+
+                                    <br/>
+                                    <xsl:if test="$prm/@prm_cal=0">
+                                        <a href="prm.php?mth=edt&amp;res_id={$res/@res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">edt</a>
+                                        <xsl:text>, </xsl:text>
+                                    </xsl:if>
+                                    <a href="prm.php?mth=hst&amp;res_id={$res/@res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">hst</a>
+                                    <xsl:text>, </xsl:text>
+                                    <a href="prm.php?mth=fwd&amp;res_id={$res/@res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">fwd</a>
+                                    <xsl:text>, </xsl:text>
+                                    <a href="prm.php?mth=prv&amp;res_id={$res/@res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">prv</a>
                                 </xsl:if>
                             </td>
                         </xsl:for-each>
                     </tr>
                 </xsl:for-each>
-
             </xsl:for-each>
         </table>
-
     </xsl:template>
+    
+    
+    <xsl:template match="/">
+        <xsl:call-template name="page"/> 
+    </xsl:template>
+    
+    
+    
+    
 </xsl:stylesheet>
