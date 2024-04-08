@@ -103,7 +103,7 @@
                             <td style="text-align:center">
                                 <xsl:value-of select="$prm/@prm_id"/>  
                             </td>
-                            <td style="text-align:center">
+                            <td style="text-align:left">
                                 <xsl:value-of select="$grp/@grp_code"/>
                                 <xsl:text>_</xsl:text>
                                 <xsl:value-of select="$prc/@prc_code"/>
