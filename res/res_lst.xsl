@@ -19,7 +19,7 @@
                     </tr>
                     <xsl:for-each select="tbl[1]/row">
                         <tr>
-                            <td>
+                            <td style="text-align:center;">
                                 <xsl:value-of select="@res_id"/>
                             </td>
                             <td style="text-align:left;">

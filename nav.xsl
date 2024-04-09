@@ -11,6 +11,7 @@
                 <script src="xmlhttp.js"></script>
             </head>
             <body>
+                  
                 <!--layout--> 
                 <table width="100%">
                     <tr>
