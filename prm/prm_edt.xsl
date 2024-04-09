@@ -316,6 +316,7 @@
                 <tr>
                     <form action="prm.php" method="GET">
                         <input type="hidden" name="mth" readonly="true" value="ups"/>
+                        <input type="hidden" name="xsl" readonly="true" value="1"/>
                         <td>
                             <input name="res_id" readonly="true" value="{$res_id}" style="text-align:center;width:100px;"/>
                         </td>
@@ -345,7 +346,7 @@
                     </form>
 
                     <td>
-                        <a href="prm.php?mth=clr&amp;res_id={$res_id}&amp;prm_id={$prm_id}&amp;yr={@yr}">clear</a>
+                        <a href="prm.php?mth=clr&amp;res_id={$res_id}&amp;prm_id={$prm_id}&amp;yr={@yr}&amp;xsl=1">clear</a>
                     </td>
                 </tr>
             </xsl:for-each> 
