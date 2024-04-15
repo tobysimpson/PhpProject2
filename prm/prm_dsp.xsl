@@ -33,108 +33,86 @@
                 <th>prm_def</th>
                 <th>prm_eff</th>
                 
+                <th>prm_emi</th>
+                <th>prm_lnd</th>
+                <th>prm_cst</th>
+                <th>prm_avl</th>
                 
             </tr>
-            <!-- group -->
+            
+            
             <xsl:for-each select="tbl[1]/row">
-                <xsl:sort select="@grp_ord" data-type="number"/>
-                <xsl:variable name="grp" select="."/>
+<!--                                <xsl:sort select="$grp/@grp_ord" data-type="number"/>
+                <xsl:sort select="$prc/@prc_ord" data-type="number"/>
+                <xsl:sort select="$prd/@prd_ord" data-type="number"/>-->
+                <xsl:variable name="prm" select="current()"/>
+                <xsl:variable name="prd" select="//tbl[3]/row[@prd_id = $prm/@prd_id]"/>
+                <xsl:variable name="prc" select="//tbl[2]/row[@prc_id = $prm/@prc_id]"/>
+                <xsl:variable name="grp" select="//tbl[1]/row[@grp_id = $prc/@grp_id]"/>
+
+                
                 <tr>
-                    <td style="text-align:center;">
+                    <td  style="text-align:center">
                         <xsl:value-of select="@grp_id"/>
                     </td>
-                    <td>
+                    <td  style="text-align:left">
                         <xsl:value-of select="@grp_name"/>
                     </td>
-                    <td/>
-                    <td/>
-                    <td/>
-                    <td/>
-                    <td/>
-                    <td/>
-                    <td/>
-                    <td/>
-                    <td/>
-                    <td/>
-                    <td/>
+                    <td  style="text-align:center">
+                        <xsl:value-of select="@prc_id"/>
+                    </td>
+                    <td  style="text-align:left">
+                        <xsl:value-of select="@prc_name"/>
+                    </td>
+                    <td  style="text-align:center">
+                        <xsl:value-of select="@prd_id"/>
+                    </td>
+                    <td>
+                        <xsl:value-of select="@prd_name"/>
+                    </td>
+                    <td style="text-align:center">
+                        <xsl:value-of select="@prm_id"/>  
+                    </td>
+                    <td style="text-align:left">
+                        <xsl:value-of select="@grp_code"/>
+                        <xsl:text>_</xsl:text>
+                        <xsl:value-of select="@prc_code"/>
+                        <xsl:text>_</xsl:text>
+                        <xsl:value-of select="@prd_code"/>  
+                    </td>
+                    <td style="text-align:center">
+                        <xsl:value-of select="@prm_cal"/>  
+                    </td>
+                    <td style="text-align:center">
+                        <xsl:value-of select="@prm_grw"/>  
+                    </td>
+                    <td style="text-align:right">
+                        <xsl:value-of select="@reg_a"/>  
+                    </td>                                                        
+                    <td style="text-align:right">
+                        <xsl:value-of select="@reg_b"/>  
+                    </td>
+                    <td style="text-align:right">
+                        <xsl:value-of select="@prm_def"/>  
+                    </td>
+                    <td style="text-align:right">
+                        <xsl:value-of select="@prm_eff"/>  
+                    </td>
+                    <td style="text-align:right">
+                        <xsl:value-of select="@prm_emi"/>  
+                    </td>
+                    <td style="text-align:right">
+                        <xsl:value-of select="@prm_lnd"/>  
+                    </td>
+                    <td style="text-align:right">
+                        <xsl:value-of select="@prm_cst"/>  
+                    </td>
+                    <td style="text-align:right">
+                        <xsl:value-of select="@prm_avl"/>  
+                    </td>
                 </tr>
- 
-                <!-- process -->
-                <xsl:for-each select="//tbl[2]/row[@grp_id=$grp/@grp_id]">
-                    <xsl:sort select="@prc_ord" data-type="number"/>
-                    <xsl:variable name="prc" select="."/>
-                    <tr>
-                        <td/>
-                        <td/>
-                        <td  style="text-align:center">
-                            <xsl:value-of select="@prc_id"/>
-                        </td>
-                        <td>
-                            <xsl:value-of select="@prc_name"/>
-                        </td>
-                        <td/>
-                        <td/>
-                        <td/>
-                        <td/>
-                        <td/>
-                        <td/>
-                        <td/>
-                        <td/>
-                        <td/>
-                    </tr>
-
-                    <!-- parameter -->   
-                    <xsl:for-each select="//tbl[4]/row[@prc_id = $prc/@prc_id]">
-                        <xsl:sort select="//tbl[3]/row[@prd_id = current()/@prd_id]/@prd_ord" data-type="number"/>
-                        <xsl:variable name="prm" select="."/>
-                        <xsl:variable name="prd" select="//tbl[3]/row[@prd_id = $prm/@prd_id]"/>
-                        <tr>
-                            <td/>
-                            <td/>
-                            <td/>
-                            <td/>
-
-                            <td  style="text-align:center">
-                                <xsl:value-of select="$prd/@prd_id"/>
-                            </td>
-                            <td>
-                                <xsl:value-of select="$prd/@prd_name"/>
-                            </td>
-                            <td style="text-align:center">
-                                <xsl:value-of select="$prm/@prm_id"/>  
-                            </td>
-                            <td style="text-align:left">
-                                <xsl:value-of select="$grp/@grp_code"/>
-                                <xsl:text>_</xsl:text>
-                                <xsl:value-of select="$prc/@prc_code"/>
-                                <xsl:text>_</xsl:text>
-                                <xsl:value-of select="$prd/@prd_code"/>  
-                            </td>
-                            <td style="text-align:center">
-                                <xsl:value-of select="$prm/@prm_cal"/>  
-                            </td>
-                            <td style="text-align:center">
-                                <xsl:value-of select="$prm/@prm_grw"/>  
-                            </td>
-                            <td style="text-align:right">
-                                <xsl:value-of select="$prm/@reg_a"/>  
-                            </td>                                                        
-                            <td style="text-align:right">
-                                <xsl:value-of select="$prm/@reg_b"/>  
-                            </td>
-                            <td style="text-align:right">
-                                <xsl:value-of select="$prm/@prm_def"/>  
-                            </td>
-                            <td style="text-align:right">
-                                <xsl:value-of select="$prm/@prm_eff"/>  
-                            </td>
-                        </tr>
-                    </xsl:for-each>
-                
-                </xsl:for-each>
-
             </xsl:for-each>
-        </table>
 
+        </table>
     </xsl:template>
 </xsl:stylesheet>
