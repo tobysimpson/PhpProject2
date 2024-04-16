@@ -37,7 +37,7 @@
                                 <a href="prm.php?mth=edt&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;xsl=1">edit</a>
                             </td>
                             <td>
-                                <a href="prm.php?mth=clr&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;yr={@yr}">clear</a>
+                                <a href="prm.php?mth=clr&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;yr={@yr}&amp;xsl=1">clear</a>
                             </td>
                         </tr>
                     </xsl:for-each> 

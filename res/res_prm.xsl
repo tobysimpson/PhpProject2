@@ -91,11 +91,11 @@
                                     <xsl:value-of select="$prm/@prm_id"/>
                                     <xsl:text> - </xsl:text>
                                     <xsl:value-of select="$prm/@prm_code"/>
-                                    <br/>
-                                    <xsl:value-of select="format-number($prm/@reg_b,0)"/>
+<!--                                    <br/>
+                                    <xsl:value-of select="format-number($prm/@reg_b,0)"/>-->
                                     
                                     <br/>
-                                    
+                                   
                                     <xsl:choose>
                                         <xsl:when test="$prm/@prm_cal=0">
                                             <a href="prm.php?mth=edt&amp;res_id={$res/@res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">
