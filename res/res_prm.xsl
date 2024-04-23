@@ -89,13 +89,12 @@
                             <td style="text-align:right;">
                                 <xsl:if test="$prm">
                                     <xsl:value-of select="$prm/@prm_id"/>
-                                    <xsl:text> - </xsl:text>
-                                    <xsl:value-of select="$prm/@prm_code"/>
-<!--                                    <br/>
-                                    <xsl:value-of select="format-number($prm/@reg_b,0)"/>-->
+                                     <xsl:text> - </xsl:text>
+                                     <xsl:value-of select="$prm/@prm_code"/>
+                                     <br/>
+                                     <xsl:value-of select="format-number($prm/@reg_b,0)"/>
+                                     <br/>
                                     
-                                    <br/>
-                                   
                                     <xsl:choose>
                                         <xsl:when test="$prm/@prm_cal=0">
                                             <a href="prm.php?mth=edt&amp;res_id={$res/@res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">
@@ -108,9 +107,7 @@
                                             </a>
                                         </xsl:otherwise>
                                     </xsl:choose>
-
                                     <br/>
-                                    
                                     <xsl:if test="$prm/@prm_cal=0">
                                         <a href="prm.php?mth=edt&amp;res_id={$res/@res_id}&amp;prm_id={$prm/@prm_id}&amp;xsl=1">edt</a>
                                         <xsl:text>, </xsl:text>
