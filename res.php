@@ -25,6 +25,9 @@ switch ($mth) {
     case "upd":
         res_upd();
         break;
+    case "rnk":
+        res_rnk();
+        break;
     default:
         res_lst();
 }
@@ -82,11 +85,11 @@ function res_evt() {
 
 function res_ins() {
     $db = new cls_db();
-//    $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
+    $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
     $qry = $db->conn->prepare("INSERT INTO res_info (res_name) VALUES ('new');");
     $qry->execute();
     $res_id = $qry->insert_id;
-    header("Location: res.php?mth=prm&xsl=1&res_id=".$res_id);
+    header("Location: res.php?mth=edt&xsl=1&res_id=".$res_id."&xsl=".$xsl);
 }
 
 function res_edt() {
@@ -117,4 +120,22 @@ function res_upd() {
     $qry = $db->conn->prepare("UPDATE res_info SET res_name = '{$res_name}' WHERE res_id = {$res_id};");
     $qry->execute();
     header("Location: res.php?mth=lst&res_id=".$res_id."&xsl=".$xsl);
+}
+
+
+function res_rnk() {
+    $db = new cls_db();
+    $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_res_rnk({$res_id})");
+    $xml = cls_xml::mul2dom($db->conn);
+
+    if ($xsl == 1) {
+        $xsl = cls_xml::file2dom("res/res_lst.xsl");
+        header('Content-Type: text/html');
+        echo cls_xml::xsltrans($xml, $xsl);
+    } else {
+        header('Content-Type: text/xml');
+        echo $xml->saveXML();
+    }
 }

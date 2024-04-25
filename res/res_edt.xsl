@@ -15,13 +15,13 @@
             <input type="hidden" name="xsl" value="1"   readonly="true"/>
             <table class="table2">
                 <tr>
-                    <th>res_id</th>
+                    <th style="text-align:left;">res_id</th>
                     <td>
                         <input type="text" name="res_id" value="{@res_id}" readonly="true"/>
                     </td>
                 </tr>
                 <tr>
-                    <th>res_name</th>
+                    <th style="text-align:left;">res_name</th>
                     <td>
                         <input type="text" name="res_name" value="{@res_name}"/>
                     </td>

@@ -104,10 +104,10 @@
                                 <xsl:value-of select="exsl:node-set($fmts)/fmt[@dp=3]/@val"/>
                             </td>
                             <td>
-                                <xsl:value-of select="format-number(123.456,exsl:node-set($fmts)/fmt[@dp=2]/@val)"/>
+                                <xsl:value-of select="format-number(123.45678,exsl:node-set($fmts)/fmt[@dp=3]/@val)"/>
                             </td>
                             <td>
-                                <xsl:value-of select="format-number(123.456,substring($zz,1,4))"/>
+                                <xsl:value-of select="format-number(123.45678,substring($zz,1,4))"/>
                             </td>
                         </tr>
                     </xsl:for-each> 
