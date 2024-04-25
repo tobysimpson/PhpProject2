@@ -26,6 +26,9 @@
                                 <xsl:value-of select="@res_name"/>
                             </td>
                             <td>
+                                <a href="res.php?mth=edt&amp;res_id={@res_id}&amp;xsl=1">res_edt</a>
+                            </td>
+                            <td>
                                 <a href="res.php?mth=prm&amp;res_id={@res_id}&amp;xsl=1">res_prm</a>
                             </td>
                             <td>
