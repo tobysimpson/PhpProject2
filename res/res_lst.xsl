@@ -16,6 +16,8 @@
                     <tr>
                         <th>res_id</th>
                         <th>res_name</th>
+                        <th>res_num</th>
+                        
                         <th>imp_nuc</th>
                         <th>imp_fos</th>
                         <th>imp_rnw</th>
@@ -33,8 +35,37 @@
                             <td style="text-align:left;">
                                 <xsl:value-of select="@res_name"/>
                             </td>
+                            <td style="text-align:center;">
+                                <xsl:value-of select="@res_num"/>
+                            </td>
+                     
+                            <td style="text-align:center;">
+                                <xsl:value-of select="@rnk_imp_nuc"/>
+                            </td>
+                            <td style="text-align:center;">
+                                <xsl:value-of select="@rnk_imp_fos"/>
+                            </td>
+                            <td style="text-align:center;">
+                                <xsl:value-of select="@rnk_imp_rnw"/>
+                            </td>
+                            <td style="text-align:center;">
+                                <xsl:value-of select="@rnk_imp_ele"/>
+                            </td>
+                            <td style="text-align:center;">
+                                <xsl:value-of select="@rnk_imp_dst"/>
+                            </td>
+                            <td style="text-align:center;">
+                                <xsl:value-of select="@rnk_met_emi"/>
+                            </td>
+                            <td style="text-align:center;">
+                                <xsl:value-of select="@rnk_met_lnd"/>
+                            </td>
+                            <td style="text-align:center;">
+                                <xsl:value-of select="@rnk_met_cst"/>
+                            </td>
 
-                            <td style="text-align:right;">
+
+<!--                            <td style="text-align:right;">
                                 <xsl:value-of select="@imp_nuc"/>
                             </td>
                             <td style="text-align:right;">
@@ -58,7 +89,7 @@
                             </td>
                             <td style="text-align:right;">
                                 <xsl:value-of select="@met_cst"/>
-                            </td>
+                            </td>-->
                             
                             <td>
                                 <a href="res.php?mth=edt&amp;res_id={@res_id}&amp;xsl=1">res_edt</a>

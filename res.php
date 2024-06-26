@@ -35,7 +35,7 @@ switch ($mth) {
 function res_lst() {
     $db = new cls_db();
     $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("SELECT * FROM res_info;");
+    $db->conn->multi_query("SELECT * FROM res_rnk;");
     $xml = cls_xml::mul2dom($db->conn);
 
     if ($xsl == 1) {

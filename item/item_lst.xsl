@@ -56,8 +56,6 @@
     <xsl:template match="root">
         <html>
             <body>
-                
-
                 <!--                
                     <xsl:element name="dat">
                         <xsl:for-each select="$nodes">
@@ -75,19 +73,21 @@
                         </xsl:for-each>
                     </xsl:element>
                 </xsl:variable>
-             
+          
                 <xsl:copy-of select="$data"/> -->
                
                 <xsl:value-of select="exsl:node-set($data)/dat/@min"/>
                 <xsl:value-of select="exsl:node-set($data)/dat/@max"/>
 
 
-                
-                
                 <table>
                     <tr>
                         <th>item_id</th>
                         <th>item_name</th>
+                        <th>item_val1</th>
+                        <th>item_val2</th>
+                        <th>item_val3</th>
+                        <th>item_val4</th>
                     </tr>
                     <xsl:for-each select="tbl[1]/row">
                         <tr>
