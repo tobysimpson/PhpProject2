@@ -27,6 +27,8 @@ switch ($mth) {
         break;
     case "rnk":
         res_rnk();
+    case "ctx":
+        res_ctx();
         break;
     default:
         res_lst();
@@ -132,6 +134,25 @@ function res_rnk() {
 
     if ($xsl == 1) {
         $xsl = cls_xml::file2dom("res/res_lst.xsl");
+        header('Content-Type: text/html');
+        echo cls_xml::xsltrans($xml, $xsl);
+    } else {
+        header('Content-Type: text/xml');
+        echo $xml->saveXML();
+    }
+}
+
+
+function res_ctx() {
+    $db = new cls_db();
+    $xsl    = filter_input(INPUT_GET, "xsl",    FILTER_VALIDATE_INT);
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $yr     = filter_input(INPUT_GET, "yr",     FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_res_ctx({$res_id},{$yr})");
+    $xml = cls_xml::mul2dom($db->conn);
+
+    if ($xsl == 1) {
+        $xsl = cls_xml::file2dom("res/res_ctx.xsl");
         header('Content-Type: text/html');
         echo cls_xml::xsltrans($xml, $xsl);
     } else {
