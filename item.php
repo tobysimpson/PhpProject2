@@ -10,6 +10,9 @@ switch ($mth) {
     case "lst":
         item_lst();
         break;
+    case "res":
+        item_res();
+        break;
     default:
         item_lst();
 }
@@ -28,4 +31,12 @@ function item_lst() {
         header('Content-Type: text/xml');
         echo $xml->saveXML();
     }
+}
+
+function item_res() {
+    $db = new cls_db();
+    $result = mysqli_query($db->conn, "SELECT * FROM item_info;");
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); // assoc arrays in rows
+    print json_encode($rows);
+
 }
