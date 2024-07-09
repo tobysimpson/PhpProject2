@@ -45,7 +45,8 @@ function res_ctx() {
 
 function res_ins() {
     $db = new cls_db();
-    $qry = $db->conn->prepare("INSERT INTO res_info (res_name) VALUES ('new');");
+    $res_name = urldecode(filter_input(INPUT_GET, "res_name", FILTER_SANITIZE_STRING));
+    $qry = $db->conn->prepare("INSERT INTO res_info (res_name) VALUES (LEFT('{$res_name}',25));");
     $qry->execute();
     $res_id = $qry->insert_id;
     $result = mysqli_query($db->conn, "CALL sp_res_ctx({$res_id},2022)");
