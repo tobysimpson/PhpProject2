@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" 
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:php="http://php.net/xsl"
-                xmlns:exsl="http://exslt.org/common"
-                extension-element-prefixes="exsl">
+                xmlns:php="http://php.net/xsl">
     <xsl:output method="html" encoding="utf-8"/>
     
     <xsl:include href="../nav.xsl"/>
@@ -12,74 +10,24 @@
         <xsl:call-template name="page"/> 
     </xsl:template>
     
-    <xsl:template name="test1">
-        <xsl:param name="nodes" />
-  
-        <xsl:element name="dat">
-            <xsl:for-each select="$nodes">
-                <xsl:sort select="." data-type="number" order="ascending"/>
-                <xsl:if test="position()=1">
-                    <xsl:attribute name="min">
-                        <xsl:value-of select="."/>
-                    </xsl:attribute>
-                </xsl:if>
-                <xsl:if test="position()=last()">
-                    <xsl:attribute name="max">
-                        <xsl:value-of select="."/>
-                    </xsl:attribute>
-                </xsl:if>
-            </xsl:for-each>
-        </xsl:element>
+
+
+    
+    <xsl:template name="fmt">
+        <xsl:param name="x"/>
+        <xsl:variable name="a" select="translate($x, '-', '')"/>
+        <xsl:variable name="d" select="floor(php:function('log10', $a))"/>
+        <xsl:variable name="p" select="php:function('pow',10, $d)"/>
+<!--        <xsl:value-of select="format-number($x div $p, '0.0000')"/>
+        <xsl:text>e</xsl:text>
+        <xsl:value-of select="format-number($d,'+00')"/>-->
+        <xsl:value-of select="$a"/>
     </xsl:template>
-    
-    
-    <xsl:variable name="nodes" select="root/tbl[1]/row/@item_id"/>
 
-    <xsl:variable name="zz" select="'0.0000000000000000000'"/>
-    
-    <xsl:variable name="fmts">
-        <fmt dp="0" val="0"/>
-        <fmt dp="1" val="0.0"/>
-        <fmt dp="2" val="0.00"/>
-        <fmt dp="3" val="0.000"/>
-        <fmt dp="4" val="0.0000"/>
-    </xsl:variable>
-    
-
-    <xsl:variable name="data">
-        <xsl:call-template name="test1">
-            <xsl:with-param name="nodes" select="$nodes" />
-        </xsl:call-template>
-    </xsl:variable>
-    
     
     <xsl:template match="root">
         <html>
             <body>
-                <!--                
-                    <xsl:element name="dat">
-                        <xsl:for-each select="$nodes">
-                            <xsl:sort select="." data-type="number" order="ascending"/>
-                            <xsl:if test="position()=1">
-                                <xsl:attribute name="min">
-                                    <xsl:value-of select="."/>
-                                </xsl:attribute>
-                            </xsl:if>
-                            <xsl:if test="position()=last()">
-                                <xsl:attribute name="max">
-                                    <xsl:value-of select="."/>
-                                </xsl:attribute>
-                            </xsl:if>
-                        </xsl:for-each>
-                    </xsl:element>
-                </xsl:variable>
-          
-                <xsl:copy-of select="$data"/> -->
-               
-                <xsl:value-of select="exsl:node-set($data)/dat/@min"/>
-                <xsl:value-of select="exsl:node-set($data)/dat/@max"/>
-
-
                 <table>
                     <tr>
                         <th>item_id</th>
@@ -101,13 +49,7 @@
                                 <xsl:value-of select="php:function('pow',10,number(@item_id))"/>
                             </td>
                             <td>
-                                <xsl:value-of select="exsl:node-set($fmts)/fmt[@dp=3]/@val"/>
-                            </td>
-                            <td>
-                                <xsl:value-of select="format-number(123.45678,exsl:node-set($fmts)/fmt[@dp=3]/@val)"/>
-                            </td>
-                            <td>
-                                <xsl:value-of select="format-number(123.45678,substring($zz,1,4))"/>
+                                <xsl:value-of select="php:function('sprintf','%6.4E', -123.456)"/>
                             </td>
                         </tr>
                     </xsl:for-each> 

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
+                xmlns:php="http://php.net/xsl">
+    
     <xsl:output method="xml" omit-xml-declaration="yes" indent="yes"/>
 
     <xsl:include href="../plot.xsl"/>
@@ -304,8 +306,9 @@
     <xsl:template name="hgrid">
         <xsl:param name="vpos"/>
         <xsl:variable name="y" select="format-number($ph * (1 - ($vpos - $vinf) div $vrng),'0.00')"/>
-        <text xmlns="http://www.w3.org/2000/svg" x="{$pw + 50}" y="{$y}" alignment-baseline="middle" text-anchor="end">
-            <xsl:value-of select="format-number($vpos,'#,##0')"/>
+        <text xmlns="http://www.w3.org/2000/svg" x="{$pw + 10}" y="{$y}" alignment-baseline="middle" text-anchor="start">
+            <!--<xsl:value-of select="format-number($vpos,'#,##0')"/>-->
+            <xsl:value-of select="php:function('sprintf','%5.3E', $vpos)"/>
         </text>
         <line xmlns="http://www.w3.org/2000/svg" x1="0" y1="{$y}" x2="{$pw}" y2="{$y}" stroke="lightgrey" stroke-dasharray="{$tdash},{$tdash}" stroke-dashoffset="{$tdash * 0.5}" />
         <xsl:if test="format-number($vpos,'0.000') &lt; format-number($vsup,'0.000')">

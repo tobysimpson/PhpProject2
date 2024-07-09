@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
+                xmlns:php="http://php.net/xsl">
+    
     <xsl:output method="xml" omit-xml-declaration="yes" indent="yes"/>
 
     <xsl:include href="../plot.xsl"/>
+    <xsl:include href="../nav.xsl"/>
         
-    <xsl:variable name="h">600</xsl:variable>
-    <xsl:variable name="w">1000</xsl:variable>
     
-    <xsl:variable name="ph" select="0.8 * $h"/>
-    <xsl:variable name="pw" select="0.9 * $w"/>
+ 
     
-    <xsl:variable name="ho" select="0.1 * $h"/>
-    <xsl:variable name="wo" select="0.05 * $w"/>
+    <xsl:variable name="ph">500</xsl:variable>
+    <xsl:variable name="pw">1000</xsl:variable>
+        
+    <xsl:variable name="h" select="$ph + 100"/>
+    <xsl:variable name="w" select="$pw + 100"/>
+    
+    <xsl:variable name="ho" select="40"/>
+    <xsl:variable name="wo" select="20"/>
     
     <xsl:variable name="tt" select="root/tbl[2]/row/@yr" />
     <!--<xsl:variable name="vv" select="root/tbl[2]/row/@tj" />-->
@@ -87,45 +93,45 @@
             <g id="plot" transform="translate({$wo},{$ho})"> 
                 
                 <xsl:variable name="pzro" select="format-number($ph * (1 + $vinf div $vrng),'0.0')"/>
-                    <g id="poly">
-                        <xsl:variable name="points">
-                            <xsl:for-each select="tbl[2]/row">
-                                <xsl:sort select="@yr" data-type="number" order="ascending"/>
-                                <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
-                                <xsl:variable name="y" select="format-number($ph * (1 - (@tj - $vinf) div $vrng),'0.0')"/>
-                                <xsl:choose>
-                                    <xsl:when test="position()=1">
-                                        <xsl:text>0,</xsl:text>
-                                        <xsl:value-of select="$pzro"/>
-                                        <xsl:text> </xsl:text>
-                                        <xsl:value-of select="$x"/>
-                                        <xsl:text>,</xsl:text>
-                                        <xsl:value-of select="$y"/>
-                                        <xsl:text> </xsl:text>
-                                    </xsl:when>
-                                    <xsl:when test="position()=last()">
-                                        <xsl:value-of select="$x"/>
-                                        <xsl:text>,</xsl:text>
-                                        <xsl:value-of select="$y"/>
-                                        <xsl:text> </xsl:text>
-                                        <xsl:value-of select="$pw"/>
-                                        <xsl:text>,</xsl:text>
-                                        <xsl:value-of select="$pzro"/>
-                                        <xsl:text> </xsl:text>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <xsl:value-of select="$x"/>
-                                        <xsl:text>,</xsl:text>
-                                        <xsl:value-of select="$y"/>
-                                        <xsl:text> </xsl:text>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:for-each>
-                        </xsl:variable>
-                        <g id="polyline">
-                            <polyline points="{$points}" fill="#EEEEFF" stroke="none" />
-                        </g>
+                <g id="poly">
+                    <xsl:variable name="points">
+                        <xsl:for-each select="tbl[2]/row">
+                            <xsl:sort select="@yr" data-type="number" order="ascending"/>
+                            <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
+                            <xsl:variable name="y" select="format-number($ph * (1 - (@tj - $vinf) div $vrng),'0.0')"/>
+                            <xsl:choose>
+                                <xsl:when test="position()=1">
+                                    <xsl:text>0,</xsl:text>
+                                    <xsl:value-of select="$pzro"/>
+                                    <xsl:text> </xsl:text>
+                                    <xsl:value-of select="$x"/>
+                                    <xsl:text>,</xsl:text>
+                                    <xsl:value-of select="$y"/>
+                                    <xsl:text> </xsl:text>
+                                </xsl:when>
+                                <xsl:when test="position()=last()">
+                                    <xsl:value-of select="$x"/>
+                                    <xsl:text>,</xsl:text>
+                                    <xsl:value-of select="$y"/>
+                                    <xsl:text> </xsl:text>
+                                    <xsl:value-of select="$pw"/>
+                                    <xsl:text>,</xsl:text>
+                                    <xsl:value-of select="$pzro"/>
+                                    <xsl:text> </xsl:text>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="$x"/>
+                                    <xsl:text>,</xsl:text>
+                                    <xsl:value-of select="$y"/>
+                                    <xsl:text> </xsl:text>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    <g id="polyline">
+                        <polyline points="{$points}" fill="#EEEEFF" stroke="none" />
                     </g>
+                </g>
                 
                 
                 
@@ -238,8 +244,9 @@
     <xsl:template name="hgrid">
         <xsl:param name="vpos"/>
         <xsl:variable name="y" select="format-number($ph * (1 - ($vpos - $vinf) div $vrng),'0.00')"/>
-        <text xmlns="http://www.w3.org/2000/svg" x="{$pw + 50}" y="{$y}" alignment-baseline="middle" text-anchor="end">
-            <xsl:value-of select="format-number($vpos,'#,##0')"/>
+        <text xmlns="http://www.w3.org/2000/svg" x="{$pw + 10}" y="{$y}" alignment-baseline="middle" text-anchor="start">
+            <!--<xsl:value-of select="format-number($vpos,'#,##0')"/>-->
+            <xsl:value-of select="php:function('sprintf','%5.3E', $vpos)"/>
         </text>
         <line xmlns="http://www.w3.org/2000/svg" x1="0" y1="{$y}" x2="{$pw}" y2="{$y}" stroke="lightgrey" stroke-dasharray="{$tdash},{$tdash}" stroke-dashoffset="{$tdash * 0.5}" />
         <xsl:if test="format-number($vpos,'0.000') &lt; format-number($vsup,'0.000')">
