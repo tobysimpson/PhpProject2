@@ -67,7 +67,7 @@ function prm_hst() {
 
 function prm_fwd() {
     $db = new cls_db();
-    $xsl    = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
+    $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
     $db->conn->multi_query("CALL sp_prm_fwd({$res_id},{$prm_id});");
@@ -84,7 +84,7 @@ function prm_fwd() {
 
 function prm_prv() {
     $db = new cls_db();
-    $xsl    = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
+    $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
     $db->conn->multi_query("CALL sp_prm_fwd({$res_id},{$prm_id});");
@@ -98,8 +98,6 @@ function prm_prv() {
         echo $xml->saveXML();
     }
 }
-
-
 
 function prm_edt() {
     $db = new cls_db();
@@ -118,30 +116,30 @@ function prm_edt() {
     }
 }
 
-
 function prm_ups() {
-    $db     = new cls_db();
+    $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $yr     = filter_input(INPUT_GET, "yr",     FILTER_VALIDATE_INT);
-    $tj     = filter_input(INPUT_GET, "tj",     FILTER_VALIDATE_FLOAT);
-    $xsl    = filter_input(INPUT_GET, "xsl",    FILTER_VALIDATE_INT);
+    $yr = filter_input(INPUT_GET, "yr", FILTER_VALIDATE_INT);
+    $tj = filter_input(INPUT_GET, "tj", FILTER_VALIDATE_FLOAT);
+    $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
     $db->conn->multi_query("CALL sp_prm_ups({$res_id},{$prm_id},{$yr},{$tj});");
-    header("Location: prm.php?mth=edt&res_id=".$res_id."&prm_id=".$prm_id."&xsl=".$xsl);
+    if ($xsl == 1) {
+        header("Location: prm.php?mth=edt&res_id=" . $res_id . "&prm_id=" . $prm_id . "&xsl=" . $xsl);
+    } else {
+        header("Location: res.php?mth=ctx&res_id=" . $res_id . "&yr=" . $yr . "&xsl=0");
+    }
 }
-
 
 function prm_clr() {
-    $db     = new cls_db();
+    $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
-    $yr     = filter_input(INPUT_GET, "yr",     FILTER_VALIDATE_INT);
-    $xsl    = filter_input(INPUT_GET, "xsl",    FILTER_VALIDATE_INT);
+    $yr = filter_input(INPUT_GET, "yr", FILTER_VALIDATE_INT);
+    $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
     $db->conn->multi_query("CALL sp_prm_clr({$res_id},{$prm_id},{$yr});");
-    header("Location: prm.php?mth=edt&res_id=".$res_id."&prm_id=".$prm_id."&xsl=".$xsl);
+    header("Location: prm.php?mth=edt&res_id=" . $res_id . "&prm_id=" . $prm_id . "&xsl=" . $xsl);
 }
-
-
 
 function prm_eff() {
     $db = new cls_db();

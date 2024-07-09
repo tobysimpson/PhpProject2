@@ -91,7 +91,12 @@ function res_ins() {
     $qry = $db->conn->prepare("INSERT INTO res_info (res_name) VALUES ('new');");
     $qry->execute();
     $res_id = $qry->insert_id;
-    header("Location: res.php?mth=edt&xsl=1&res_id=".$res_id."&xsl=".$xsl);
+    
+    if ($xsl == 1) {
+        header("Location: res.php?mth=edt&res_id={$res_id}&xsl=1");
+    } else {
+        header("Location: res.php?mth=ctx&res_id={$res_id}&yr=2022&xsl=0");
+    }
 }
 
 function res_edt() {
@@ -117,7 +122,7 @@ function res_upd() {
     $xsl        = filter_input(INPUT_POST, "xsl", FILTER_VALIDATE_INT);
     $res_id     = filter_input(INPUT_POST, "res_id",    FILTER_VALIDATE_INT);
     $res_name   = filter_input(INPUT_POST, "res_name",  FILTER_SANITIZE_STRING);
-    $res_del = (int)!is_null(filter_input(INPUT_POST, "res_del",FILTER_VALIDATE_BOOL));
+    $res_del    = (int)!is_null(filter_input(INPUT_POST, "res_del",FILTER_VALIDATE_BOOL));
     var_dump($res_del);
     $qry = $db->conn->prepare("UPDATE res_info SET res_name = '{$res_name}' WHERE res_id = {$res_id};");
     $qry->execute();
