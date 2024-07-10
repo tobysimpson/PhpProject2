@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" 
-                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:php="http://php.net/xsl">
+    
     <xsl:output method="html" encoding="utf-8"/>
     
     <xsl:include href="../nav.xsl"/>
@@ -9,6 +11,15 @@
         <xsl:call-template name="page"/> 
     </xsl:template>
     
+    <xsl:template name="fmt">
+        <xsl:param name="x"/>
+        <xsl:param name="s"/>
+        <xsl:if test="number($x) = number($x)">
+            <xsl:value-of select="php:function('sprintf',$s, number($x))"/>
+        </xsl:if>
+    </xsl:template>
+    
+
     <xsl:template match="root">
  
         <table>
@@ -42,7 +53,7 @@
             
             
             <xsl:for-each select="tbl[1]/row">
-<!--                                <xsl:sort select="$grp/@grp_ord" data-type="number"/>
+                <!--                                <xsl:sort select="$grp/@grp_ord" data-type="number"/>
                 <xsl:sort select="$prc/@prc_ord" data-type="number"/>
                 <xsl:sort select="$prd/@prd_ord" data-type="number"/>-->
                 <xsl:variable name="prm" select="current()"/>
@@ -87,26 +98,47 @@
                         <xsl:value-of select="@prm_grw"/>  
                     </td>
                     <td style="text-align:right">
-                        <xsl:value-of select="@reg_a"/>  
+                        <xsl:call-template name="fmt">
+                            <xsl:with-param name="x" select = "@reg_a"/>
+                            <xsl:with-param name="s" select="'%3.2f'"/>
+                        </xsl:call-template>
                     </td>                                                        
                     <td style="text-align:right">
-                        <xsl:value-of select="@reg_b"/>  
+                        <xsl:call-template name="fmt">
+                            <xsl:with-param name="x" select = "@reg_b"/>
+                            <xsl:with-param name="s" select="'%3.2f'"/>
+                        </xsl:call-template>
                     </td>
 
                     <td style="text-align:right">
-                        <xsl:value-of select="@prm_eff"/>  
+                        <xsl:call-template name="fmt">
+                            <xsl:with-param name="x" select = "@prm_eff"/>
+                            <xsl:with-param name="s" select="'%f'"/>
+                        </xsl:call-template>
                     </td>
                     <td style="text-align:right">
-                        <xsl:value-of select="@prm_emi"/>  
+                        <xsl:call-template name="fmt">
+                            <xsl:with-param name="x" select = "@prm_emi"/>
+                            <xsl:with-param name="s" select="'%f'"/>
+                        </xsl:call-template>
                     </td>
                     <td style="text-align:right">
-                        <xsl:value-of select="@prm_lnd"/>  
+                        <xsl:call-template name="fmt">
+                            <xsl:with-param name="x" select = "@prm_lnd"/>
+                            <xsl:with-param name="s" select="'%f'"/>
+                        </xsl:call-template>
                     </td>
                     <td style="text-align:right">
-                        <xsl:value-of select="@prm_cst"/>  
+                        <xsl:call-template name="fmt">
+                            <xsl:with-param name="x" select = "@prm_cst"/>
+                            <xsl:with-param name="s" select="'%f'"/>
+                        </xsl:call-template>
                     </td>
                     <td style="text-align:right">
-                        <xsl:value-of select="@prm_avl"/>  
+                        <xsl:call-template name="fmt">
+                            <xsl:with-param name="x" select="@prm_avl"/>
+                            <xsl:with-param name="s" select="'%f'"/>
+                        </xsl:call-template>
                     </td>
                 </tr>
             </xsl:for-each>
