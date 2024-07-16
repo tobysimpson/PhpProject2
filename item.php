@@ -3,7 +3,6 @@
 require_once "cls_db.php";
 require_once "cls_xml.php";
 
-
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
@@ -12,6 +11,9 @@ switch ($mth) {
         break;
     case "res":
         item_res();
+        break;
+    case "hdr":
+        item_hdr2();
         break;
     default:
         item_lst();
@@ -38,5 +40,14 @@ function item_res() {
     $result = mysqli_query($db->conn, "SELECT * FROM item_info;");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); // assoc arrays in rows
     print json_encode($rows);
+}
 
+function item_hdr() {
+    header('Cross-Origin-Embedder-Policy: require-corp');
+    header('Cross-Origin-Opener-Policy: same-origin');
+    phpinfo();
+}
+
+function item_hdr2() {
+    phpinfo();
 }

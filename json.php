@@ -7,9 +7,6 @@ require_once "cls_xml.php";
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
-    case "lst":
-        item_lst();
-        break;
     case "ctx":
         res_ctx();
         break;
@@ -30,6 +27,8 @@ function item_lst() {
     $result = mysqli_query($db->conn, "SELECT * FROM item_info;");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); 
     print json_encode($rows);
+//    phpinfo();
+//    print "hello";
 }
 
 
