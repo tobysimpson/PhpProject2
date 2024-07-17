@@ -16,6 +16,9 @@ switch ($mth) {
     case "ups":
         prm_ups();
         break;
+    case "ctx2":
+        res_ctx2();
+        break;
     default:
         item_lst();
 }
@@ -37,6 +40,15 @@ function res_ctx() {
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $yr     = filter_input(INPUT_GET, "yr",     FILTER_VALIDATE_INT);
     $result = mysqli_query($db->conn, "CALL sp_res_ctx({$res_id},{$yr})");
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); 
+    print json_encode($rows);
+}
+
+function res_ctx2() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $yr     = filter_input(INPUT_GET, "yr",     FILTER_VALIDATE_INT);
+    $result = mysqli_query($db->conn, "SELECT res_id, yr, prm_id, prm_code, tj FROM res_fwd WHERE res_id={$res_id} AND yr={$yr} ORDER BY prm_id;");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); 
     print json_encode($rows);
 }

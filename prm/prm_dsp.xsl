@@ -48,6 +48,7 @@
                 <th>prm_lnd</th>
                 <th>prm_cst</th>
                 <th>prm_avl</th>
+                <th>prd_los</th>
                 
             </tr>
             
@@ -137,6 +138,12 @@
                     <td style="text-align:right">
                         <xsl:call-template name="fmt">
                             <xsl:with-param name="x" select="@prm_avl"/>
+                            <xsl:with-param name="s" select="'%f'"/>
+                        </xsl:call-template>
+                    </td>
+                    <td style="text-align:right">
+                        <xsl:call-template name="fmt">
+                            <xsl:with-param name="x" select="@prd_los"/>
                             <xsl:with-param name="s" select="'%f'"/>
                         </xsl:call-template>
                     </td>
