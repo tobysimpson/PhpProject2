@@ -49,6 +49,7 @@
                 <th>prm_cst</th>
                 <th>prm_avl</th>
                 <th>prd_los</th>
+                <th>prm_src</th>
                 
             </tr>
             
@@ -146,6 +147,9 @@
                             <xsl:with-param name="x" select="@prd_los"/>
                             <xsl:with-param name="s" select="'%f'"/>
                         </xsl:call-template>
+                    </td>
+                    <td style="text-align:center">
+                        <xsl:value-of select="@prm_src"/>  
                     </td>
                 </tr>
             </xsl:for-each>
