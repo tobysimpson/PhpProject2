@@ -60,7 +60,7 @@ function res_ins() {
     $qry = $db->conn->prepare("INSERT INTO res_info (res_name) VALUES (LEFT('{$res_name}',25));");
     $qry->execute();
     $res_id = $qry->insert_id;
-    $result = mysqli_query($db->conn, "CALL sp_res_ctx({$res_id},2022)");
+    $result = mysqli_query($db->conn, "CALL sp_res_ctx({$res_id}, 2022)");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); 
     print json_encode($rows);
 }
