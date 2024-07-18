@@ -3,14 +3,15 @@
     <xsl:output method="xml" omit-xml-declaration="yes" indent="yes"/>
 
     <xsl:include href="../plot.xsl"/>
-    <!--<xsl:include href="../nav.xsl"/>-->
+    <xsl:include href="../nav.xsl"/>
     
+
     
     <!--    <xsl:template match="/">
         <xsl:call-template name="page"/> 
     </xsl:template>-->
    
-    <xsl:variable name="ph">60</xsl:variable>
+    <xsl:variable name="ph">50</xsl:variable>
     <xsl:variable name="pw">110</xsl:variable>
         
     <xsl:variable name="h" select="$ph+4"/>
@@ -80,6 +81,8 @@
    
     <xsl:template match="root">
         <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            
+<!--            <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="../styles.css" type="text/css" />-->
 
  
             <g id="plot" transform="translate({$wo},{$ho})"> 
@@ -260,6 +263,12 @@
                     </g>
                     
                 </g>-->
+            </g>
+            
+           <g id="txt" transform="translate(0,0)">
+                <text x="{$w div 2}" y="{$h div 2}" alignment-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="400" font-size="15pt" fill="#888888">
+                    <xsl:value-of select="tbl[3]/row[last()]/@tj"/>
+                </text>
             </g>
 
         </svg>

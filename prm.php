@@ -57,7 +57,7 @@ function prm_hst() {
     $xml = cls_xml::mul2dom($db->conn);
     if ($xsl == 1) {
         $xsl = cls_xml::file2dom("prm/prm_hst.xsl");
-        header('Content-Type: image/svg+xml');
+        header('Content-Type: text/html');
         echo cls_xml::xsltrans($xml, $xsl);
     } else {
         header('Content-Type: text/xml');

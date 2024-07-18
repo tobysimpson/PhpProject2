@@ -6,10 +6,12 @@
 
     <xsl:include href="../plot.xsl"/>
     <xsl:include href="../nav.xsl"/>
-        
     
- 
     
+    <xsl:template match="/">
+        <xsl:call-template name="page"/> 
+    </xsl:template>
+   
     <xsl:variable name="ph">500</xsl:variable>
     <xsl:variable name="pw">1000</xsl:variable>
         
@@ -19,10 +21,14 @@
     <xsl:variable name="ho" select="40"/>
     <xsl:variable name="wo" select="20"/>
     
-    <xsl:variable name="tt" select="root/tbl[2]/row/@yr" />
-    <!--<xsl:variable name="vv" select="root/tbl[2]/row/@tj" />-->
-    <xsl:variable name="vv" select="root/tbl[2]/row/@*[name()='tj' or name()='reg']" />
+
     
+    <xsl:variable name="tt" select="root/tbl[2]/row/@yr" />
+    <xsl:variable name="tt2" select="root/tbl[4]/row/@yr" />
+    <!--<xsl:variable name="vv" select="root/tbl[2]/row/@tj" />-->
+    <xsl:variable name="vv" select="root/tbl[*]/row/@*[name()='tj' or name()='reg' or name()='fwd']" />
+    
+    <!--<xsl:variable name="tt" select="$tt1 | $tt2" />-->
 
     <xsl:variable name="tmin">
         <xsl:call-template name="min">
@@ -73,18 +79,16 @@
     <xsl:variable name="tdash" select="$pw * $ttick div $trng * 0.125"/>
     <xsl:variable name="vdash" select="$ph * $vtick div $vrng * 0.125"/>
     
-    
    
     <xsl:template match="root">
-        <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" >
+        <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!--<script xlink:href="xmlhttp.js"></script>-->
             <style>* { font-size: 10pt; font-family: sans-serif; font-weight: 300; }</style> 
             
 
-            <g id="title" transform="translate(40,20)">
+            <g id="title" transform="translate(20,20)">
                 <text x="0" y="0" alignment-baseline="middle">
-                    <xsl:value-of select="tbl[1]/row/@prm_id"/>
-                    <xsl:text> - </xsl:text>
-                    <xsl:value-of select="tbl[1]/row/@prm_desc"/>
+                    <xsl:value-of select="tbl[2]/row/@prm_desc"/>
                 </text>
             </g>
                 
@@ -114,7 +118,7 @@
                                     <xsl:text>,</xsl:text>
                                     <xsl:value-of select="$y"/>
                                     <xsl:text> </xsl:text>
-                                    <xsl:value-of select="$pw"/>
+                                    <xsl:value-of select="$x"/>
                                     <xsl:text>,</xsl:text>
                                     <xsl:value-of select="$pzro"/>
                                     <xsl:text> </xsl:text>
@@ -160,13 +164,12 @@
                 </g>
                 
                 
-                <g id="lines">
-                    <g id="line">
+                <g id="hist">
+                    <g id="line1">
                         <xsl:variable name="line1">
                             <xsl:for-each select="tbl[2]/row">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
-                                <!--<xsl:variable name="y" select="@*[$j + 3]"/>-->
                                 <xsl:variable name="y" select="format-number($ph * (1 - (@tj - $vinf) div $vrng),'0.00')"/>
                                 <xsl:choose>
                                     <xsl:when test="position()=1">
@@ -187,12 +190,11 @@
                         <path fill="none"  d="{$line1}" stroke-width="1" stroke="#6666FF" />
                     </g>
                     
-                    <g id="line">
+                    <g id="reg">
                         <xsl:variable name="line2">
                             <xsl:for-each select="tbl[2]/row[@yr &gt;= 2014]">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
-                                <!--<xsl:variable name="y" select="@*[$j + 3]"/>-->
                                 <xsl:variable name="y" select="format-number($ph * (1 - (@reg - $vinf) div $vrng),'0.00')"/>
                                 <xsl:choose>
                                     <xsl:when test="position()=1">
@@ -212,9 +214,11 @@
                         </xsl:variable>
                         <path fill="none"  d="{$line2}" stroke-width="1" stroke="#FF6666" />
                     </g>
+                    
+    
                 </g>
                 
-                
+               
                 <g id="dots">
                     <g id="series">
                         <xsl:for-each select="tbl[2]/row">
@@ -233,11 +237,28 @@
                             <circle cx="{$x}" cy="{$y}" r="2" stroke="#FF6666" fill="#FFFFFF"/>
                         </xsl:for-each>
                     </g>
-                </g>
-                
+                    
+                    
 
+                    
+                </g>
             </g>
+                
+  
+            <!--            <foreignObject x="100" y="100" width="100" height="150">
+                <div id="div2" xmlns="http://www.w3.org/1999/xhtml">
+                    <input id="txt1" type="hidden" value="{tbl[1]/row/@res_id}"/>
+                    <input id="txt2" type="hidden" value="{tbl[2]/row/@prm_id}"/>
+                    <input id="txt3" type="text"/>
+                    <input id="txt4" type="text"/>
+                </div>
+            </foreignObject>-->
+            
         </svg>
+        
+
+        
+        
     </xsl:template>
     
 
