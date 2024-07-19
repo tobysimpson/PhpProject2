@@ -16,8 +16,11 @@ switch ($mth) {
     case "ups":
         prm_ups();
         break;
-    case "ctx2":
-        res_ctx2();
+    case "clr":
+        prm_clr();
+        break;
+    case "dsp":
+        prm_dsp();
         break;
     default:
         item_lst();
@@ -75,6 +78,14 @@ function prm_clr() {
     $yr = filter_input(INPUT_GET, "yr", FILTER_VALIDATE_INT);
     $db->conn->multi_query("CALL sp_prm_clr({$res_id},{$prm_id},{$yr});");
     $result = mysqli_query($db->conn, "CALL sp_res_ctx({$res_id},{$yr})");
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); 
+    print json_encode($rows);
+}
+
+
+function prm_dsp() {
+    $db = new cls_db();
+    $result = mysqli_query($db->conn, "SELECT * FROM prm_dsp");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); 
     print json_encode($rows);
 }
