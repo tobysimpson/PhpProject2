@@ -11,8 +11,8 @@
         <xsl:call-template name="page"/> 
     </xsl:template>-->
    
-    <xsl:variable name="ph">50</xsl:variable>
-    <xsl:variable name="pw">110</xsl:variable>
+    <xsl:variable name="ph">60</xsl:variable>
+    <xsl:variable name="pw">120</xsl:variable>
         
     <xsl:variable name="h" select="$ph+4"/>
     <xsl:variable name="w" select="$pw+4"/>
@@ -82,7 +82,7 @@
     <xsl:template match="root">
         <svg width="{$w}" height="{$h}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             
-<!--            <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="../styles.css" type="text/css" />-->
+            <!--            <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="../styles.css" type="text/css" />-->
 
  
             <g id="plot" transform="translate({$wo},{$ho})"> 
@@ -179,7 +179,7 @@
                     
                     <g id="reg">
                         <xsl:variable name="line2">
-                            <xsl:for-each select="tbl[3]/row[@yr &gt;= 2014]">
+                            <xsl:for-each select="tbl[3]/row[@yr &gt;= 2010]">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.000')"/>
                                 <xsl:variable name="y" select="format-number($ph * (1 - (@reg - $vinf) div $vrng),'0.000')"/>
@@ -265,9 +265,15 @@
                 </g>-->
             </g>
             
-           <g id="txt" transform="translate(0,0)">
-                <text x="{$w div 2}" y="{$h div 2}" alignment-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="400" font-size="15pt" fill="#888888">
-                    <xsl:value-of select="tbl[3]/row[last()]/@tj"/>
+            <g id="txt" transform="translate(0,0)">
+                <text x="{$w * 0.95}" y="{$h * 0.3}" alignment-baseline="middle" text-anchor="end" font-family="sans-serif" font-weight="400" font-size="8pt" fill="#6666FF">
+                    <xsl:value-of select="format-number(tbl[3]/row[last()]/@tj,'#,##0.00')"/>
+                </text>
+                <text x="{$w * 0.95}" y="{$h * 0.5}" alignment-baseline="middle" text-anchor="end" font-family="sans-serif" font-weight="400" font-size="8pt" fill="#FF6666">
+                    <xsl:value-of select="format-number(tbl[2]/row[1]/@reg_b,'#,##0.00')"/>
+                </text>
+                <text x="{$w * 0.95}" y="{$h * 0.7}" alignment-baseline="middle" text-anchor="end" font-family="sans-serif" font-weight="400" font-size="8pt" fill="#006600">
+                    <xsl:value-of select="format-number(tbl[4]/row[1]/@tj,'#,##0.00')"/>
                 </text>
             </g>
 

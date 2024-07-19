@@ -24,7 +24,6 @@ switch ($mth) {
 }
 
 
-
 function item_lst() {
     $db = new cls_db();
     $result = mysqli_query($db->conn, "SELECT * FROM item_info;");
@@ -43,16 +42,6 @@ function res_ctx() {
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); 
     print json_encode($rows);
 }
-
-function res_ctx2() {
-    $db = new cls_db();
-    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-    $yr     = filter_input(INPUT_GET, "yr",     FILTER_VALIDATE_INT);
-    $result = mysqli_query($db->conn, "SELECT res_id, yr, prm_id, prm_code, tj FROM res_fwd WHERE res_id={$res_id} AND yr={$yr} ORDER BY prm_id;");
-    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); 
-    print json_encode($rows);
-}
-
 
 function res_ins() {
     $db = new cls_db();
@@ -73,6 +62,18 @@ function prm_ups() {
     $yr = filter_input(INPUT_GET, "yr", FILTER_VALIDATE_INT);
     $tj = filter_input(INPUT_GET, "tj", FILTER_VALIDATE_FLOAT);
     $db->conn->multi_query("CALL sp_prm_ups({$res_id},{$prm_id},{$yr},{$tj});");
+    $result = mysqli_query($db->conn, "CALL sp_res_ctx({$res_id},{$yr})");
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); 
+    print json_encode($rows);
+}
+
+
+function prm_clr() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $yr = filter_input(INPUT_GET, "yr", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_prm_clr({$res_id},{$prm_id},{$yr});");
     $result = mysqli_query($db->conn, "CALL sp_res_ctx({$res_id},{$yr})");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); 
     print json_encode($rows);
