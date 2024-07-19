@@ -219,10 +219,10 @@
                     
                     <g id="reg">
                         <xsl:variable name="line2">
-                            <xsl:for-each select="tbl[3]/row[@yr &gt;= 2014]">
+                            <xsl:for-each select="tbl[3]/row[@yr &gt;= 2010]">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
-                                <xsl:variable name="y" select="format-number($ph * (1 - (@v - $vinf) div $vrng),'0.00')"/>
+                                <xsl:variable name="y" select="format-number($ph * (1 - (@reg - $vinf) div $vrng),'0.00')"/>
                                 <xsl:choose>
                                     <xsl:when test="position()=1">
                                         <xsl:text>M </xsl:text>
@@ -248,7 +248,7 @@
                             <xsl:for-each select="tbl[4]/row">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
-                                <xsl:variable name="y" select="format-number($ph * (1 - (@v1 - $vinf) div $vrng),'0.00')"/>
+                                <xsl:variable name="y" select="format-number($ph * (1 - (@tj - $vinf) div $vrng),'0.00')"/>
                                 <xsl:choose>
                                     <xsl:when test="position()=1">
                                         <xsl:text>M </xsl:text>
@@ -284,26 +284,47 @@
                     </g>
                     
                     <g id="reg">
-                        <xsl:for-each select="tbl[3]/row[@yr &gt;= 2014]">
+                        <xsl:for-each select="tbl[3]/row[@yr &gt;= 2010]">
                             <xsl:variable name="i" select="position()"/>
                             <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
-                            <xsl:variable name="y" select="format-number($ph * (1 - (@v - $vinf) div $vrng),'0.00')"/>
+                            <xsl:variable name="y" select="format-number($ph * (1 - (@reg - $vinf) div $vrng),'0.00')"/>
                             <circle cx="{$x}" cy="{$y}" r="2" stroke="#FF6666" fill="#FFFFFF"/>
                         </xsl:for-each>
                     </g>
                     
-     
+                    
                     <g id="forward">
                         <xsl:for-each select="tbl[4]/row">
                             <xsl:variable name="i" select="position()"/>
                             <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
-                            <xsl:variable name="y" select="format-number($ph * (1 - (@v1 - $vinf) div $vrng),'0.00')"/>
+                            <xsl:variable name="y" select="format-number($ph * (1 - (@tj - $vinf) div $vrng),'0.00')"/>
+                            <!-- javascript:fn_get('prm.php?mth=fwd&amp;res_id=//root/tbl1[1]/row/@res_id&amp;prm_id={$prm/@prm_id}&amp;xsl=1',div2);-->
+                            <!--<a href="#0" onclick="document.getElementById('txt3').value={@yr};document.getElementById('txt4').value={format-number(@v,'0')};">-->
                             <circle cx="{$x}" cy="{$y}" r="2" stroke="#006600" fill="#FFFFFF"/> 
+                            <!--                                        onmouseover="evt.target.setAttribute('fill', 'blue');" 
+                            onmouseout="evt.target.setAttribute('fill','white');" 
+                            onclick="evt.target.setAttribute('fill','red');" 
+                            ondblclick="evt.target.setAttribute('fill','yellow');"/>-->
+                            <!--</a>-->
                         </xsl:for-each>
                     </g>
+                    
                 </g>
             </g>
+                
+  
+            <!--            <foreignObject x="100" y="100" width="100" height="150">
+                <div id="div2" xmlns="http://www.w3.org/1999/xhtml">
+                    <input id="txt1" type="hidden" value="{tbl[1]/row/@res_id}"/>
+                    <input id="txt2" type="hidden" value="{tbl[2]/row/@prm_id}"/>
+                    <input id="txt3" type="text"/>
+                    <input id="txt4" type="text"/>
+                </div>
+            </foreignObject>-->
+            
         </svg>
+        
+ 
         
         <hr/>
 
@@ -312,9 +333,9 @@
                 <th>res_id</th>
                 <th>prm_id</th> 
                 <th>yr</th>
-                <th>v</th>
+                <th>tj</th>
             </tr>
-            <xsl:for-each select="tbl[4]/row">
+            <xsl:for-each select="tbl[5]/row">
                 <tr>
                     <form action="prm.php" method="GET">
                         <input type="hidden" name="mth" readonly="true" value="ups"/>
@@ -327,23 +348,10 @@
                         </td>
                         <td>
                             <input name="yr" value="{@yr}" style="text-align:right;width:100px;"/>
+                        </td>                   
+                        <td>
+                            <input name="tj" value="{@tj}"  style="text-align:right;width:100px;"/> 
                         </td>
-                        <xsl:choose>
-                            <xsl:when test="@v2">
-                                <td>
-                                    <input name="tj" value="{format-number(@v2,'0')}"  style="text-align:right;width:100px;"/> 
-                                </td>
-                                <td>
-                                    <input readonly="true" value="{format-number(@v1,'0')}"  style="text-align:right;width:100px;"/>  
-                                </td>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <td>
-                                    <input name="tj" value="{format-number(@v1,'0')}"  style="text-align:right;width:100px;"/> 
-                                </td>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                        
                         <input type="submit" style="visibility: hidden;" />
                     </form>
 
@@ -352,6 +360,27 @@
                     </td>
                 </tr>
             </xsl:for-each> 
+            
+            
+            <tr>
+                <form action="prm.php" method="GET">
+                    <input type="hidden" name="mth" readonly="true" value="ups"/>
+                    <input type="hidden" name="xsl" readonly="true" value="1"/>
+                    <td>
+                        <input name="res_id" readonly="true" value="{$res_id}" style="text-align:center;width:100px;"/>
+                    </td>
+                    <td>
+                        <input name="prm_id" readonly="true" value="{$prm_id}" style="text-align:center;width:100px;"/>
+                    </td>
+                    <td>
+                        <input name="yr" value="" style="text-align:right;width:100px;"/>
+                    </td>
+                    <td>
+                        <input name="tj" value=""  style="text-align:right;width:100px;"/> 
+                    </td>
+                    <input type="submit" style="visibility: hidden;" />
+                </form>
+            </tr>
         </table>
         
     </xsl:template>

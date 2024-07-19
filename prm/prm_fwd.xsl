@@ -298,8 +298,6 @@
         </svg>
         
 
-        
-        
     </xsl:template>
     
 
