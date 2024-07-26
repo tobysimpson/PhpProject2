@@ -43,5 +43,5 @@ class cls_db {
         trigger_error('Deserializing is not allowed.', E_USER_ERROR);
     }
     //flowergarden
-    //Flowerbd1
+    //Flowerdb1
 }
