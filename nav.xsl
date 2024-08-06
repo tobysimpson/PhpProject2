@@ -51,9 +51,6 @@
                 </td>
             </tr>
             <tr>
-                <th style="text-align:left">prm</th>
-            </tr>
-            <tr>
                 <td>
                     <a href="prm.php?mth=dsp&amp;xsl=1">prm_dsp</a>
                 </td>
@@ -64,6 +61,14 @@
             <tr>
                 <td>
                     <a href="item.php?mth=lst&amp;xsl=1">item_lst</a>
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align:left">game</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="web/index.html?token=12345678">test1</a>
                 </td>
             </tr>
         </table>

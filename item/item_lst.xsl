@@ -27,7 +27,9 @@
     
     <xsl:template match="root">
         <html>
-            <body>
+            <head>
+            </head>
+            <body onload="console.log(window.location.search);">
                 <table>
                     <tr>
                         <th>item_id</th>
