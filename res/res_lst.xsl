@@ -18,14 +18,35 @@
                         <th>res_name</th>
                         <th>res_num</th>
                         
-                        <th>imp_nuc</th>
-                        <th>imp_fos</th>
-                        <th>imp_rnw</th>
-                        <th>imp_ele</th>
-                        <th>imp_dst</th>
-                        <th>met_emi</th>
-                        <th>met_lnd</th>
-                        <th>met_cst</th>
+                        <th colspan="2">imp_nuc</th>
+                        <th colspan="2">imp_fos</th>
+                        <th colspan="2">imp_ele</th>
+
+                        <th colspan="2">met_emi</th>
+                        <th colspan="2">met_lnd</th>
+                        <th colspan="2">met_cst</th>
+                        <th colspan="2">met_avl</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        
+                        <th>TJ</th>
+                        <th>rank</th>
+                        <th>TJ</th>
+                        <th>rank</th>
+                        <th>TJ</th>
+                        <th>rank</th>
+                        
+                        <th>t (mln)</th>
+                        <th>rank</th>
+                        <th>km<sup>2</sup></th>
+                        <th>rank</th>
+                        <th>CHF (mln)</th>
+                        <th>rank</th>
+                        <th>%</th>
+                        <th>rank</th>
                     </tr>
                     <xsl:for-each select="tbl[1]/row">
                         <tr>
@@ -39,71 +60,69 @@
                                 <xsl:value-of select="@res_num"/>
                             </td>
                      
+                            <td style="text-align:right;">
+                                <xsl:value-of select="format-number(@imp_nuc,'#,##0')"/>
+                            </td>
                             <td style="text-align:center;">
                                 <xsl:value-of select="@rnk_imp_nuc"/>
+                            </td>
+                            
+                            <td style="text-align:right;">
+                                <xsl:value-of select="format-number(@imp_fos,'#,##0')"/>
                             </td>
                             <td style="text-align:center;">
                                 <xsl:value-of select="@rnk_imp_fos"/>
                             </td>
-                            <td style="text-align:center;">
-                                <xsl:value-of select="@rnk_imp_rnw"/>
+                        
+                            <td style="text-align:right;">
+                                <xsl:value-of select="format-number(@imp_ele,'#,##0')"/>
                             </td>
                             <td style="text-align:center;">
                                 <xsl:value-of select="@rnk_imp_ele"/>
                             </td>
-                            <td style="text-align:center;">
-                                <xsl:value-of select="@rnk_imp_dst"/>
+                            
+                            
+                            
+                            <td style="text-align:right;">
+                                <xsl:value-of select="format-number(@met_emi,'0.00')"/>
                             </td>
                             <td style="text-align:center;">
                                 <xsl:value-of select="@rnk_met_emi"/>
                             </td>
+                            <td style="text-align:right;">
+                                <xsl:value-of select="format-number(@met_lnd,'0.00')"/>
+                            </td>
                             <td style="text-align:center;">
                                 <xsl:value-of select="@rnk_met_lnd"/>
+                            </td>
+                            <td style="text-align:right;">
+                                <xsl:value-of select="format-number(@met_cst,'#,##0')"/>
                             </td>
                             <td style="text-align:center;">
                                 <xsl:value-of select="@rnk_met_cst"/>
                             </td>
+                            <td style="text-align:right;">
+                                <xsl:value-of select="format-number(@met_avl,'0.00%')"/>
+                            </td>
+                            <td style="text-align:center;">
+                                <xsl:value-of select="@rnk_met_avl"/>
+                            </td>
+                        
+                 
 
 
-<!--                            <td style="text-align:right;">
-                                <xsl:value-of select="@imp_nuc"/>
-                            </td>
-                            <td style="text-align:right;">
-                                <xsl:value-of select="@imp_fos"/>
-                            </td>
-                            <td style="text-align:right;">
-                                <xsl:value-of select="@imp_rnw"/>
-                            </td>
-                            <td style="text-align:right;">
-                                <xsl:value-of select="@imp_ele"/>
-                            </td>
-                            <td style="text-align:right;">
-                                <xsl:value-of select="@imp_dst"/>
-                            </td>
-                            
-                            <td style="text-align:right;">
-                                <xsl:value-of select="@met_emi"/>
-                            </td>
-                            <td style="text-align:right;">
-                                <xsl:value-of select="@met_lnd"/>
-                            </td>
-                            <td style="text-align:right;">
-                                <xsl:value-of select="@met_cst"/>
-                            </td>-->
-                            
-                            <td>
-                                <a href="res.php?mth=edt&amp;res_id={@res_id}&amp;xsl=1">res_edt</a>
-                            </td>
-                            <td>
-                                <a href="res.php?mth=prm&amp;res_id={@res_id}&amp;xsl=1">res_prm</a>
-                            </td>
-                            <td>
-                                <a href="res.php?mth=evt&amp;res_id={@res_id}&amp;xsl=1">res_evt</a>
-                            </td>
-                            <td>
-                                <a href="res.php?mth=rnk&amp;res_id={@res_id}&amp;xsl=1">res_rnk</a>
-                            </td>
-                        </tr>
+     
+                        <td>
+                            <a href="res.php?mth=edt&amp;res_id={@res_id}&amp;xsl=1">res_edt</a>
+                        </td>
+                        <td>
+                            <a href="res.php?mth=prm&amp;res_id={@res_id}&amp;xsl=1">res_prm</a>
+                        </td>
+                        <td>
+                            <a href="res.php?mth=evt&amp;res_id={@res_id}&amp;xsl=1">res_evt</a>
+                        </td>
+
+                    </tr>
                     </xsl:for-each> 
                 </table>
                 <hr/>
