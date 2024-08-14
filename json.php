@@ -22,6 +22,9 @@ switch ($mth) {
     case "dsp":
         prm_dsp();
         break;
+    case "rnk":
+        res_rnk();
+        break;
     default:
         item_lst();
 }
@@ -32,8 +35,6 @@ function item_lst() {
     $result = mysqli_query($db->conn, "SELECT * FROM item_info;");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); 
     print json_encode($rows);
-//    phpinfo();
-//    print "hello";
 }
 
 
@@ -86,6 +87,15 @@ function prm_clr() {
 function prm_dsp() {
     $db = new cls_db();
     $result = mysqli_query($db->conn, "SELECT * FROM prm_dsp");
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); 
+    print json_encode($rows);
+}
+
+
+function res_rnk() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $result = mysqli_query($db->conn, "CALL sp_res_rnk({$res_id})");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); 
     print json_encode($rows);
 }

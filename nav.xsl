@@ -55,6 +55,13 @@
                     <a href="prm.php?mth=dsp&amp;xsl=1">prm_dsp</a>
                 </td>
             </tr>
+
+
+            <!--            <tr>
+                <td>
+                    <a href="res.php?mth=rnk&amp;xsl=1">res_rnk</a>
+                </td>
+            </tr>-->
             <tr>
                 <th style="text-align:left">item</th>
             </tr>

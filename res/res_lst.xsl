@@ -109,20 +109,20 @@
                             </td>
                         
                  
+                            <td>
+                                <a href="res.php?mth=edt&amp;res_id={@res_id}&amp;xsl=1">res_edt</a>
+                            </td>
+                            <td>
+                                <a href="res.php?mth=prm&amp;res_id={@res_id}&amp;xsl=1">res_prm</a>
+                            </td>
+                            <td>
+                                <a href="res.php?mth=evt&amp;res_id={@res_id}&amp;xsl=1">res_evt</a>
+                            </td>
+                            <td>
+                                <a href="res.php?mth=rnk&amp;res_id={@res_id}&amp;xsl=1">res_rnk</a>
+                            </td>
 
-
-     
-                        <td>
-                            <a href="res.php?mth=edt&amp;res_id={@res_id}&amp;xsl=1">res_edt</a>
-                        </td>
-                        <td>
-                            <a href="res.php?mth=prm&amp;res_id={@res_id}&amp;xsl=1">res_prm</a>
-                        </td>
-                        <td>
-                            <a href="res.php?mth=evt&amp;res_id={@res_id}&amp;xsl=1">res_evt</a>
-                        </td>
-
-                    </tr>
+                        </tr>
                     </xsl:for-each> 
                 </table>
                 <hr/>

@@ -3,7 +3,6 @@
 require_once "cls_db.php";
 require_once "cls_xml.php";
 
-
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
@@ -84,14 +83,13 @@ function res_evt() {
     }
 }
 
-
 function res_ins() {
     $db = new cls_db();
     $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
     $qry = $db->conn->prepare("INSERT INTO res_info (res_name) VALUES ('new');");
     $qry->execute();
     $res_id = $qry->insert_id;
-    
+
     if ($xsl == 1) {
         header("Location: res.php?mth=edt&res_id={$res_id}&xsl=1");
     } else {
@@ -116,25 +114,27 @@ function res_edt() {
     }
 }
 
-
 function res_upd() {
-    $db         = new cls_db();
-    $xsl        = filter_input(INPUT_POST, "xsl", FILTER_VALIDATE_INT);
-    $res_id     = filter_input(INPUT_POST, "res_id",    FILTER_VALIDATE_INT);
-    $res_name   = filter_input(INPUT_POST, "res_name",  FILTER_SANITIZE_STRING);
-    $res_del    = (int)!is_null(filter_input(INPUT_POST, "res_del",FILTER_VALIDATE_BOOL));
+    $db = new cls_db();
+    $xsl = filter_input(INPUT_POST, "xsl", FILTER_VALIDATE_INT);
+    $res_id = filter_input(INPUT_POST, "res_id", FILTER_VALIDATE_INT);
+    $res_name = filter_input(INPUT_POST, "res_name", FILTER_SANITIZE_STRING);
+    $res_del = (int) !is_null(filter_input(INPUT_POST, "res_del", FILTER_VALIDATE_BOOL));
     var_dump($res_del);
     $qry = $db->conn->prepare("UPDATE res_info SET res_name = '{$res_name}' WHERE res_id = {$res_id};");
     $qry->execute();
-    header("Location: res.php?mth=lst&res_id=".$res_id."&xsl=".$xsl);
+    header("Location: res.php?mth=lst&res_id=" . $res_id . "&xsl=" . $xsl);
 }
-
 
 function res_rnk() {
     $db = new cls_db();
     $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_res_rnk({$res_id})");
+    if ($res_id) {
+        $db->conn->multi_query("CALL sp_res_rnk({$res_id})");
+    } else {
+        $db->conn->multi_query("CALL sp_res_rnk_all()");
+    }
     $xml = cls_xml::mul2dom($db->conn);
 
     if ($xsl == 1) {
@@ -147,12 +147,11 @@ function res_rnk() {
     }
 }
 
-
 function res_ctx() {
     $db = new cls_db();
-    $xsl    = filter_input(INPUT_GET, "xsl",    FILTER_VALIDATE_INT);
+    $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-    $yr     = filter_input(INPUT_GET, "yr",     FILTER_VALIDATE_INT);
+    $yr = filter_input(INPUT_GET, "yr", FILTER_VALIDATE_INT);
     $db->conn->multi_query("CALL sp_res_ctx({$res_id},{$yr})");
     $xml = cls_xml::mul2dom($db->conn);
 
