@@ -25,7 +25,7 @@
                         <th colspan="2">met_emi</th>
                         <th colspan="2">met_lnd</th>
                         <th colspan="2">met_cst</th>
-                        <th colspan="2">met_avl</th>
+                        <th colspan="2">met_snl</th>
                     </tr>
                     <tr>
                         <th></th>
@@ -102,10 +102,10 @@
                                 <xsl:value-of select="@rnk_met_cst"/>
                             </td>
                             <td style="text-align:right;">
-                                <xsl:value-of select="format-number(@met_avl,'0.00%')"/>
+                                <xsl:value-of select="format-number(@met_snl,'0.00%')"/>
                             </td>
                             <td style="text-align:center;">
-                                <xsl:value-of select="@rnk_met_avl"/>
+                                <xsl:value-of select="@rnk_met_snl"/>
                             </td>
                         
                  

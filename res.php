@@ -36,7 +36,9 @@ switch ($mth) {
 function res_lst() {
     $db = new cls_db();
     $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("SELECT * FROM res_rnk;");
+    $ord = filter_input(INPUT_GET, "ord", FILTER_VALIDATE_INT, array("options" => array("default" => 1)));
+    $lim = filter_input(INPUT_GET, "lim", FILTER_VALIDATE_INT, array("options" => array("default" => 100000000)));
+    $db->conn->multi_query("SELECT * FROM res_rnk ORDER BY {$ord} LIMIT {$lim};");
     $xml = cls_xml::mul2dom($db->conn);
 
     if ($xsl == 1) {
