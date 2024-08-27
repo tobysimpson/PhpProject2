@@ -12,7 +12,7 @@
     </xsl:template>-->
    
     <xsl:variable name="ph">50</xsl:variable>
-    <xsl:variable name="pw">110</xsl:variable>
+    <xsl:variable name="pw">80</xsl:variable>
         
     <xsl:variable name="h" select="$ph+4"/>
     <xsl:variable name="w" select="$pw+4"/>

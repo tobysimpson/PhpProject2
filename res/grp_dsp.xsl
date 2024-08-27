@@ -14,7 +14,8 @@
   
     
     <xsl:template match="root">
-        
+        <xsl:variable name="res" select="tbl[1]/row[1]"/>
+       
         <table>
             <tr>
                 <th>res_id</th>
@@ -58,8 +59,8 @@
                     <td align="center">
                         <xsl:value-of select="@grp_id"/>
                     </td>
-                    <td></td>
-                    <td>
+          
+                    <td colspan="20">
                         <xsl:value-of select="@grp_name"/>
                     </td>
                 </tr>
@@ -89,9 +90,29 @@
                             <xsl:for-each select="//tbl[4]/row">
                                 <xsl:sort select="@prd_ord" data-type="number"/>
                                 <xsl:variable name="prd" select="."/>
-                                <xsl:variable name="prm_id" select="$prcs[@prd_id = $prd/@prd_id][@prc_id = $prc/@prc_id]/@prm_id"/>
+                                <xsl:variable name="row" select="$prcs[@prd_id = $prd/@prd_id][@prc_id = $prc/@prc_id]"/>
                                 <td align="center">
-                                    <xsl:value-of select="$prm_id"/>
+                                    
+
+                                    <xsl:if test="$row">
+                                        <xsl:value-of select="$row/@prm_id"/>
+                                        <br/>
+                                        <xsl:choose>
+                                            <xsl:when test="$row/@prm_cal=0">
+                                                <a href="prm.php?mth=edt&amp;res_id={$res/@res_id}&amp;prm_id={$row/@prm_id}&amp;xsl=1">
+                                                    <img src="prm.php?mth=prv&amp;res_id={$res/@res_id}&amp;prm_id={$row/@prm_id}&amp;xsl=1"/>
+                                                </a>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <a href="prm.php?mth=fwd&amp;res_id={$res/@res_id}&amp;prm_id={$row/@prm_id}&amp;xsl=1">
+                                                    <img src="prm.php?mth=prv&amp;res_id={$res/@res_id}&amp;prm_id={$row/@prm_id}&amp;xsl=1"/>
+                                                </a>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:if>
+                                    
+
+                                    
                                 </td>
 
                             </xsl:for-each>
