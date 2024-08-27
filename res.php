@@ -29,6 +29,9 @@ switch ($mth) {
     case "ctx":
         res_ctx();
         break;
+    case "grp":
+        grp_dsp();
+        break;
     default:
         res_lst();
 }
@@ -37,7 +40,7 @@ function res_lst() {
     $db = new cls_db();
     $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
     $ord = filter_input(INPUT_GET, "ord", FILTER_VALIDATE_INT, array("options" => array("default" => 1)));
-    $lim = filter_input(INPUT_GET, "lim", FILTER_VALIDATE_INT, array("options" => array("default" => 100000000)));
+    $lim = filter_input(INPUT_GET, "lim", FILTER_VALIDATE_INT, array("options" => array("default" => 10000)));
     $db->conn->multi_query("SELECT * FROM res_rnk ORDER BY {$ord} LIMIT {$lim};");
     $xml = cls_xml::mul2dom($db->conn);
 
@@ -123,7 +126,7 @@ function res_upd() {
     $res_name = filter_input(INPUT_POST, "res_name", FILTER_SANITIZE_STRING);
     $res_del = (int) !is_null(filter_input(INPUT_POST, "res_del", FILTER_VALIDATE_BOOL));
     var_dump($res_del);
-    $qry = $db->conn->prepare("UPDATE res_info SET res_name = '{$res_name}' WHERE res_id = {$res_id};");
+    $qry = $db->conn->prepare("UPDATE res_info SET res_name = LEFT('{$res_name}',25) WHERE res_id = {$res_id};");
     $qry->execute();
     header("Location: res.php?mth=lst&res_id=" . $res_id . "&xsl=" . $xsl);
 }
@@ -159,6 +162,23 @@ function res_ctx() {
 
     if ($xsl == 1) {
         $xsl = cls_xml::file2dom("res/res_ctx.xsl");
+        header('Content-Type: text/html');
+        echo cls_xml::xsltrans($xml, $xsl);
+    } else {
+        header('Content-Type: text/xml');
+        echo $xml->saveXML();
+    }
+}
+
+
+function grp_dsp() {
+    $db = new cls_db();
+    $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_grp_dsp({$res_id});");
+    $xml = cls_xml::mul2dom($db->conn);
+    if ($xsl == 1) {
+        $xsl = cls_xml::file2dom("res/grp_dsp.xsl");
         header('Content-Type: text/html');
         echo cls_xml::xsltrans($xml, $xsl);
     } else {

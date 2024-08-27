@@ -32,7 +32,9 @@ switch ($mth) {
 
 function item_lst() {
     $db = new cls_db();
-    $result = mysqli_query($db->conn, "SELECT * FROM item_info;");
+    $ord = filter_input(INPUT_GET, "ord", FILTER_VALIDATE_INT, array("options" => array("default" => 1)));
+    $lim = filter_input(INPUT_GET, "lim", FILTER_VALIDATE_INT, array("options" => array("default" => 100000000)));
+    $result = mysqli_query($db->conn, "SELECT * FROM res_rnk ORDER BY {$ord} LIMIT {$lim};");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); 
     print json_encode($rows);
 }
@@ -100,3 +102,4 @@ function res_rnk() {
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); 
     print json_encode($rows);
 }
+

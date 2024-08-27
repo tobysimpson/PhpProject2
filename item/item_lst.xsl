@@ -11,19 +11,6 @@
     </xsl:template>
     
 
-
-    
-    <xsl:template name="fmt">
-        <xsl:param name="x"/>
-        <xsl:variable name="a" select="translate($x, '-', '')"/>
-        <xsl:variable name="d" select="floor(php:function('log10', $a))"/>
-        <xsl:variable name="p" select="php:function('pow',10, $d)"/>
-<!--        <xsl:value-of select="format-number($x div $p, '0.0000')"/>
-        <xsl:text>e</xsl:text>
-        <xsl:value-of select="format-number($d,'+00')"/>-->
-        <xsl:value-of select="$a"/>
-    </xsl:template>
-
     
     <xsl:template match="root">
         <html>
@@ -34,10 +21,7 @@
                     <tr>
                         <th>item_id</th>
                         <th>item_name</th>
-                        <th>item_val1</th>
-                        <th>item_val2</th>
-                        <th>item_val3</th>
-                        <th>item_val4</th>
+                        <th>item_val</th>
                     </tr>
                     <xsl:for-each select="tbl[1]/row">
                         <tr>
@@ -48,10 +32,7 @@
                                 <xsl:value-of select="@item_name"/>
                             </td>
                             <td>
-                                <xsl:value-of select="php:function('pow',10,number(@item_id))"/>
-                            </td>
-                            <td>
-                                <xsl:value-of select="php:function('sprintf','%6.4E', -123.456)"/>
+                                <xsl:value-of select="php:function('sprintf','%6.4E', @item_val)"/>
                             </td>
                         </tr>
                     </xsl:for-each> 

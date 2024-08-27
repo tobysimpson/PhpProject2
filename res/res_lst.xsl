@@ -121,6 +121,10 @@
                             <td>
                                 <a href="res.php?mth=rnk&amp;res_id={@res_id}&amp;xsl=1">res_rnk</a>
                             </td>
+                            <td>
+                                <a href="res.php?mth=grp&amp;res_id={@res_id}&amp;xsl=1">grp_dsp</a>
+                            </td>
+                            
 
                         </tr>
                     </xsl:for-each> 

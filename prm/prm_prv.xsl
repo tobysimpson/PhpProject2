@@ -179,7 +179,7 @@
                     
                     <g id="reg">
                         <xsl:variable name="line2">
-                            <xsl:for-each select="tbl[3]/row[@yr &gt;= 2010]">
+                            <xsl:for-each select="tbl[3]/row[@yr &gt;= 2011]">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.000')"/>
                                 <xsl:variable name="y" select="format-number($ph * (1 - (@reg - $vinf) div $vrng),'0.000')"/>

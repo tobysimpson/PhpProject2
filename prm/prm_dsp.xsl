@@ -25,16 +25,15 @@
         <table>
             <tr>
                 <th>grp_id</th>
-                <th>grp_name</th>
-                
                 <th>prc_id</th>
-                <th>prc_name</th>
-                
-                
                 <th>prd_id</th>
+                <th>prm_id</th>
+                
+                <th>grp_name</th>
+                <th>prc_name</th>
                 <th>prd_name</th>
                 
-                <th>prm_id</th>
+                
                 <th>prm_code</th>
                 <th>prm_cal</th>
                 <th>prm_grw</th>
@@ -68,24 +67,28 @@
                     <td  style="text-align:center">
                         <xsl:value-of select="@grp_id"/>
                     </td>
-                    <td  style="text-align:left">
-                        <xsl:value-of select="@grp_name"/>
-                    </td>
                     <td  style="text-align:center">
                         <xsl:value-of select="@prc_id"/>
-                    </td>
-                    <td  style="text-align:left">
-                        <xsl:value-of select="@prc_name"/>
                     </td>
                     <td  style="text-align:center">
                         <xsl:value-of select="@prd_id"/>
                     </td>
-                    <td>
-                        <xsl:value-of select="@prd_name"/>
-                    </td>
                     <td style="text-align:center">
                         <xsl:value-of select="@prm_id"/>  
                     </td>
+                
+                    <td  style="text-align:left">
+                        <xsl:value-of select="@grp_name"/>
+                    </td>
+
+                    <td  style="text-align:left">
+                        <xsl:value-of select="@prc_name"/>
+                    </td>
+              
+                    <td>
+                        <xsl:value-of select="@prd_name"/>
+                    </td>
+
                     <td style="text-align:left">
                         <xsl:value-of select="@grp_code"/>
                         <xsl:text>_</xsl:text>
