@@ -11,7 +11,7 @@
         <xsl:call-template name="page"/> 
     </xsl:template>-->
    
-    <xsl:variable name="ph">50</xsl:variable>
+    <xsl:variable name="ph">40</xsl:variable>
     <xsl:variable name="pw">80</xsl:variable>
         
     <xsl:variable name="h" select="$ph+4"/>
@@ -266,13 +266,13 @@
             </g>
             
             <g id="txt" transform="translate(0,0)">
-                <text x="{$w * 0.99}" y="{$h * 0.3}" alignment-baseline="middle" text-anchor="end" font-family="sans-serif" font-weight="400" font-size="8pt" fill="#6666FF">
+                <text x="{$w * 0.5}" y="{$h * 0.2}" alignment-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="300" font-size="8pt" fill="#6666FF">
                     <xsl:value-of select="format-number(tbl[3]/row[last()]/@tj,'#,##0.00')"/>
                 </text>
-                <text x="{$w * 0.99}" y="{$h * 0.5}" alignment-baseline="middle" text-anchor="end" font-family="sans-serif" font-weight="400" font-size="8pt" fill="#FF6666">
+                <text x="{$w * 0.5}" y="{$h * 0.5}" alignment-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="300" font-size="8pt" fill="#FF6666">
                     <xsl:value-of select="format-number(tbl[2]/row[1]/@reg_b,'#,##0.00')"/>
                 </text>
-                <text x="{$w * 0.99}" y="{$h * 0.7}" alignment-baseline="middle" text-anchor="end" font-family="sans-serif" font-weight="400" font-size="8pt" fill="#006600">
+                <text x="{$w * 0.5}" y="{$h * 0.8}" alignment-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="300" font-size="8pt" fill="#006600">
                     <xsl:value-of select="format-number(tbl[4]/row[1]/@tj,'#,##0.00')"/>
                 </text>
             </g>

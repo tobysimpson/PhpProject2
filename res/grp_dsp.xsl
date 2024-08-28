@@ -40,14 +40,7 @@
                 <th>prc_id</th>
                 <th></th>
                                     
-                <xsl:for-each select="//tbl[4]/row">
-                    <xsl:sort select="@prd_ord" data-type="number"/>
-                    <td width="60px" align="center">
-                        <xsl:value-of select="@prd_id"/>
-                        <br/>
-                        <xsl:value-of select="@prd_code"/>
-                    </td>
-                </xsl:for-each>
+
                 
             </tr>
             
@@ -59,11 +52,27 @@
                     <td align="center">
                         <xsl:value-of select="@grp_id"/>
                     </td>
-          
-                    <td colspan="20">
+                    <td></td>
+                    <td colspan="20" style="font-weight:600;">
                         <xsl:value-of select="@grp_name"/>
                     </td>
                 </tr>
+                
+                <tr>
+                    <td colspan="3"></td>
+                 
+                    <xsl:for-each select="//tbl[4]/row">
+                        <xsl:sort select="@prd_ord" data-type="number"/>
+                        <td width="60px" align="center">
+                            <xsl:value-of select="@prd_id"/>
+                            <br/>
+                            <xsl:value-of select="@prd_code"/>
+                        </td>
+                    </xsl:for-each>
+                    
+                </tr>
+                
+
                 
                 
 
