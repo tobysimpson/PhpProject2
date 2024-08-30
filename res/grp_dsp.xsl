@@ -53,7 +53,7 @@
                         <xsl:value-of select="@grp_id"/>
                     </td>
                     <td></td>
-                    <td colspan="20" style="font-weight:600;">
+                    <td colspan="21" style="font-weight:600;">
                         <xsl:value-of select="@grp_name"/>
                     </td>
                 </tr>

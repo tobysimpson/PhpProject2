@@ -9,9 +9,6 @@ switch ($mth) {
     case "lst":
         res_lst();
         break;
-    case "prm":
-        res_prm();
-        break;
     case "evt":
         res_evt();
         break;
@@ -30,7 +27,7 @@ switch ($mth) {
         res_ctx();
         break;
     case "grp":
-        grp_dsp();
+        res_grp();
         break;
     default:
         res_lst();
@@ -171,11 +168,11 @@ function res_ctx() {
 }
 
 
-function grp_dsp() {
+function res_grp() {
     $db = new cls_db();
     $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("CALL sp_grp_dsp({$res_id});");
+    $db->conn->multi_query("CALL sp_res_grp({$res_id});");
     $xml = cls_xml::mul2dom($db->conn);
     if ($xsl == 1) {
         $xsl = cls_xml::file2dom("res/grp_dsp.xsl");

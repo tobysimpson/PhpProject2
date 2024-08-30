@@ -88,7 +88,9 @@
 
             <g id="title" transform="translate(20,20)">
                 <text x="0" y="0" alignment-baseline="middle">
-                    <xsl:value-of select="tbl[2]/row/@prm_desc"/>
+                    <xsl:value-of select="tbl[1]/row/@grp_name"/>, 
+                    <xsl:value-of select="tbl[1]/row/@prc_name"/>, 
+                    <xsl:value-of select="tbl[1]/row/@prd_name"/>
                 </text>
             </g>
                 
@@ -192,7 +194,7 @@
                     
                     <g id="reg">
                         <xsl:variable name="line2">
-                            <xsl:for-each select="tbl[2]/row[@yr &gt;= 2010]">
+                            <xsl:for-each select="tbl[2]/row[@yr &gt;= 2005]">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
                                 <xsl:variable name="y" select="format-number($ph * (1 - (@reg - $vinf) div $vrng),'0.00')"/>
@@ -230,7 +232,7 @@
                     </g>
                     
                     <g id="reg">
-                        <xsl:for-each select="tbl[2]/row[@yr &gt;= 2011]">
+                        <xsl:for-each select="tbl[2]/row[@yr &gt;= 2005]">
                             <xsl:variable name="i" select="position()"/>
                             <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
                             <xsl:variable name="y" select="format-number($ph * (1 - (@reg - $vinf) div $vrng),'0.00')"/>
