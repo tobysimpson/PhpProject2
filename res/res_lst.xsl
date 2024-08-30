@@ -33,7 +33,7 @@
                         <th colspan="2">met_emi</th>
                         <th colspan="2">met_lnd</th>
                         <th colspan="2">met_cst</th>
-                        <th colspan="2">met_snl</th>
+                        <th colspan="2">met_smr</th>
                     </tr>
                     <tr>
                         <th></th>

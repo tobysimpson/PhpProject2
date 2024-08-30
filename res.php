@@ -175,7 +175,7 @@ function res_grp() {
     $db->conn->multi_query("CALL sp_res_grp({$res_id});");
     $xml = cls_xml::mul2dom($db->conn);
     if ($xsl == 1) {
-        $xsl = cls_xml::file2dom("res/grp_dsp.xsl");
+        $xsl = cls_xml::file2dom("res/res_grp.xsl");
         header('Content-Type: text/html');
         echo cls_xml::xsltrans($xml, $xsl);
     } else {
@@ -183,3 +183,5 @@ function res_grp() {
         echo $xml->saveXML();
     }
 }
+
+
