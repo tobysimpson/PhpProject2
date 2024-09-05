@@ -100,7 +100,7 @@
                     <xsl:value-of select="tbl[1]/row/@res_name"/>
                 </td>
                 <td>
-                    <a href="res.php?mth=prm&amp;res_id={$res_id}&amp;xsl=1">res_prm</a>
+                    <a href="res.php?mth=grp&amp;res_id={$res_id}&amp;xsl=1">res_grp</a>
                 </td>
             </tr>
         </table>
@@ -113,9 +113,19 @@
             <style>* { font-size: 10pt; font-family: sans-serif; font-weight: 300; }</style> 
             
 
-            <g id="title" transform="translate(20,20)">
+<!--            <g id="title" transform="translate(20,20)">
                 <text x="0" y="0" alignment-baseline="middle">
                     <xsl:value-of select="tbl[2]/row/@prm_desc"/>
+                </text>
+            </g>-->
+            
+            
+            
+            <g id="title" transform="translate(20,20)">
+                <text x="0" y="0" alignment-baseline="middle">
+                    <xsl:value-of select="tbl[2]/row/@grp_name"/>, 
+                    <xsl:value-of select="tbl[2]/row/@prc_name"/>, 
+                    <xsl:value-of select="tbl[2]/row/@prd_name"/>
                 </text>
             </g>
                 

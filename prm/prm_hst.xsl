@@ -247,18 +247,7 @@
             </g>
                 
   
-            <!--            <foreignObject x="100" y="100" width="100" height="150">
-                <div id="div2" xmlns="http://www.w3.org/1999/xhtml">
-                    <input id="txt1" type="hidden" value="{tbl[1]/row/@res_id}"/>
-                    <input id="txt2" type="hidden" value="{tbl[2]/row/@prm_id}"/>
-                    <input id="txt3" type="text"/>
-                    <input id="txt4" type="text"/>
-                </div>
-            </foreignObject>-->
-            
         </svg>
-        
-
         
         
     </xsl:template>
