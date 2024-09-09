@@ -88,6 +88,7 @@
 
             <g id="title" transform="translate(20,20)">
                 <text x="0" y="0" alignment-baseline="middle">
+                    <xsl:value-of select="tbl[2]/row/@prm_id"/> -  
                     <xsl:value-of select="tbl[1]/row/@grp_name"/>, 
                     <xsl:value-of select="tbl[1]/row/@prc_name"/>, 
                     <xsl:value-of select="tbl[1]/row/@prd_name"/>
