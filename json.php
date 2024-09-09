@@ -101,7 +101,13 @@ function prm_dsp() {
 function res_rnk() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-    $result = mysqli_query($db->conn, "CALL sp_res_rnk({$res_id})");
+    
+    if ($res_id) {
+        $result = mysqli_query($db->conn, "CALL sp_res_rnk({$res_id})");
+    } else {
+        $result = mysqli_query($db->conn, "CALL sp_res_rnk_all()");
+    }
+    
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); 
     print json_encode($rows);
 }
