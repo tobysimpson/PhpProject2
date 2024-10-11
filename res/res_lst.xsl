@@ -24,7 +24,7 @@
                     <tr>
                         <th>res_id</th>
                         <th>res_name</th>
-                        <th>res_num</th>
+                        <th>res_yr</th>
                         
                         <th colspan="2">met_nuc</th>
                         <th colspan="2">met_fos</th>
@@ -66,7 +66,7 @@
                                 <xsl:value-of select="@res_name"/>
                             </td>
                             <td style="text-align:center;">
-                                <xsl:value-of select="@res_num"/>
+                                <xsl:value-of select="@res_yr"/>
                             </td>
                      
                             <td style="text-align:right;">

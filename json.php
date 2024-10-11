@@ -28,6 +28,9 @@ switch ($mth) {
     case "lst":
         res_lst();
         break;
+    case "shk":
+        shk_ups();
+        break;
     default:
         item_lst();
 }
@@ -36,7 +39,7 @@ switch ($mth) {
 function item_lst() {
     $db = new cls_db();
     $ord = filter_input(INPUT_GET, "ord", FILTER_VALIDATE_INT, array("options" => array("default" => 1)));
-    $lim = filter_input(INPUT_GET, "lim", FILTER_VALIDATE_INT, array("options" => array("default" => 100000000)));
+    $lim = filter_input(INPUT_GET, "lim", FILTER_VALIDATE_INT, array("options" => array("default" => 10000)));
     $result = mysqli_query($db->conn, "SELECT * FROM res_rnk ORDER BY {$ord} LIMIT {$lim};");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); 
     print json_encode($rows);
@@ -116,6 +119,18 @@ function res_lst() {
     $ord = filter_input(INPUT_GET, "ord", FILTER_VALIDATE_INT, array("options" => array("default" => 1)));
     $lim = filter_input(INPUT_GET, "lim", FILTER_VALIDATE_INT, array("options" => array("default" => 10000)));
     $result = mysqli_query($db->conn, "SELECT * FROM res_rnk ORDER BY {$ord} LIMIT {$lim};");
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); 
+    print json_encode($rows);
+}
+
+
+function shk_ups() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $shk_id = filter_input(INPUT_GET, "shk_id", FILTER_VALIDATE_INT);
+    $yr = filter_input(INPUT_GET, "yr", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_shk_ups({$res_id},{$shk_id},{$yr});");
+    $result = mysqli_query($db->conn, "CALL sp_res_ctx({$res_id},{$yr})");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC); 
     print json_encode($rows);
 }

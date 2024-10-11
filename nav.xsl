@@ -80,7 +80,7 @@
                     <a href="https://sweet-sure.itch.io/ensured-energy?token=0001">playable demo</a>
                 </td>
             </tr>
-                        <tr>
+            <tr>
                 <td>
                     <a href="web/index.html?token=12345678">test1</a>
                 </td>

@@ -15,8 +15,8 @@
                 <table>
                     <tr>
                         <th>res_id</th>
-                        <th>prm_id</th>
                         <th>yr</th>
+                        <th>prm_id</th>
                         <th>tj</th>
                     </tr>
                     <xsl:for-each select="tbl[1]/row">
@@ -24,15 +24,17 @@
                             <td>
                                 <xsl:value-of select="@res_id"/>
                             </td>
+                            
+                            <td style="text-align:right;">
+                                <xsl:value-of select="@yr"/>
+                            </td>
                             <td>
                                 <xsl:value-of select="@prm_id"/>
                             </td>
                             <td style="text-align:right;">
-                                <xsl:value-of select="@yr"/>
-                            </td>
-                            <td style="text-align:right;">
                                 <xsl:value-of select="@tj"/>
                             </td>
+                    
                             <td> 
                                 <a href="prm.php?mth=edt&amp;res_id={@res_id}&amp;prm_id={@prm_id}&amp;xsl=1">edit</a>
                             </td>
