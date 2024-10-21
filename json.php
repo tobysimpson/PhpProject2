@@ -124,7 +124,7 @@ function res_lst() {
     $db = new cls_db();
     $ord = filter_input(INPUT_GET, "ord", FILTER_VALIDATE_INT, array("options" => array("default" => 1)));
     $lim = filter_input(INPUT_GET, "lim", FILTER_VALIDATE_INT, array("options" => array("default" => 10000)));
-    $result = mysqli_query($db->conn, "SELECT * FROM res_rnk ORDER BY {$ord} LIMIT {$lim};");
+    $result = mysqli_query($db->conn, "SELECT * FROM res_rnk WHERE (met_nuc*met_fos*met_ele*met_emi*met_lnd*met_cst*met_smr) IS NOT NULL ORDER BY {$ord} LIMIT {$lim};");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
     print json_encode($rows);
 }
