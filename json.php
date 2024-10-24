@@ -6,8 +6,11 @@ require_once "cls_xml.php";
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
-    case "ctx":
-        res_ctx();
+    case "ctx1":
+        res_ctx1();
+        break;
+    case "ctx2":
+        res_ctx2();
         break;
     case "ins":
         res_ins();
@@ -46,11 +49,20 @@ function item_lst() {
     print json_encode($rows);
 }
 
-function res_ctx() {
+function res_ctx1() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $yr = filter_input(INPUT_GET, "yr", FILTER_VALIDATE_INT);
-    $result = mysqli_query($db->conn, "CALL sp_res_ctx({$res_id},{$yr})");
+    $result = mysqli_query($db->conn, "CALL sp_res_ctx1({$res_id},{$yr})");
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    print json_encode($rows);
+}
+
+function res_ctx2() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    $yr = filter_input(INPUT_GET, "yr", FILTER_VALIDATE_INT);
+    $result = mysqli_query($db->conn, "CALL sp_res_ctx2({$res_id},{$yr})");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
     print json_encode($rows);
 }
@@ -62,7 +74,7 @@ function res_ins() {
     $qry = $db->conn->prepare("INSERT INTO res_info (res_name, res_tok) VALUES (LEFT('{$res_name}',25),LEFT('{$res_tok}',25));");
     $qry->execute();
     $res_id = $qry->insert_id;
-    $result = mysqli_query($db->conn, "CALL sp_res_ctx({$res_id}, 2022)");
+    $result = mysqli_query($db->conn, "CALL sp_res_ctx1({$res_id}, 2022)");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
     print json_encode($rows);
 }
@@ -85,7 +97,7 @@ function prm_ups() {
     $yr = filter_input(INPUT_GET, "yr", FILTER_VALIDATE_INT);
     $tj = filter_input(INPUT_GET, "tj", FILTER_VALIDATE_FLOAT);
     $db->conn->multi_query("CALL sp_prm_ups({$res_id},{$prm_id},{$yr},{$tj});");
-    $result = mysqli_query($db->conn, "CALL sp_res_ctx({$res_id},{$yr})");
+    $result = mysqli_query($db->conn, "CALL sp_res_ctx2({$res_id},{$yr})");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
     print json_encode($rows);
 }
@@ -96,7 +108,7 @@ function prm_clr() {
     $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
     $yr = filter_input(INPUT_GET, "yr", FILTER_VALIDATE_INT);
     $db->conn->multi_query("CALL sp_prm_clr({$res_id},{$prm_id},{$yr});");
-    $result = mysqli_query($db->conn, "CALL sp_res_ctx({$res_id},{$yr})");
+    $result = mysqli_query($db->conn, "CALL sp_res_ctx2({$res_id},{$yr})");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
     print json_encode($rows);
 }
@@ -135,7 +147,7 @@ function shk_ups() {
     $shk_id = filter_input(INPUT_GET, "shk_id", FILTER_VALIDATE_INT);
     $yr = filter_input(INPUT_GET, "yr", FILTER_VALIDATE_INT);
     $db->conn->multi_query("CALL sp_shk_ups({$res_id},{$shk_id},{$yr});");
-    $result = mysqli_query($db->conn, "CALL sp_res_ctx({$res_id},{$yr})");
+    $result = mysqli_query($db->conn, "CALL sp_res_ctx2({$res_id},{$yr})");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
     print json_encode($rows);
 }
