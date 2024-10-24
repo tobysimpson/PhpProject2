@@ -72,7 +72,7 @@ function res_evt() {
     $db = new cls_db();
     $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-    $db->conn->multi_query("SELECT * FROM res_evt WHERE res_evt.res_id = {$res_id};");
+    $db->conn->multi_query("SELECT * FROM res_evt WHERE res_evt.res_id = {$res_id} ORDER BY res_id, yr, prm_id;");
     $xml = cls_xml::mul2dom($db->conn);
 
     if ($xsl == 1) {

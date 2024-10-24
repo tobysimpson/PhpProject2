@@ -74,15 +74,14 @@
             <tr>
                 <th style="text-align:left">game</th>
             </tr>
-
             <tr>
                 <td>
-                    <a href="https://sweet-sure.itch.io/ensured-energy?token=0001">playable demo</a>
+                    <a href="web/index.html?token=12345678">demo (local)</a>
                 </td>
             </tr>
-                        <tr>
+            <tr>
                 <td>
-                    <a href="web/index.html?token=12345678">test1</a>
+                    <a href="https://sweet-sure.itch.io/ensured-energy?token=0001">demo (remote)</a>
                 </td>
             </tr>
         </table>
