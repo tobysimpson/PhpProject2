@@ -25,24 +25,26 @@
                         <th>res_id</th>
                         <th>res_name</th>
                         <th>res_date</th>
+                        <th>res_upd</th>
                         <th>res_yr</th>
                         
-                        <th colspan="2">met_nuc</th>
+<!--                        <th colspan="2">met_nuc</th>
                         <th colspan="2">met_fos</th>
                         <th colspan="2">met_ele</th>
 
                         <th colspan="2">met_emi</th>
                         <th colspan="2">met_lnd</th>
                         <th colspan="2">met_cst</th>
-                        <th colspan="2">met_smr</th>
+                        <th colspan="2">met_smr</th>-->
                     </tr>
                     <tr>
                         <th></th>
                         <th></th>
                         <th></th>
                         <th></th>
+                        <th></th>
                         
-                        <th>TJ</th>
+<!--                        <th>TJ</th>
                         <th>rank</th>
                         <th>TJ</th>
                         <th>rank</th>
@@ -56,7 +58,7 @@
                         <th>CHF (mln)</th>
                         <th>rank</th>
                         <th>%</th>
-                        <th>rank</th>
+                        <th>rank</th>-->
                     </tr>
                     <xsl:for-each select="tbl[1]/row">
                         <tr>
@@ -67,14 +69,19 @@
                             <td style="text-align:left;">
                                 <xsl:value-of select="@res_name"/>
                             </td>
+                            
                             <td style="text-align:left;">
                                 <xsl:value-of select="@res_date"/>
                             </td>
+                            <td style="text-align:left;">
+                                <xsl:value-of select="@res_upd"/>
+                            </td>
+                            
                             <td style="text-align:center;">
                                 <xsl:value-of select="@res_yr"/>
                             </td>
                      
-                            <td style="text-align:right;">
+<!--                            <td style="text-align:right;">
                                 <xsl:call-template name="fmt">
                                     <xsl:with-param name="x" select="@met_nuc"/>
                                 </xsl:call-template>
@@ -135,7 +142,7 @@
                             <td style="text-align:center;">
                                 <xsl:value-of select="@rnk_smr"/>
                             </td>
-                        
+                        -->
                  
                             <td>
                                 <a href="res.php?mth=edt&amp;res_id={@res_id}&amp;xsl=1">res_edt</a>

@@ -13,7 +13,7 @@
             <body>
                   
                 <!--layout--> 
-                <table width="100%">
+                <table>
                     <tr>
                         <!--logo--> 
                         <td>

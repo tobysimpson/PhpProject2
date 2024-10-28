@@ -3,6 +3,9 @@
 require_once "cls_db.php";
 require_once "cls_xml.php";
 
+//cache
+res_now();
+
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
@@ -42,9 +45,10 @@ switch ($mth) {
 
 function item_lst() {
     $db = new cls_db();
-    $ord = filter_input(INPUT_GET, "ord", FILTER_VALIDATE_INT, array("options" => array("default" => 1)));
-    $lim = filter_input(INPUT_GET, "lim", FILTER_VALIDATE_INT, array("options" => array("default" => 10000)));
-    $result = mysqli_query($db->conn, "SELECT * FROM res_rnk ORDER BY {$ord} LIMIT {$lim};");
+//    $ord = filter_input(INPUT_GET, "ord", FILTER_VALIDATE_INT, array("options" => array("default" => 1)));
+//    $lim = filter_input(INPUT_GET, "lim", FILTER_VALIDATE_INT, array("options" => array("default" => 10000)));
+//    $result = mysqli_query($db->conn, "SELECT * FROM res_rnk ORDER BY {$ord} LIMIT {$lim};");
+    $result = mysqli_query($db->conn, "SELECT * FROM item_info;");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
     print json_encode($rows);
 }
@@ -150,4 +154,13 @@ function shk_ups() {
     $result = mysqli_query($db->conn, "CALL sp_res_ctx2({$res_id},{$yr})");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
     print json_encode($rows);
+}
+
+function res_now() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    if ($res_id) {
+        $qry = $db->conn->prepare("UPDATE res_info SET res_upd = NOW() WHERE res_id = {$res_id};");
+        $qry->execute();
+    }
 }
