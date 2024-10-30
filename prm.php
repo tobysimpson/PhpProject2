@@ -33,8 +33,6 @@ switch ($mth) {
     case "eff":
         prm_eff();
         break;
-    default:
-        prm_rec();
 }
 
 function prm_dsp() {

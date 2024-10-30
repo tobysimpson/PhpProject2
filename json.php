@@ -39,8 +39,6 @@ switch ($mth) {
     case "shk":
         shk_ups();
         break;
-    default:
-        item_lst();
 }
 
 function item_lst() {

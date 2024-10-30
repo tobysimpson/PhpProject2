@@ -9,6 +9,9 @@ res_now();
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
+        case "lst":
+        res_lst();
+        break;
     case "ord":
         res_ord();
         break;
@@ -35,8 +38,6 @@ switch ($mth) {
     case "act":
         res_act();
         break;
-    default:
-        res_lst();
 }
 
 function res_lst() {
