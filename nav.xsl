@@ -50,6 +50,13 @@
                     <a href="res.php?mth=lst&amp;xsl=1">res_lst</a>
                 </td>
             </tr>
+            
+            <tr>
+                <td>
+                    <a href="res.php?mth=ord&amp;xsl=1">res_ord</a>
+                </td>
+            </tr>
+            
             <tr>
                 <td>
                     <a href="prm.php?mth=dsp&amp;xsl=1">prm_dsp</a>

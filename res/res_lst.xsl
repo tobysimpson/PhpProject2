@@ -28,38 +28,13 @@
                         <th>res_upd</th>
                         <th>res_yr</th>
                         
-<!--                        <th colspan="2">met_nuc</th>
-                        <th colspan="2">met_fos</th>
-                        <th colspan="2">met_ele</th>
-
-                        <th colspan="2">met_emi</th>
-                        <th colspan="2">met_lnd</th>
-                        <th colspan="2">met_cst</th>
-                        <th colspan="2">met_smr</th>-->
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th>res_frm</th>
+                        <th>res_trt</th>
+                        <th>res_lng</th>
+                        <th>res_tok</th>
                         
-<!--                        <th>TJ</th>
-                        <th>rank</th>
-                        <th>TJ</th>
-                        <th>rank</th>
-                        <th>TJ</th>
-                        <th>rank</th>
-                        
-                        <th>t (mln)</th>
-                        <th>rank</th>
-                        <th>km<sup>2</sup></th>
-                        <th>rank</th>
-                        <th>CHF (mln)</th>
-                        <th>rank</th>
-                        <th>%</th>
-                        <th>rank</th>-->
                     </tr>
+   
                     <xsl:for-each select="tbl[1]/row">
                         <tr>
                             <td style="text-align:center;">
@@ -80,69 +55,21 @@
                             <td style="text-align:center;">
                                 <xsl:value-of select="@res_yr"/>
                             </td>
-                     
-<!--                            <td style="text-align:right;">
-                                <xsl:call-template name="fmt">
-                                    <xsl:with-param name="x" select="@met_nuc"/>
-                                </xsl:call-template>
-                            </td>
-                            <td style="text-align:center;">
-                                <xsl:value-of select="@rnk_nuc"/>
-                            </td>
                             
-                            <td style="text-align:right;">
-                                <xsl:call-template name="fmt">
-                                    <xsl:with-param name="x" select="@met_fos"/>
-                                </xsl:call-template>
+                            <td style="text-align:left;">
+                                <xsl:value-of select="@res_frm"/>
                             </td>
-                            <td style="text-align:center;">
-                                <xsl:value-of select="@rnk_fos"/>
+                              <td style="text-align:left;">
+                                <xsl:value-of select="@res_trt"/>
                             </td>
-                        
-                            <td style="text-align:right;">
-                                <xsl:call-template name="fmt">
-                                    <xsl:with-param name="x" select="@met_ele"/>
-                                </xsl:call-template>
+                              <td style="text-align:left;">
+                                <xsl:value-of select="@res_lng"/>
                             </td>
-                            <td style="text-align:center;">
-                                <xsl:value-of select="@rnk_ele"/>
+                              <td style="text-align:left;">
+                                <xsl:value-of select="@res_tok"/>
                             </td>
                             
                             
-                            
-                            <td style="text-align:right;">
-                                <xsl:call-template name="fmt">
-                                    <xsl:with-param name="x" select="@met_emi"/>
-                                </xsl:call-template>
-                            </td>
-                            <td style="text-align:center;">
-                                <xsl:value-of select="@rnk_emi"/>
-                            </td>
-                            <td style="text-align:right;">
-                                <xsl:call-template name="fmt">
-                                    <xsl:with-param name="x" select="@met_lnd"/>
-                                </xsl:call-template>
-                            </td>
-                            <td style="text-align:center;">
-                                <xsl:value-of select="@rnk_lnd"/>
-                            </td>
-                            <td style="text-align:right;">
-                                <xsl:call-template name="fmt">
-                                    <xsl:with-param name="x" select="@met_cst"/>
-                                </xsl:call-template>
-                            </td>
-                            <td style="text-align:center;">
-                                <xsl:value-of select="@rnk_cst"/>
-                            </td>
-                            <td style="text-align:right;">
-                                <xsl:call-template name="fmt">
-                                    <xsl:with-param name="x" select="@met_smr"/>
-                                </xsl:call-template>
-                            </td>
-                            <td style="text-align:center;">
-                                <xsl:value-of select="@rnk_smr"/>
-                            </td>
-                        -->
                  
                             <td>
                                 <a href="res.php?mth=edt&amp;res_id={@res_id}&amp;xsl=1">res_edt</a>

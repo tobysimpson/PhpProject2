@@ -6,8 +6,8 @@ require_once "cls_xml.php";
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
-    case "lst":
-        res_lst();
+    case "ord":
+        res_ord();
         break;
     case "evt":
         res_evt();
@@ -36,13 +36,30 @@ switch ($mth) {
 function res_lst() {
     $db = new cls_db();
     $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("SELECT * FROM res_info;");
+    $xml = cls_xml::mul2dom($db->conn);
+
+    if ($xsl == 1) {
+        $xsl = cls_xml::file2dom("res/res_lst.xsl");
+        header('Content-Type: text/html');
+        echo cls_xml::xsltrans($xml, $xsl);
+    } else {
+        header('Content-Type: text/xml');
+        echo $xml->saveXML();
+    }
+}
+
+
+function res_ord() {
+    $db = new cls_db();
+    $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
     $ord = filter_input(INPUT_GET, "ord", FILTER_VALIDATE_INT, array("options" => array("default" => 1)));
     $lim = filter_input(INPUT_GET, "lim", FILTER_VALIDATE_INT, array("options" => array("default" => 10000)));
     $db->conn->multi_query("SELECT * FROM res_rnk ORDER BY {$ord} LIMIT {$lim};");
     $xml = cls_xml::mul2dom($db->conn);
 
     if ($xsl == 1) {
-        $xsl = cls_xml::file2dom("res/res_lst.xsl");
+        $xsl = cls_xml::file2dom("res/res_ord.xsl");
         header('Content-Type: text/html');
         echo cls_xml::xsltrans($xml, $xsl);
     } else {
