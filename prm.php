@@ -3,6 +3,9 @@
 require_once "cls_db.php";
 require_once "cls_xml.php";
 
+//cache
+res_now();
+
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
@@ -157,3 +160,12 @@ function prm_eff() {
     }
 }
 
+
+function res_now() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    if ($res_id) {
+        $qry = $db->conn->prepare("UPDATE res_info SET res_upd = NOW() WHERE res_id = {$res_id};");
+        $qry->execute();
+    }
+}

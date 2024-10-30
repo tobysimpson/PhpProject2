@@ -3,6 +3,9 @@
 require_once "cls_db.php";
 require_once "cls_xml.php";
 
+//cache
+res_now();
+
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
@@ -28,6 +31,9 @@ switch ($mth) {
         break;
     case "grp":
         res_grp();
+        break;
+    case "act":
+        res_act();
         break;
     default:
         res_lst();
@@ -67,6 +73,25 @@ function res_ord() {
         echo $xml->saveXML();
     }
 }
+
+
+function res_act() {
+    $db = new cls_db();
+    $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("SELECT * FROM res_act;");
+    $xml = cls_xml::mul2dom($db->conn);
+
+    if ($xsl == 1) {
+        $xsl = cls_xml::file2dom("res/res_lst.xsl");
+        header('Content-Type: text/html');
+        echo cls_xml::xsltrans($xml, $xsl);
+    } else {
+        header('Content-Type: text/xml');
+        echo $xml->saveXML();
+    }
+}
+
+
 
 function res_prm() {
     $db = new cls_db();
@@ -201,4 +226,14 @@ function res_grp() {
     }
 }
 
+
+
+function res_now() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
+    if ($res_id) {
+        $qry = $db->conn->prepare("UPDATE res_info SET res_upd = NOW() WHERE res_id = {$res_id};");
+        $qry->execute();
+    }
+}
 

@@ -75,7 +75,11 @@ function res_ins() {
     $db = new cls_db();
     $res_name = urldecode(filter_input(INPUT_GET, "res_name", FILTER_SANITIZE_STRING));
     $res_tok = urldecode(filter_input(INPUT_GET, "res_tok", FILTER_SANITIZE_STRING));
-    $qry = $db->conn->prepare("INSERT INTO res_info (res_name, res_tok) VALUES (LEFT('{$res_name}',25),LEFT('{$res_tok}',25));");
+    $options = array( 'options' => array('default'=> 'NULL') ); 
+    $res_trt = filter_input(INPUT_GET, "res_trt", FILTER_VALIDATE_INT, $options);
+    $res_frm = filter_input(INPUT_GET, "res_frm", FILTER_VALIDATE_INT, $options);
+    $res_lng = filter_input(INPUT_GET, "res_lng", FILTER_VALIDATE_INT, $options);
+    $qry = $db->conn->prepare("INSERT INTO res_info (res_name, res_tok, res_trt, res_frm, res_lng) VALUES (LEFT('{$res_name}',25),LEFT('{$res_tok}',100), $res_trt, $res_frm, $res_lng);");
     $qry->execute();
     $res_id = $qry->insert_id;
     $result = mysqli_query($db->conn, "CALL sp_res_ctx1({$res_id}, 2022)");

@@ -53,7 +53,13 @@
             
             <tr>
                 <td>
-                    <a href="res.php?mth=ord&amp;xsl=1">res_ord</a>
+                    <a href="res.php?mth=ord&amp;xsl=1&amp;ord=4&amp;lim=100">res_ord</a>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <a href="res.php?mth=act&amp;xsl=1">res_act</a>
                 </td>
             </tr>
             
