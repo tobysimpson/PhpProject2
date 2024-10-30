@@ -158,6 +158,7 @@ function shk_ups() {
     print json_encode($rows);
 }
 
+
 function res_now() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);

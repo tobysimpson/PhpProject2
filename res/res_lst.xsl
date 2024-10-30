@@ -56,13 +56,13 @@
                                 <xsl:value-of select="@res_yr"/>
                             </td>
                             
-                            <td style="text-align:left;">
+                            <td style="text-align:center;">
                                 <xsl:value-of select="@res_frm"/>
                             </td>
-                              <td style="text-align:left;">
+                              <td style="text-align:center;">
                                 <xsl:value-of select="@res_trt"/>
                             </td>
-                              <td style="text-align:left;">
+                              <td style="text-align:center;">
                                 <xsl:value-of select="@res_lng"/>
                             </td>
                               <td style="text-align:left;">
@@ -85,7 +85,10 @@
                                 <a href="res.php?mth=grp&amp;res_id={@res_id}&amp;xsl=1">res_grp</a>
                             </td>
                             
-
+                         
+                              <td style="text-align:left;">
+                                <xsl:value-of select="@res_not"/>
+                            </td>
 
                         </tr>
                     </xsl:for-each> 
