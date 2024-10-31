@@ -42,8 +42,8 @@ switch ($mth) {
     case "shk":
         shk_ups();
         break;
-    case "txt":
-        res_txt();
+    case "tst":
+        res_tst();
         break;
 }
 
@@ -79,7 +79,7 @@ function res_ins() {
     $db = new cls_db();
     $res_name = urldecode(filter_input(INPUT_GET, "res_name", FILTER_SANITIZE_STRING));
     $res_tok = urldecode(filter_input(INPUT_GET, "res_tok", FILTER_SANITIZE_STRING));
-    $options = array( 'options' => array('default'=> 'NULL') ); 
+    $options = array('options' => array('default' => 'NULL'));
     $res_trt = filter_input(INPUT_GET, "res_trt", FILTER_VALIDATE_INT, $options);
     $res_frm = filter_input(INPUT_GET, "res_frm", FILTER_VALIDATE_INT, $options);
     $res_lng = filter_input(INPUT_GET, "res_lng", FILTER_VALIDATE_INT, $options);
@@ -90,7 +90,6 @@ function res_ins() {
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
     print json_encode($rows);
 }
-
 
 function res_upd() {
     $db = new cls_db();
@@ -103,21 +102,28 @@ function res_upd() {
     print json_encode($rows);
 }
 
-
 function res_upd2() {
+    $json_post = file_get_contents('php://input');
+    $json_data = json_decode($json_post);
+    $json_text = json_encode($json_data);
+
+//    var_dump($json_data);
+
+    $res_id = $json_data['res_id'];
+    $res_name = $json_data['res_name'];
+
+//    var_dump($res_id);
+//    var_dump($res_name);
+
     $db = new cls_db();
-    $data = json_decode(file_get_contents('php://input'));
-    var_dump($data);
-    $res_id   = $data['res_id'];
-    $res_name = $data['res_name'];
-    $res_txt = $data['res_txt'];
-    $qry = $db->conn->prepare("UPDATE res_info SET res_name = LEFT('{$res_name}',25), res_txt = '{$res_txt}', res_upd = NOW() WHERE res_id = {$res_id};");
+    $qry = $db->conn->prepare("UPDATE res_info SET res_name = '{$res_name}', res_json = '[{$json_text}]', res_upd = NOW() WHERE res_id = {$res_id};");
     $qry->execute();
+
     $result = mysqli_query($db->conn, "SELECT * FROM res_info WHERE res_id = {$res_id};");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+//    var_dump($result);
     print json_encode($rows);
 }
-
 
 function prm_ups() {
     $db = new cls_db();
@@ -131,7 +137,6 @@ function prm_ups() {
     print json_encode($rows);
 }
 
-
 function prm_clr() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
@@ -143,14 +148,12 @@ function prm_clr() {
     print json_encode($rows);
 }
 
-
 function prm_dsp() {
     $db = new cls_db();
     $result = mysqli_query($db->conn, "SELECT * FROM prm_dsp");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
     print json_encode($rows);
 }
-
 
 function res_rnk() {
     $db = new cls_db();
@@ -164,7 +167,6 @@ function res_rnk() {
     print json_encode($rows);
 }
 
-
 function res_lst() {
     $db = new cls_db();
     $ord = filter_input(INPUT_GET, "ord", FILTER_VALIDATE_INT, array("options" => array("default" => 1)));
@@ -173,7 +175,6 @@ function res_lst() {
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
     print json_encode($rows);
 }
-
 
 function shk_ups() {
     $db = new cls_db();
@@ -186,7 +187,6 @@ function shk_ups() {
     print json_encode($rows);
 }
 
-
 function res_now() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
@@ -196,12 +196,20 @@ function res_now() {
     }
 }
 
-
-function res_txt() {
+function res_tst() {
+//    echo "hello";
     $db = new cls_db();
-    $res_id = filter_input(INPUT_POST, "res_id", FILTER_VALIDATE_INT);
-    $res_txt = ($_POST["res_txt"]); 
-    $qry = $db->conn->prepare("UPDATE res_info SET res_txt = '{$res_txt}' WHERE res_id = {$res_id};");
+    $res_id = 743;
+    var_dump($res_id);
+    
+    $arr = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
+    $arr_json = json_encode($arr);
+    var_dump($arr_json);
+    
+    $qry = $db->conn->prepare("UPDATE res_info SET res_upd = NOW(), res_json = '[{$arr_json}]' WHERE res_id = {$res_id};");
     $qry->execute();
-    echo "done";
+
+    $result = mysqli_query($db->conn, "SELECT res_json FROM res_info WHERE res_id = {$res_id};");
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    print json_encode($rows);
 }
