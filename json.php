@@ -21,6 +21,9 @@ switch ($mth) {
     case "upd":
         res_upd();
         break;
+    case "upd2":
+        res_upd2();
+        break;
     case "ups":
         prm_ups();
         break;
@@ -88,6 +91,7 @@ function res_ins() {
     print json_encode($rows);
 }
 
+
 function res_upd() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
@@ -105,7 +109,7 @@ function res_upd2() {
     $res_id = filter_input(INPUT_POST, "res_id", FILTER_VALIDATE_INT);
     $res_name = urldecode(filter_input(INPUT_POST, "res_name", FILTER_SANITIZE_STRING));
     $res_txt = ($_POST["res_txt"]); 
-    $qry = $db->conn->prepare("UPDATE res_info SET res_name = LEFT('{$res_name}',25), res_upd = NOW(), res_txt = '{$res_txt}' WHERE res_id = {$res_id};");
+    $qry = $db->conn->prepare("UPDATE res_info SET res_name = LEFT('{$res_name}',25), res_txt = '{$res_txt}', res_upd = NOW() WHERE res_id = {$res_id};");
     $qry->execute();
     $result = mysqli_query($db->conn, "SELECT * FROM res_info WHERE res_id = {$res_id};");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -125,6 +129,7 @@ function prm_ups() {
     print json_encode($rows);
 }
 
+
 function prm_clr() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
@@ -136,12 +141,14 @@ function prm_clr() {
     print json_encode($rows);
 }
 
+
 function prm_dsp() {
     $db = new cls_db();
     $result = mysqli_query($db->conn, "SELECT * FROM prm_dsp");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
     print json_encode($rows);
 }
+
 
 function res_rnk() {
     $db = new cls_db();
@@ -155,6 +162,7 @@ function res_rnk() {
     print json_encode($rows);
 }
 
+
 function res_lst() {
     $db = new cls_db();
     $ord = filter_input(INPUT_GET, "ord", FILTER_VALIDATE_INT, array("options" => array("default" => 1)));
@@ -163,6 +171,7 @@ function res_lst() {
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
     print json_encode($rows);
 }
+
 
 function shk_ups() {
     $db = new cls_db();
