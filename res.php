@@ -161,9 +161,10 @@ function res_upd() {
     $xsl = filter_input(INPUT_POST, "xsl", FILTER_VALIDATE_INT);
     $res_id = filter_input(INPUT_POST, "res_id", FILTER_VALIDATE_INT);
     $res_name = filter_input(INPUT_POST, "res_name", FILTER_SANITIZE_STRING);
-    $res_del = (int) !is_null(filter_input(INPUT_POST, "res_del", FILTER_VALIDATE_BOOL));
-    var_dump($res_del);
-    $qry = $db->conn->prepare("UPDATE res_info SET res_name = LEFT('{$res_name}',25), res_upd = NOW() WHERE res_id = {$res_id};");
+    $res_txt = ($_POST["res_txt"]); 
+//    $res_del = (int) !is_null(filter_input(INPUT_POST, "res_del", FILTER_VALIDATE_BOOL));
+//    var_dump($res_del);
+    $qry = $db->conn->prepare("UPDATE res_info SET res_name = LEFT('{$res_name}',25), res_upd = NOW(), res_txt = '{$res_txt}' WHERE res_id = {$res_id};");
     $qry->execute();
     header("Location: res.php?mth=lst&res_id=" . $res_id . "&xsl=" . $xsl);
 }

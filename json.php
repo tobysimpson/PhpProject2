@@ -39,6 +39,9 @@ switch ($mth) {
     case "shk":
         shk_ups();
         break;
+    case "txt":
+        res_txt();
+        break;
 }
 
 function item_lst() {
@@ -166,4 +169,14 @@ function res_now() {
         $qry = $db->conn->prepare("UPDATE res_info SET res_upd = NOW() WHERE res_id = {$res_id};");
         $qry->execute();
     }
+}
+
+
+function res_txt() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_POST, "res_id", FILTER_VALIDATE_INT);
+    $res_txt = ($_POST["res_txt"]); 
+    $qry = $db->conn->prepare("UPDATE res_info SET res_txt = '{$res_txt}' WHERE res_id = {$res_id};");
+    $qry->execute();
+    echo "done";
 }

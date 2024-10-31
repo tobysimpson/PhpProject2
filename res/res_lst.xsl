@@ -33,6 +33,12 @@
                         <th>res_lng</th>
                         <th>res_tok</th>
                         
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <!--<th>res_txt</th>-->
+                        
                     </tr>
    
                     <xsl:for-each select="tbl[1]/row">
@@ -59,13 +65,13 @@
                             <td style="text-align:center;">
                                 <xsl:value-of select="@res_frm"/>
                             </td>
-                              <td style="text-align:center;">
+                            <td style="text-align:center;">
                                 <xsl:value-of select="@res_trt"/>
                             </td>
-                              <td style="text-align:center;">
+                            <td style="text-align:center;">
                                 <xsl:value-of select="@res_lng"/>
                             </td>
-                              <td style="text-align:left;">
+                            <td style="text-align:left;">
                                 <xsl:value-of select="@res_tok"/>
                             </td>
                             
@@ -86,9 +92,9 @@
                             </td>
                             
                          
-                              <td style="text-align:left;">
-                                <xsl:value-of select="@res_not"/>
-                            </td>
+<!--                            <td style="text-align:left;text-nowrap">
+                                <xsl:value-of select="@res_txt"/>
+                            </td>-->
 
                         </tr>
                     </xsl:for-each> 
