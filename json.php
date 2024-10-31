@@ -99,6 +99,20 @@ function res_upd() {
     print json_encode($rows);
 }
 
+
+function res_upd2() {
+    $db = new cls_db();
+    $res_id = filter_input(INPUT_POST, "res_id", FILTER_VALIDATE_INT);
+    $res_name = urldecode(filter_input(INPUT_POST, "res_name", FILTER_SANITIZE_STRING));
+    $res_txt = ($_POST["res_txt"]); 
+    $qry = $db->conn->prepare("UPDATE res_info SET res_name = LEFT('{$res_name}',25), res_upd = NOW(), res_txt = '{$res_txt}' WHERE res_id = {$res_id};");
+    $qry->execute();
+    $result = mysqli_query($db->conn, "SELECT * FROM res_info WHERE res_id = {$res_id};");
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    print json_encode($rows);
+}
+
+
 function prm_ups() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
