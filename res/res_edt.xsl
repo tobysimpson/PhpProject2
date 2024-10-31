@@ -47,13 +47,17 @@
         </form>
         
         
-<!--        <hr/>
+        <hr/>
 
-        <form action="../json.php?mth=txt" method="post">
+        <form action="../json.php?mth=upd2" method="post">
             <input type="text" name="res_id" value="{@res_id}" readonly="true"/>
+            <br/>
+            <input type="text" name="res_name" value="{@res_name}"/>
+            <br/>
             <input type="text" name="res_txt" value="{@res_txt}"/>
+            <br/>
             <input type="submit"/>
-        </form>-->
+        </form>
         
         
     </xsl:template>
