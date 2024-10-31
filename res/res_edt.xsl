@@ -48,7 +48,7 @@
         
         
 <!--        <hr/>
-        
+
         <form action="../json.php?mth=txt" method="post">
             <input type="text" name="res_id" value="{@res_id}" readonly="true"/>
             <input type="text" name="res_txt" value="{@res_txt}"/>
