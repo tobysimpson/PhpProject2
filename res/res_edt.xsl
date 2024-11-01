@@ -27,15 +27,12 @@
                     </td>
                 </tr>
                 
-<!--                <tr>
+                <tr>
                     <th style="text-align:left;">res_txt</th>
                     <td>
-                        <input type="text" name="res_txt" value="{@res_txt}"/>
-                        <textarea id="res_txt" name="res_txt" rows="20" cols="50" form="form1">
-                            <xsl:value-of select="@res_txt"/>
-                        </textarea>
+                        <xsl:value-of select="@res_json"/>
                     </td>
-                </tr>-->
+                </tr>
                 
                 <tr>
                     <td>
@@ -47,7 +44,7 @@
         </form>
         
         
-<!--        <hr/>
+        <!--        <hr/>
 
         <form action="../json.php?mth=upd2" method="post">
             <input type="text" name="res_id" value="{@res_id}" readonly="true"/>
