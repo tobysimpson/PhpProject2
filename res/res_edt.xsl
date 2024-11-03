@@ -28,7 +28,7 @@
                 </tr>
                 
                 <tr>
-                    <th style="text-align:left;">res_txt</th>
+                    <th style="text-align:left;">res_json</th>
                     <td>
                         <xsl:value-of select="@res_json"/>
                     </td>
