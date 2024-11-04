@@ -3,9 +3,6 @@
 require_once "cls_db.php";
 require_once "cls_xml.php";
 
-//cache
-res_now();
-
 //method
 $mth = filter_input(INPUT_GET, "mth", FILTER_SANITIZE_STRING);
 switch ($mth) {
@@ -86,7 +83,8 @@ function res_ins() {
     $res_trt = filter_input(INPUT_GET, "res_trt", FILTER_VALIDATE_INT, $options);
     $res_frm = filter_input(INPUT_GET, "res_frm", FILTER_VALIDATE_INT, $options);
     $res_lng = filter_input(INPUT_GET, "res_lng", FILTER_VALIDATE_INT, $options);
-    $qry = $db->conn->prepare("INSERT INTO res_info (res_name, res_tok, res_trt, res_frm, res_lng) VALUES (LEFT('{$res_name}',25),LEFT('{$res_tok}',100), $res_trt, $res_frm, $res_lng);");
+    $qry = $db->conn->prepare("INSERT INTO res_info (res_name, res_tok, res_trt, res_frm, res_lng) VALUES (LEFT(?,25),LEFT('?,100), ?, ?, ?);");
+    $qry->bind_param("ssiii", $res_name, $res_tok, $res_trt, $res_frm, $res_lng);
     $qry->execute();
     $res_id = $qry->insert_id;
     $result = mysqli_query($db->conn, "CALL sp_res_ctx1({$res_id}, 2022)");
@@ -98,7 +96,8 @@ function res_upd() {
     $db = new cls_db();
     $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
     $res_name = urldecode(filter_input(INPUT_GET, "res_name", FILTER_SANITIZE_STRING));
-    $qry = $db->conn->prepare("UPDATE res_info SET res_name = LEFT('{$res_name}',25) WHERE res_id = {$res_id};");
+    $qry = $db->conn->prepare("UPDATE res_info SET res_name = LEFT(?, 25), res_upd = NOW() WHERE res_id = ?;");
+    $qry->bind_param("si", $res_name, $res_id);
     $qry->execute();
     $result = mysqli_query($db->conn, "SELECT * FROM res_info WHERE res_id = {$res_id};");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -167,73 +166,22 @@ function shk_ups() {
     print json_encode($rows);
 }
 
-function res_now() {
-    $db = new cls_db();
-    $res_id = filter_input(INPUT_GET, "res_id", FILTER_VALIDATE_INT);
-    if ($res_id) {
-        $qry = $db->conn->prepare("UPDATE res_info SET res_upd = NOW() WHERE res_id = {$res_id};");
-        $qry->execute();
-    }
-}
-
 function res_upd2() {
     $json_post = file_get_contents('php://input');
     $json_data = json_decode($json_post);
-//    var_dump($json_data);
-
     $res_id = $json_data->res_id;
-    $res_name = $json_data->res_name;
-//    var_dump($res_id);
-//    var_dump($res_name);
     try {
         $db = new cls_db();
-        $json_esc = $db->conn->real_escape_string($json_post);
-        $qry = $db->conn->prepare("UPDATE res_info SET res_upd = NOW(), res_name = '{$res_name}', res_json = '{$json_esc}' WHERE res_id = {$res_id};");
+        $qry = $db->conn->prepare("UPDATE res_info SET res_json = ?, res_txt = NULL, res_upd = NOW() WHERE res_id = ?;");
+        $qry->bind_param("si", $json_post, $res_id);
         $qry->execute();
     } catch (mysqli_sql_exception $err) {
-//        echo json_encode(array("status" => "error", "res_id" => $res_id, "message" => $err->getMessage()));
         $db = new cls_db();
-        $err_txt = $db->conn->real_escape_string($err->getMessage());
-//        echo $err_txt;
-        $qry = $db->conn->prepare("UPDATE res_info SET res_txt = '{$err_txt}' WHERE res_id = {$res_id};");
+        $qry = $db->conn->prepare("UPDATE res_info SET res_txt = ? WHERE res_id = ?;");
+        $qry->bind_param("si", $err->getMessage(), $res_id);
         $qry->execute();
     }
-
     $result = mysqli_query($db->conn, "SELECT * FROM res_info WHERE res_id = {$res_id};");
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
     print json_encode($rows);
-}
-
-function res_tst() {
-    $json_post = file_get_contents('php://input');
-    $json_data = json_decode($json_post);
-//    var_dump($json_data);
-
-    $res_id = $json_data->res_id;
-    $res_name = $json_data->res_name;
-//    var_dump($res_id);
-//    var_dump($res_name);
-
-
-
-    try {
-        $db = new cls_db();
-        $qry = $db->conn->prepare("UPDATE res_info SET res_upd = NOW(), res_name = '{$res_name}', res_json = '{$json_post}' WHERE res_id = {$res_id};");
-        $qry->execute();
-    } catch (mysqli_sql_exception $err) {
-        echo json_encode(array("status" => "error", "res_id" => $res_id, "message" => $err->getMessage()));
-
-        $db = new cls_db();
-        $err_txt = $db->conn->real_escape_string($err->getMessage());
-
-//        echo $err_txt;
-        $qry = $db->conn->prepare("UPDATE res_info SET res_txt = '{$err_txt}' WHERE res_id = {$res_id};");
-        $qry->execute();
-    }
-
-
-
-//    $result = mysqli_query($db->conn, "SELECT * FROM res_info WHERE res_id = {$res_id};");
-//    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
-//    print json_encode($rows);
 }
