@@ -89,7 +89,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="web/index.html?frame=0&amp;treatment=0&amp;lang=en&amp;res_tok=12345678">demo (local)</a>
+                    <a href="web/index.html?frame=0&amp;treatment=-1&amp;lang=en&amp;res_tok=12345678">demo (local)</a>
                 </td>
             </tr>
             <tr>
