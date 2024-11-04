@@ -41,6 +41,7 @@ table {
 th, td{
     padding: 4px 6px; /* tb lr */
     border: 1px solid #eeeeee;
+    white-space: nowrap;
 }
 
 th{

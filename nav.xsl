@@ -9,19 +9,6 @@
                 <title></title>
                 <link rel="stylesheet" href="https://sure.euler.usi.ch/styles.css"/>
                 <script src="xmlhttp.js"></script>
-<!--                <script>
-                    fetch("https://jsonplaceholder.typicode.com/todos", {
-                    method: "POST",
-                    body: JSON.stringify({
-                    userId: 1,
-                    title: "Fix my bugs",
-                    completed: false
-                    }),
-                    headers: {
-                    "Content-type": "application/json; charset=UTF-8"
-                    }
-                    });
-                </script>-->
             </head>
             <body>
                   
@@ -43,7 +30,7 @@
                             <xsl:call-template name="menu"/>
                         </td>
                         <!-- body -->
-                        <td style="vertical-align:top">
+                        <td style="vertical-align:top;">
                             <xsl:apply-templates/>
                         </td>
                     </tr>

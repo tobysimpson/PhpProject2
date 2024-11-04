@@ -92,7 +92,7 @@
                             </td>
                             
                          
-                            <td style="text-align:left;text-nowrap">
+                            <td style="text-align:left;white-space: nowrap;">
                                 <xsl:value-of select="@res_txt"/>
                             </td>
 

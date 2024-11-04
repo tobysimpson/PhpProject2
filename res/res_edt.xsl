@@ -13,7 +13,7 @@
     <xsl:template match="root/tbl/row">
         <form id="form1" action="res.php?mth=upd" method="post">
             <input type="hidden" name="xsl" value="1"   readonly="true"/>
-            <table class="table2">
+            <table class="table2" width="100%">
                 <tr>
                     <th style="text-align:left;">res_id</th>
                     <td>
@@ -24,6 +24,13 @@
                     <th style="text-align:left;">res_name</th>
                     <td>
                         <input type="text" name="res_name" value="{@res_name}"/>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <th style="text-align:left;">res_txt</th>
+                    <td>
+                        <xsl:value-of select="@res_txt"/>
                     </td>
                 </tr>
                 
