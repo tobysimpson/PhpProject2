@@ -20,6 +20,7 @@
     $qry->bind_param("i", $res_id);
     $qry->execute();
  
+    
     $result = $qry->get_result();
     $rows = $result->fetch_all(MYSQLI_ASSOC);
     print json_encode($rows);
