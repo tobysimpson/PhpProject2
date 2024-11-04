@@ -92,9 +92,9 @@
                             </td>
                             
                          
-<!--                            <td style="text-align:left;text-nowrap">
+                            <td style="text-align:left;text-nowrap">
                                 <xsl:value-of select="@res_txt"/>
-                            </td>-->
+                            </td>
 
                         </tr>
                     </xsl:for-each> 
