@@ -33,10 +33,11 @@
                         <th>res_lng</th>
                         <th>res_tok</th>
                         
+<!--                        <th></th>
                         <th></th>
                         <th></th>
-                        <th></th>
-                        <th></th>
+                        <th></th>-->
+                        
                         <!--<th>res_txt</th>-->
                         
                     </tr>
@@ -77,7 +78,7 @@
                             
                             
                  
-                            <td>
+<!--                            <td>
                                 <a href="res.php?mth=edt&amp;res_id={@res_id}&amp;xsl=1">res_edt</a>
                             </td>
 
@@ -89,12 +90,12 @@
                             </td>
                             <td>
                                 <a href="res.php?mth=grp&amp;res_id={@res_id}&amp;xsl=1">res_grp</a>
-                            </td>
+                            </td>-->
                             
                          
-                            <td style="text-align:left;white-space: nowrap;">
+<!--                            <td style="text-align:left;white-space: nowrap;">
                                 <xsl:value-of select="@res_txt"/>
-                            </td>
+                            </td>-->
 
                         </tr>
                     </xsl:for-each> 

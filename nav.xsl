@@ -92,11 +92,11 @@
                     <a href="web/index.html?frame=0&amp;treatment=-1&amp;lang=en&amp;res_tok=12345678">demo (local)</a>
                 </td>
             </tr>
-            <tr>
+<!--            <tr>
                 <td>
                     <a href="https://sweet-sure.itch.io/ensured-energy?token=0001">demo (remote)</a>
                 </td>
-            </tr>
+            </tr>-->
         </table>
     </xsl:template>
  

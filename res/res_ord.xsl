@@ -144,7 +144,7 @@
                             </td>
                         
                  
-                            <td>
+<!--                            <td>
                                 <a href="res.php?mth=edt&amp;res_id={@res_id}&amp;xsl=1">res_edt</a>
                             </td>
 
@@ -156,17 +156,17 @@
                             </td>
                             <td>
                                 <a href="res.php?mth=grp&amp;res_id={@res_id}&amp;xsl=1">res_grp</a>
-                            </td>
+                            </td>-->
                             
 
 
                         </tr>
                     </xsl:for-each> 
                 </table>
-                <hr/>
+<!--                <hr/>
                 <form action="res.php?mth=ins&amp;xsl=1" method="post">
                     <input type="submit" value="new"/>
-                </form>
+                </form>-->
                 
             </body>
         </html>
