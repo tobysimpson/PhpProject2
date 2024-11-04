@@ -83,7 +83,7 @@ function res_ins() {
     $res_trt = filter_input(INPUT_GET, "res_trt", FILTER_VALIDATE_INT, $options);
     $res_frm = filter_input(INPUT_GET, "res_frm", FILTER_VALIDATE_INT, $options);
     $res_lng = filter_input(INPUT_GET, "res_lng", FILTER_VALIDATE_INT, $options);
-    $qry = $db->conn->prepare("INSERT INTO res_info (res_name, res_tok, res_trt, res_frm, res_lng) VALUES (LEFT(?,25),LEFT('?,100), ?, ?, ?);");
+    $qry = $db->conn->prepare("INSERT INTO res_info (res_name, res_tok, res_trt, res_frm, res_lng) VALUES (?, ?, ?, ?, ?);");
     $qry->bind_param("ssiii", $res_name, $res_tok, $res_trt, $res_frm, $res_lng);
     $qry->execute();
     $res_id = $qry->insert_id;
