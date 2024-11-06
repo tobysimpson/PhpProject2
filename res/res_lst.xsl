@@ -100,11 +100,11 @@
                         </tr>
                     </xsl:for-each> 
                 </table>
-                <hr/>
+<!--                <hr/>
                 <form action="res.php?mth=ins&amp;xsl=1" method="post">
                     <input type="submit" value="new"/>
                 </form>
-                
+                -->
             </body>
         </html>
     </xsl:template>

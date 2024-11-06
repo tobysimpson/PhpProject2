@@ -45,20 +45,20 @@
                         <th></th>-->
                         
                         <th>TJ</th>
-                        <th>rank</th>
+                        <th><a href="./res.php?mth=ord&amp;xsl=1&amp;ord=4&amp;lim=1000">rank</a></th>
                         <th>TJ</th>
-                        <th>rank</th>
+                        <th><a href="./res.php?mth=ord&amp;xsl=1&amp;ord=6&amp;lim=1000">rank</a></th>
                         <th>TJ</th>
-                        <th>rank</th>
+                        <th><a href="./res.php?mth=ord&amp;xsl=1&amp;ord=8&amp;lim=1000">rank</a></th>
                         
                         <th>t (mln)</th>
-                        <th>rank</th>
+                        <th><a href="./res.php?mth=ord&amp;xsl=1&amp;ord=10&amp;lim=1000">rank</a></th>
                         <th>km<sup>2</sup></th>
-                        <th>rank</th>
+                        <th><a href="./res.php?mth=ord&amp;xsl=1&amp;ord=12&amp;lim=1000">rank</a></th>
                         <th>CHF (mln)</th>
-                        <th>rank</th>
+                        <th><a href="./res.php?mth=ord&amp;xsl=1&amp;ord=14&amp;lim=1000">rank</a></th>
                         <th>%</th>
-                        <th>rank</th>
+                        <th><a href="./res.php?mth=ord&amp;xsl=1&amp;ord=16&amp;lim=1000">rank</a></th>
                     </tr>
                     <xsl:for-each select="tbl[1]/row">
                         <tr>
