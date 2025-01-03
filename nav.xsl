@@ -71,7 +71,7 @@
           
 
 
-            <!--            <tr>
+            <!--<tr>
                 <td>
                     <a href="res.php?mth=rnk&amp;xsl=1">res_rnk</a>
                 </td>
@@ -97,6 +97,19 @@
                     <a href="https://sweet-sure.itch.io/ensured-energy?token=0001">demo (remote)</a>
                 </td>
             </tr>-->
+             <tr>
+                <th style="text-align:left">reports</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="rpt.php?mth=res1&amp;xsl=1">rpt_res1</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="rpt.php?mth=res2&amp;xsl=1">rpt_res2</a>
+                </td>
+            </tr>
         </table>
     </xsl:template>
  
