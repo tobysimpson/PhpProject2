@@ -87,10 +87,10 @@
                             </td>
                             <td>
                                 <a href="res.php?mth=rnk&amp;res_id={@res_id}&amp;xsl=1">res_rnk</a>
-                            </td>
+                            </td>-->
                             <td>
                                 <a href="res.php?mth=grp&amp;res_id={@res_id}&amp;xsl=1">res_grp</a>
-                            </td>-->
+                            </td>
                             
                          
 <!--                            <td style="text-align:left;white-space: nowrap;">

@@ -106,18 +106,18 @@
                                     <xsl:if test="$row">
                                         <xsl:value-of select="$row/@prm_id"/>
                                         <br/>
-                                        <xsl:choose>
-                                            <xsl:when test="$row/@prm_cal=0">
+                                        <!--<xsl:choose>-->
+<!--                                            <xsl:when test="$row/@prm_cal=0">
                                                 <a href="prm.php?mth=edt&amp;res_id={$res/@res_id}&amp;prm_id={$row/@prm_id}&amp;xsl=1">
                                                     <img src="prm.php?mth=prv&amp;res_id={$res/@res_id}&amp;prm_id={$row/@prm_id}&amp;xsl=1"/>
                                                 </a>
-                                            </xsl:when>
-                                            <xsl:otherwise>
+                                            </xsl:when>-->
+                                            <!--<xsl:otherwise>-->
                                                 <a href="prm.php?mth=fwd&amp;res_id={$res/@res_id}&amp;prm_id={$row/@prm_id}&amp;xsl=1">
                                                     <img src="prm.php?mth=prv&amp;res_id={$res/@res_id}&amp;prm_id={$row/@prm_id}&amp;xsl=1"/>
                                                 </a>
-                                            </xsl:otherwise>
-                                        </xsl:choose>
+<!--                                            </xsl:otherwise>
+                                        </xsl:choose>-->
                                     </xsl:if>
                                     
 

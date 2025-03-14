@@ -108,6 +108,16 @@
             <tr>
                 <td>
                     <a href="rpt.php?mth=res2&amp;xsl=1">rpt_res2</a>
+                    <xsl:text>  </xsl:text>
+                    <a href="rpt.php?mth=res2&amp;xsl=2">xls</a>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <a href="rpt.php?mth=res3&amp;xsl=1">rpt_res3</a>
+                    <xsl:text>  </xsl:text>
+                    <a href="rpt.php?mth=res3&amp;xsl=2">xls</a>
                 </td>
             </tr>
         </table>
