@@ -72,9 +72,9 @@ function rpt_res3() {
             break;
         case 2:
             $xsl = cls_xml::file2dom("rpt/xls_res3.xsl");
-//            header('Content-Type: application/vnd.ms-excel');
-//            header("Content-Disposition: attachment; filename=rpt_res3.xml");
-            header('Content-Type: text/xml');
+            header('Content-Type: application/vnd.ms-excel');
+            header("Content-Disposition: attachment; filename=rpt_res3.xml");
+//            header('Content-Type: text/xml');
             echo cls_xml::xsltrans($xml, $xsl);
             break;
         default:

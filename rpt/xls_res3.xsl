@@ -41,27 +41,7 @@
                         <Cell>
                             <Data ss:Type="String">res_lng</Data>
                         </Cell>
-<!--                        <Cell>
-                            <Data ss:Type="String">met_nuc</Data>
-                        </Cell>
-                        <Cell>
-                            <Data ss:Type="String">met_fos</Data>
-                        </Cell>
-                        <Cell>
-                            <Data ss:Type="String">met_ele</Data>
-                        </Cell>
-                        <Cell>
-                            <Data ss:Type="String">met_emi</Data>
-                        </Cell>
-                        <Cell>
-                            <Data ss:Type="String">met_lnd</Data>
-                        </Cell>
-                        <Cell>
-                            <Data ss:Type="String">met_cst</Data>
-                        </Cell>
-                        <Cell>
-                            <Data ss:Type="String">met_smr</Data>
-                        </Cell>-->
+            
                         <Cell>
                             <Data ss:Type="String">yr</Data>
                         </Cell>
@@ -96,12 +76,35 @@
                         <Cell>
                             <Data ss:Type="String">cap_ccs</Data>
                         </Cell>
+                        
+                        <Cell>
+                            <Data ss:Type="String">avl_sol</Data>
+                        </Cell>
+                        <Cell>
+                            <Data ss:Type="String">avl_wnd</Data>
+                        </Cell>
+                        
+                        <Cell>
+                            <Data ss:Type="String">cns_hsh</Data>
+                        </Cell>
+                        <Cell>
+                            <Data ss:Type="String">cns_ind</Data>
+                        </Cell>
+                        <Cell>
+                            <Data ss:Type="String">cns_srv</Data>
+                        </Cell>
+                        <Cell>
+                            <Data ss:Type="String">cns_tra</Data>
+                        </Cell>
+                        <Cell>
+                            <Data ss:Type="String">cns_agr</Data>
+                        </Cell>
+                        
                     </Row>
 
 		
         
         
-      
    
                     <xsl:for-each select="tbl[1]/row">
                         <Row>
@@ -150,45 +153,9 @@
                                     <xsl:value-of select="@res_lng"/>
                                 </Data>
                             </Cell>
-<!--                            <Cell>
-                                <Data ss:Type="Number">
-                                    <xsl:value-of select="@met_nuc"/>
-                                </Data>
-                            </Cell>
                             <Cell>
                                 <Data ss:Type="Number">
-                                    <xsl:value-of select="@met_fos"/>
-                                </Data>
-                            </Cell>
-                            <Cell>
-                                <Data ss:Type="Number">
-                                    <xsl:value-of select="@met_ele"/>
-                                </Data>
-                            </Cell>
-                            <Cell>
-                                <Data ss:Type="Number">
-                                    <xsl:value-of select="@met_emi"/>
-                                </Data>
-                            </Cell>
-                            <Cell>
-                                <Data ss:Type="Number">
-                                    <xsl:value-of select="@met_lnd"/>
-                                </Data>
-                            </Cell>
-                            <Cell>
-                                <Data ss:Type="Number">
-                                    <xsl:value-of select="@met_cst"/>
-                                </Data>
-                            </Cell>
-                            <Cell>
-                                <Data ss:Type="Number">
-                                    <xsl:value-of select="@met_smr"/>
-                                </Data>
-                            </Cell>-->
-                            
-                                                        <Cell>
-                                <Data ss:Type="Number">
-                                    <xsl:value-of select="@res_yr"/>
+                                    <xsl:value-of select="@yr"/>
                                 </Data>
                             </Cell>
                             <Cell>
@@ -241,46 +208,42 @@
                                     <xsl:value-of select="@cap_ccs"/>
                                 </Data>
                             </Cell>
-                            
-                            
                             <Cell>
                                 <Data ss:Type="Number">
-                                    <xsl:with-param name="x" select="@avl_sol"/>
+                                    <xsl:value-of select="@avl_sol"/>
                                 </Data>
                             </Cell>
                             <Cell>
                                 <Data ss:Type="Number">
-                                    <xsl:with-param name="x" select="@avl_wnd"/>
+                                    <xsl:value-of select="@avl_wnd"/>
                                 </Data>
                             </Cell>
                             
                             <Cell>
                                 <Data ss:Type="Number">
-                                    <xsl:with-param name="x" select="@cns_hsh"/>
+                                    <xsl:value-of select="@cns_hsh"/>
                                 </Data>
                             </Cell>                            
                             <Cell>
                                 <Data ss:Type="Number">
-                                    <xsl:with-param name="x" select="@cns_ind"/>
+                                    <xsl:value-of select="@cns_ind"/>
                                 </Data>
                             </Cell>                            
                             <Cell>
                                 <Data ss:Type="Number">
-                                    <xsl:with-param name="x" select="@cns_srv"/>
+                                    <xsl:value-of select="@cns_srv"/>
                                 </Data>
                             </Cell>                            
                             <Cell>
                                 <Data ss:Type="Number">
-                                    <xsl:with-param name="x" select="@cns_tra"/>
+                                    <xsl:value-of select="@cns_tra"/>
                                 </Data>
                             </Cell>                            
                             <Cell>
                                 <Data ss:Type="Number">
-                                    <xsl:with-param name="x" select="@cns_agr"/>
+                                    <xsl:value-of select="@cns_agr"/>
                                 </Data>
                             </Cell>                            
-                            
-                            
                         </Row>
                     </xsl:for-each> 
                 </Table>
