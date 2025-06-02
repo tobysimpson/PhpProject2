@@ -90,7 +90,7 @@
                 <xsl:variable name="pzro" select="format-number($ph * (1 + $vinf div $vrng),'0.0')"/>
                 <g id="poly">
                     <xsl:variable name="points">
-                        <xsl:for-each select="tbl[3]/row">
+                        <xsl:for-each select="tbl[2]/row">
                             <xsl:sort select="@yr" data-type="number" order="ascending"/>
                             <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
                             <xsl:variable name="y" select="format-number($ph * (1 - (@tj - $vinf) div $vrng),'0.0')"/>
@@ -154,7 +154,7 @@
                 <g id="hist">
                     <g id="line1">
                         <xsl:variable name="line1">
-                            <xsl:for-each select="tbl[3]/row">
+                            <xsl:for-each select="tbl[2]/row">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.000')"/>
                                 <xsl:variable name="y" select="format-number($ph * (1 - (@tj - $vinf) div $vrng),'0.000')"/>
@@ -179,7 +179,7 @@
                     
                     <g id="reg">
                         <xsl:variable name="line2">
-                            <xsl:for-each select="tbl[3]/row[@yr &gt;= 2011]">
+                            <xsl:for-each select="tbl[2]/row[@yr &gt;= 2011]">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.000')"/>
                                 <xsl:variable name="y" select="format-number($ph * (1 - (@reg - $vinf) div $vrng),'0.000')"/>
@@ -203,9 +203,9 @@
                     </g>
                     
                     
-                    <g id="line3">
+<!--                    <g id="line3">
                         <xsl:variable name="line3">
-                            <xsl:for-each select="tbl[4]/row">
+                            <xsl:for-each select="tbl[2]/row">
                                 <xsl:variable name="i" select="position()"/>
                                 <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.000')"/>
                                 <xsl:variable name="y" select="format-number($ph * (1 - (@tj - $vinf) div $vrng),'0.000')"/>
@@ -226,7 +226,7 @@
                             </xsl:for-each>
                         </xsl:variable>
                         <path fill="none"  d="{$line3}" stroke-width="1" stroke="#006600" />
-                    </g>
+                    </g>-->
                     
                     
                     
@@ -267,14 +267,14 @@
             
             <g id="txt" transform="translate(0,0)">
                 <text x="{$w * 0.5}" y="{$h * 0.2}" alignment-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="200" font-size="9pt" fill="#6666FF">
-                    <xsl:value-of select="format-number(tbl[3]/row[last()]/@tj,'#,##0.00')"/>
+                    <xsl:value-of select="format-number(tbl[2]/row[last()]/@tj,'#,##0.00')"/>
                 </text>
                 <text x="{$w * 0.5}" y="{$h * 0.5}" alignment-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="200" font-size="9pt" fill="#FF6666">
-                    <xsl:value-of select="format-number(tbl[2]/row[1]/@reg_b,'#,##0.00')"/>
+                    <xsl:value-of select="format-number(tbl[1]/row[1]/@reg_b,'#,##0.00')"/>
                 </text>
-                <text x="{$w * 0.5}" y="{$h * 0.8}" alignment-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="200" font-size="9pt" fill="#006600">
+<!--                <text x="{$w * 0.5}" y="{$h * 0.8}" alignment-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="200" font-size="9pt" fill="#006600">
                     <xsl:value-of select="format-number(tbl[4]/row[1]/@tj,'#,##0.00')"/>
-                </text>
+                </text>-->
             </g>
 
         </svg>
