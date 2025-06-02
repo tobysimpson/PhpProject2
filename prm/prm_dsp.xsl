@@ -34,6 +34,7 @@
                 <th>prc_id</th>
                 <th>prc_name</th>        
                 <th>prm_id</th>
+                <th>prm_code</th>
                 <th>prm_cal</th>
                 <th>prd_id</th>    
                 <th>prd_name</th>   
@@ -67,6 +68,10 @@
                     <td align="center">
                         <xsl:value-of select="@prm_id"/>
                     </td>
+                
+                    <td align="left">
+                        <xsl:value-of select="@prm_code"/>
+                    </td>
                     <td align="center">
                         <xsl:value-of select="@prm_cal"/>
                     </td>
@@ -94,8 +99,6 @@
                     </td>
                 </tr>
            
-
-          
                 
             </xsl:for-each>
 

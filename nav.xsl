@@ -64,6 +64,14 @@
             </tr>
             
             <tr>
+                <th style="text-align:left">prm</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="prm.php?mth=grp&amp;xsl=1">prm_grp</a>
+                </td>
+            </tr>Ï
+            <tr>
                 <td>
                     <a href="prm.php?mth=dsp&amp;xsl=1">prm_dsp</a>
                 </td>
@@ -89,15 +97,18 @@
             </tr>
             <tr>
                 <td>
-                    <a href="web/index.html?frame=0&amp;treatment=-1&amp;lang=en&amp;res_tok=12345678">demo (local)</a>
+                    <!--<a href="web/index.html?frame=0&amp;treatment=-1&amp;lang=en&amp;res_tok=12345678">demo (local)</a>-->
+                    <form action="web/index.html?frame=0&amp;treatment=-1&amp;lang=en&amp;res_tok=12345678">
+                        <input type="submit" value="demo (local)"/>
+                    </form>
                 </td>
             </tr>
-<!--            <tr>
+            <!--            <tr>
                 <td>
                     <a href="https://sweet-sure.itch.io/ensured-energy?token=0001">demo (remote)</a>
                 </td>
             </tr>-->
-             <tr>
+            <tr>
                 <th style="text-align:left">reports</th>
             </tr>
             <tr>

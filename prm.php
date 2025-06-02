@@ -31,6 +31,12 @@ switch ($mth) {
     case "eff":
         prm_eff();
         break;
+    case "grp":
+        prm_grp();
+        break;
+    case "hpr":
+        prm_hpr();
+        break;
 }
 
 function prm_dsp() {
@@ -98,6 +104,24 @@ function prm_prv() {
     }
 }
 
+//history preview
+function prm_hpr() {
+    $db = new cls_db();
+    $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
+    $prm_id = filter_input(INPUT_GET, "prm_id", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_prm_hst({$prm_id});");
+    $xml = cls_xml::mul2dom($db->conn);
+    if ($xsl == 1) {
+        $xsl = cls_xml::file2dom("prm/prm_hpr.xsl");
+        header('Content-Type: image/svg+xml');
+        echo cls_xml::xsltrans($xml, $xsl);
+    } else {
+        header('Content-Type: text/xml');
+        echo $xml->saveXML();
+    }
+}
+
+
 function prm_edt() {
     $db = new cls_db();
     $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
@@ -149,6 +173,22 @@ function prm_eff() {
     if ($xsl == 1) {
         $xsl = cls_xml::file2dom("prm/prm_eff.xsl");
         header('Content-Type: image/svg+xml');
+        echo cls_xml::xsltrans($xml, $xsl);
+    } else {
+        header('Content-Type: text/xml');
+        echo $xml->saveXML();
+    }
+}
+
+
+function prm_grp() {
+    $db = new cls_db();
+    $xsl = filter_input(INPUT_GET, "xsl", FILTER_VALIDATE_INT);
+    $db->conn->multi_query("CALL sp_prm_grp();");
+    $xml = cls_xml::mul2dom($db->conn);
+    if ($xsl == 1) {
+        $xsl = cls_xml::file2dom("prm/prm_grp.xsl");
+        header('Content-Type: text/html');
         echo cls_xml::xsltrans($xml, $xsl);
     } else {
         header('Content-Type: text/xml');
