@@ -137,14 +137,14 @@
                             <xsl:variable name="x" select="format-number($pw * ($tt[$i] - $tmin) div $trng,'0.000')"/>
                             <line x1="{$x}" y1="0" x2="{$x}" y2="{$ph}" stroke="lightgray" stroke-dasharray="5,5" stroke-dashoffset="{$vdash * 0.5}"/>
                            
-                            <!--<line x1="{$x}" y1="0" x2="{$x}" y2="{$ph}" stroke="lightgray"/>-->
+<!--                            <line x1="{$x}" y1="0" x2="{$x}" y2="{$ph}" stroke="lightgray"/>-->
                             
                         </xsl:if>
                     </xsl:for-each>  
                 </g> 
+ <!--             
               
-              
-                <!--                <g id="hgrid">       
+                <g id="hgrid">       
                     <xsl:call-template name="hgrid">
                         <xsl:with-param name="vpos" select="$vinf" />
                     </xsl:call-template>
@@ -201,80 +201,16 @@
                         </xsl:variable>
                         <path fill="none"  d="{$line2}" stroke-width="1" stroke="#FF6666" />
                     </g>
-                    
-                    
-<!--                    <g id="line3">
-                        <xsl:variable name="line3">
-                            <xsl:for-each select="tbl[2]/row">
-                                <xsl:variable name="i" select="position()"/>
-                                <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.000')"/>
-                                <xsl:variable name="y" select="format-number($ph * (1 - (@tj - $vinf) div $vrng),'0.000')"/>
-                                <xsl:choose>
-                                    <xsl:when test="position()=1">
-                                        <xsl:text>M </xsl:text>
-                                        <xsl:value-of select="$x"/>
-                                        <xsl:text>,</xsl:text>
-                                        <xsl:value-of select="$y"/>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <xsl:text> L </xsl:text>
-                                        <xsl:value-of select="$x"/>
-                                        <xsl:text>,</xsl:text>
-                                        <xsl:value-of select="$y"/>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:for-each>
-                        </xsl:variable>
-                        <path fill="none"  d="{$line3}" stroke-width="1" stroke="#006600" />
-                    </g>-->
-                    
-                    
-                    
                 </g>
-                
-               
-                <!--                <g id="dots">
-                    <g id="series">
-                        <xsl:for-each select="tbl[3]/row">
-                            <xsl:variable name="i" select="position()"/>
-                            <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
-                            <xsl:variable name="y" select="format-number($ph * (1 - (@tj - $vinf) div $vrng),'0.00')"/>
-                            <circle cx="{$x}" cy="{$y}" r="2" stroke="#6666FF" fill="#6666FF"/>
-                        </xsl:for-each>
-                    </g>
-                    
-                    <g id="reg">
-                        <xsl:for-each select="tbl[3]/row[@yr &gt; 2009]">
-                            <xsl:variable name="i" select="position()"/>
-                            <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
-                            <xsl:variable name="y" select="format-number($ph * (1 - (@v - $vinf) div $vrng),'0.00')"/>
-                            <circle cx="{$x}" cy="{$y}" r="2" stroke="#FF6666" fill="#FFFFFF"/>
-                        </xsl:for-each>
-                    </g>
-                    
-                    
-                    <g id="forward">
-                        <xsl:for-each select="tbl[4]/row">
-                            <xsl:variable name="i" select="position()"/>
-                            <xsl:variable name="x" select="format-number($pw * (@yr - $tmin) div $trng,'0.00')"/>
-                            <xsl:variable name="y" select="format-number($ph * (1 - (@v - $vinf) div $vrng),'0.00')"/>
-                            <circle cx="{$x}" cy="{$y}" r="2" stroke="#006600" fill="#FFFFFF"/> 
-                        </xsl:for-each>
-                    </g>
-                    
-                </g>-->
             </g>
             
             <g id="txt" transform="translate(0,0)">
-                <text x="{$w * 0.5}" y="{$h * 0.2}" alignment-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="200" font-size="9pt" fill="#6666FF">
+                <text x="{$w * 0.5}" y="{$h * 0.5}" alignment-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="200" font-size="10pt" fill="#6666FF">
                     <xsl:value-of select="format-number(tbl[2]/row[last()]/@tj,'#,##0.00')"/>
                 </text>
-                <text x="{$w * 0.5}" y="{$h * 0.5}" alignment-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="200" font-size="9pt" fill="#FF6666">
+                <text x="{$w * 0.5}" y="{$h * 0.8}" alignment-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="200" font-size="10pt" fill="#FF6666">
                     <xsl:value-of select="format-number(tbl[1]/row[1]/@reg_b,'#,##0.00')"/>
                 </text>
-<!--                <text x="{$w * 0.5}" y="{$h * 0.8}" alignment-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="200" font-size="9pt" fill="#006600">
-                    <xsl:value-of select="format-number(tbl[4]/row[1]/@tj,'#,##0.00')"/>
-                </text>-->
             </g>
 
         </svg>
