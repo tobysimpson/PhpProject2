@@ -70,7 +70,7 @@
                 <td>
                     <a href="prm.php?mth=grp&amp;xsl=1">prm_grp</a>
                 </td>
-            </tr>Ï
+            </tr>
             <tr>
                 <td>
                     <a href="prm.php?mth=dsp&amp;xsl=1">prm_dsp</a>
